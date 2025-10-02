@@ -16,16 +16,16 @@ export default function Testimonials() {
     },
     {
       quote: "Best investment we made. They saved us 6 months and $100K compared to hiring a full team. The MVP helped us secure seed funding.",
-      author: "Michael Roberts",
+      author: "R. Mannivaran",
       role: "CEO, SupremeX",
       company: "Singapore",
       image: testimonial2Img,
     },
     {
       quote: "Professional, fast, and transparent. They guided us through every step and delivered exactly what we needed to validate our market.",
-      author: "Priya Sharma",
-      role: "Co-founder, Evender",
-      company: "India",
+      author: "Kusal Fonseka",
+      role: "Director",
+      company: "Kangaroo Cabs",
       image: testimonial3Img,
     },
   ];
