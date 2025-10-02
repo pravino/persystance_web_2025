@@ -1,4 +1,5 @@
 import { Github, Linkedin, Twitter, Mail } from "lucide-react";
+import logoImg from "@assets/persystance-logo-transparent_1759398038085.webp";
 
 export default function Footer() {
   return (
@@ -6,9 +7,11 @@ export default function Footer() {
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="grid md:grid-cols-3 gap-8 mb-8">
           <div>
-            <h3 className="font-semibold text-base mb-3">
-              Persystance <span className="text-primary">Networks</span>
-            </h3>
+            <img 
+              src={logoImg} 
+              alt="Persystance" 
+              className="h-7 mb-3"
+            />
             <p className="text-sm text-muted-foreground leading-relaxed">
               Rapid MVP development for startups. Build in 2 weeks, launch in 30 days.
             </p>

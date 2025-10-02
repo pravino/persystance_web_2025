@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Moon, Sun, Menu, X } from "lucide-react";
 import { useTheme } from "@/hooks/use-theme";
+import logoImg from "@assets/persystance-logo-transparent_1759398038085.webp";
 
 export default function Navigation() {
   const { theme, setTheme } = useTheme();
@@ -25,10 +26,14 @@ export default function Navigation() {
         <div className="flex items-center justify-between h-16">
           <button 
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="text-xl font-bold hover-elevate px-4 py-2 rounded-md transition-all"
+            className="hover-elevate px-2 py-2 rounded-md transition-all"
             data-testid="button-logo"
           >
-            Persystance <span className="text-primary">Networks</span>
+            <img 
+              src={logoImg} 
+              alt="Persystance" 
+              className="h-8"
+            />
           </button>
           
           <div className="hidden md:flex items-center gap-8">
