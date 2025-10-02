@@ -1,6 +1,7 @@
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import ClientLogos from "@/components/ClientLogos";
+import AboutUs from "@/components/AboutUs";
 import ValueProposition from "@/components/ValueProposition";
 import ProcessTimeline from "@/components/ProcessTimeline";
 import TechnologyStack from "@/components/TechnologyStack";
@@ -17,6 +18,7 @@ export default function Home() {
       <main>
         <Hero />
         <ClientLogos />
+        <AboutUs />
         <ValueProposition />
         <ProcessTimeline />
         <TechnologyStack />

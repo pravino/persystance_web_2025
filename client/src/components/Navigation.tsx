@@ -13,6 +13,7 @@ export default function Navigation() {
   };
 
   const navItems = [
+    { label: "About", id: "about" },
     { label: "Process", id: "process" },
     { label: "Portfolio", id: "portfolio" },
     { label: "Contact", id: "contact" },
