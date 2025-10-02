@@ -7,6 +7,7 @@ import salonAppImg from "@assets/stock_images/beauty_salon_hair_st_3eaead1c.jpg"
 import carAppImg from "@assets/stock_images/auto_mechanic_car_re_0fd8939f.jpg";
 import handymanAppImg from "@assets/stock_images/home_repair_handyman_babd5e64.jpg";
 import foodDeliveryImg from "@assets/stock_images/fresh_food_plate_res_ed324129.jpg";
+import walletAppImg from "@assets/stock_images/mobile_payment_walle_5fbe1c47.jpg";
 
 export default function Portfolio() {
   const projects = [
@@ -57,6 +58,14 @@ export default function Portfolio() {
       result: "150+ restaurants, 5K orders",
       tech: ["React Native", "Node.js", "Stripe", "Google Maps"],
       image: foodDeliveryImg,
+    },
+    {
+      title: "PayEase Wallet",
+      description: "Mobile wallet with instant loans, bill payments, and peer-to-peer transfers",
+      timeline: "14 days",
+      result: "$500K in transactions",
+      tech: ["React Native", "Node.js", "PostgreSQL", "Plaid API"],
+      image: walletAppImg,
     },
   ];
 
