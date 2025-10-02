@@ -5,32 +5,46 @@ import { Clock, TrendingUp } from "lucide-react";
 export default function Portfolio() {
   const projects = [
     {
-      title: "SupremeX Crypto Exchange",
-      description: "White-label cryptocurrency trading platform with real-time analytics",
-      timeline: "12 days",
-      result: "10K+ users in month 1",
-      tech: ["React", "Node.js", "WebSocket", "PostgreSQL"],
-    },
-    {
-      title: "Chattle Messenger",
-      description: "End-to-end encrypted messaging app for enterprise",
-      timeline: "14 days",
-      result: "5 enterprise clients",
-      tech: ["React Native", "Firebase", "WebRTC"],
-    },
-    {
-      title: "Evender eCommerce",
-      description: "Multi-vendor marketplace with payment integration",
+      title: "RideNow Taxi App",
+      description: "Real-time ride-hailing platform with driver matching and live tracking",
       timeline: "13 days",
-      result: "$50K GMV month 1",
-      tech: ["Next.js", "Stripe", "MongoDB"],
+      result: "500+ rides in week 1",
+      tech: ["React Native", "Node.js", "Google Maps", "Socket.io"],
     },
     {
-      title: "HealthTrack SaaS",
-      description: "AI-powered health monitoring dashboard",
+      title: "StayEasy Hotel Booking",
+      description: "Hotel reservation system with payments and booking management",
+      timeline: "12 days",
+      result: "50+ hotels onboarded",
+      tech: ["Next.js", "Stripe", "PostgreSQL"],
+    },
+    {
+      title: "GlamBook Salon App",
+      description: "Beauty salon booking app with stylist profiles and appointment scheduling",
       timeline: "11 days",
-      result: "2K beta signups",
-      tech: ["Vue.js", "Python", "TensorFlow"],
+      result: "30 salons, 1K bookings",
+      tech: ["React Native", "Firebase", "Twilio"],
+    },
+    {
+      title: "AutoCare Clinic",
+      description: "Car service booking platform with mechanic scheduling and service tracking",
+      timeline: "13 days",
+      result: "20 clinics connected",
+      tech: ["React", "Node.js", "MongoDB"],
+    },
+    {
+      title: "FixIt Handyman",
+      description: "On-demand home services marketplace for AC, electrical, pool, and repairs",
+      timeline: "14 days",
+      result: "100+ service pros",
+      tech: ["React Native", "Node.js", "Stripe", "Google Maps"],
+    },
+    {
+      title: "HomeServe Pro",
+      description: "Comprehensive household and office repair booking with talent matching",
+      timeline: "12 days",
+      result: "200+ bookings/week",
+      tech: ["Next.js", "PostgreSQL", "Twilio", "Stripe"],
     },
   ];
 
