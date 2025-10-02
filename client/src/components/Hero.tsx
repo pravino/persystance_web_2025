@@ -11,11 +11,11 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-background overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-primary/10 animate-gradient-shift" />
+    <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-primary/[0.03] via-background to-accent/50 overflow-hidden">
       <div className="absolute inset-0">
-        <div className="absolute top-20 left-10 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-float" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-primary/8 rounded-full blur-3xl animate-float-delayed" />
+        <div className="absolute top-0 -left-40 w-[600px] h-[600px] bg-primary/20 rounded-full blur-3xl animate-float" />
+        <div className="absolute bottom-0 -right-40 w-[700px] h-[700px] bg-primary/15 rounded-full blur-3xl animate-float-delayed" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-accent/30 rounded-full blur-3xl animate-float opacity-50" />
       </div>
       <div className="container mx-auto px-4 py-32 relative z-10">
         <div className="grid lg:grid-cols-2 gap-20 items-center max-w-7xl mx-auto">
