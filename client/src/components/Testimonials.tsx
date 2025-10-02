@@ -9,9 +9,9 @@ export default function Testimonials() {
   const testimonials = [
     {
       quote: "Persystance turned our idea into a working product in just 2 weeks. The quality exceeded our expectations and we launched on time.",
-      author: "Sarah Chen",
-      role: "Founder, HealthTrack",
-      company: "USA",
+      author: "Keith Buck",
+      role: "Founder",
+      company: "Prime Group",
       image: testimonial1Img,
     },
     {
