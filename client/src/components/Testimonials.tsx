@@ -1,9 +1,6 @@
 import { Card } from "@/components/ui/card";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Quote } from "lucide-react";
-import testimonial1Img from "@assets/stock_images/professional_busines_62a43220.jpg";
-import testimonial2Img from "@assets/stock_images/professional_busines_df137c6c.jpg";
-import testimonial3Img from "@assets/stock_images/professional_busines_fa387071.jpg";
 
 export default function Testimonials() {
   const testimonials = [
@@ -12,21 +9,18 @@ export default function Testimonials() {
       author: "Keith Buck",
       role: "Founder",
       company: "Prime Group",
-      image: testimonial1Img,
     },
     {
       quote: "Best investment we made. They saved us 6 months and $100K compared to hiring a full team. The MVP helped us secure seed funding.",
       author: "R. Mannivaran",
       role: "CEO, SupremeX",
       company: "Singapore",
-      image: testimonial2Img,
     },
     {
       quote: "Professional, fast, and transparent. They guided us through every step and delivered exactly what we needed to validate our market.",
       author: "Kusal Fonseka",
       role: "Director",
       company: "Kangaroo Cabs",
-      image: testimonial3Img,
     },
   ];
 
@@ -55,7 +49,6 @@ export default function Testimonials() {
               </p>
               <div className="border-t border-border pt-6 flex items-center gap-3">
                 <Avatar className="w-12 h-12">
-                  <AvatarImage src={testimonial.image} alt={testimonial.author} />
                   <AvatarFallback className="bg-primary text-primary-foreground">
                     {testimonial.author.split(' ').map(n => n[0]).join('')}
                   </AvatarFallback>
