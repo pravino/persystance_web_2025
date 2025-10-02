@@ -1,37 +1,37 @@
 import { Card } from "@/components/ui/card";
-import { Smartphone, Hotel, Scissors, Car, Wrench, Building2 } from "lucide-react";
+import { Smartphone, Wallet, Hotel, Heart, Car, Wrench } from "lucide-react";
 
 export default function IndustryExpertise() {
   const industries = [
     {
       icon: <Smartphone className="w-8 h-8" />,
-      title: "On-Demand Services",
-      description: "Taxi, ride-sharing, and delivery platforms with real-time tracking and matching algorithms.",
+      title: "Telecommunications",
+      description: "Mobile networks, GSM services, and digital communication platforms for leading telecom providers.",
+    },
+    {
+      icon: <Wallet className="w-8 h-8" />,
+      title: "Fintech & Payments",
+      description: "Mobile wallets, payment gateways, wealth management, cryptocurrency, and instant loan platforms.",
+    },
+    {
+      icon: <Car className="w-8 h-8" />,
+      title: "Transportation & Logistics",
+      description: "Ride-hailing, taxi booking, food delivery platforms with real-time tracking and fleet management.",
+    },
+    {
+      icon: <Heart className="w-8 h-8" />,
+      title: "Healthcare & Wellness",
+      description: "Health community platforms, beauty salon booking, appointment scheduling, and patient engagement systems.",
     },
     {
       icon: <Hotel className="w-8 h-8" />,
       title: "Hospitality & Travel",
-      description: "Hotel booking systems, reservation management, and guest experience platforms.",
-    },
-    {
-      icon: <Scissors className="w-8 h-8" />,
-      title: "Beauty & Wellness",
-      description: "Salon booking apps, stylist management, and appointment scheduling systems.",
-    },
-    {
-      icon: <Car className="w-8 h-8" />,
-      title: "Automotive Services",
-      description: "Car service booking, mechanic scheduling, and maintenance tracking platforms.",
+      description: "Hotel booking systems, reservation management, and guest experience platforms for the travel industry.",
     },
     {
       icon: <Wrench className="w-8 h-8" />,
-      title: "Home Services",
-      description: "Handyman marketplaces, AC repair, electrical, pool maintenance, and household repairs.",
-    },
-    {
-      icon: <Building2 className="w-8 h-8" />,
-      title: "Property Management",
-      description: "Office and household repair booking with talent matching and service tracking.",
+      title: "Service Marketplaces",
+      description: "Home repair, automotive services, uniform solutions, and on-demand service provider platforms.",
     },
   ];
 
