@@ -33,7 +33,7 @@ export default function ClientLogos() {
             ISO 9001:2015 Certified
           </Badge>
           <Badge variant="outline" className="px-4 py-2 text-xs">
-            20+ Years Experience
+            13+ Years Experience
           </Badge>
           <Badge variant="outline" className="px-4 py-2 text-xs">
             98% Client Satisfaction
