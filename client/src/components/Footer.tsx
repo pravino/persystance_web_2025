@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <footer className="bg-muted/30 border-t border-border py-12">
       <div className="container mx-auto px-4 max-w-7xl">
-        <div className="grid md:grid-cols-4 gap-8 mb-8">
+        <div className="grid md:grid-cols-3 gap-8 mb-8">
           <div>
             <h3 className="font-semibold text-base mb-3">
               Persystance <span className="text-primary">Networks</span>
@@ -15,23 +15,10 @@ export default function Footer() {
           </div>
           
           <div>
-            <h4 className="font-semibold text-sm mb-3">Services</h4>
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>Web Development</li>
-              <li>Mobile Apps</li>
-              <li>SaaS Platforms</li>
-              <li>Blockchain</li>
-              <li>AI Solutions</li>
-            </ul>
-          </div>
-          
-          <div>
             <h4 className="font-semibold text-sm mb-3">Company</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>About Us</li>
               <li>Portfolio</li>
-              <li>Blog</li>
-              <li>Careers</li>
               <li>Contact</li>
             </ul>
           </div>
@@ -72,7 +59,7 @@ export default function Footer() {
         </div>
         
         <div className="border-t border-border pt-6 text-center text-xs text-muted-foreground">
-          <p>© 2025 Persystance Networks. All rights reserved. | 20+ Years of Software Excellence</p>
+          <p>© 2025 Persystance Networks. All rights reserved. | 13+ Years of Software Excellence</p>
         </div>
       </div>
     </footer>
