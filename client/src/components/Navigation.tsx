@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Moon, Sun, Menu, X } from "lucide-react";
 import { useTheme } from "@/hooks/use-theme";
-import logoImg from "@assets/persystance-logo-transparent_1759398038085.webp";
+import logoImg from "@assets/persystance_1759398114872.webp";
 
 export default function Navigation() {
   const { theme, setTheme } = useTheme();

@@ -1,5 +1,5 @@
 import { Github, Linkedin, Twitter, Mail } from "lucide-react";
-import logoImg from "@assets/persystance-logo-transparent_1759398038085.webp";
+import logoImg from "@assets/persystance_1759398114872.webp";
 
 export default function Footer() {
   return (
