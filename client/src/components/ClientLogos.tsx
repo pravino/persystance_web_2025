@@ -2,8 +2,9 @@ import { Badge } from "@/components/ui/badge";
 
 export default function ClientLogos() {
   const clients = [
-    "Mobitel", "Dilmah", "Sathosa", "SupremePay", 
-    "Prime Residencies", "CRYPX", "TC Lanka"
+    "Dialog GSM", "Mobitel", "Supreme Global", "InspiraWealth",
+    "Kangaroo Cabs", "SupremePay", "SupremeCrypx", 
+    "Workwear Uniform Group", "Diabetes Community"
   ];
 
   return (
