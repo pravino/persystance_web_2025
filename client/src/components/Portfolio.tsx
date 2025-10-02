@@ -6,7 +6,7 @@ import hotelAppImg from "@assets/stock_images/luxury_hotel_room_bo_97b745d5.jpg"
 import salonAppImg from "@assets/stock_images/beauty_salon_hair_st_3eaead1c.jpg";
 import carAppImg from "@assets/stock_images/auto_mechanic_car_re_0fd8939f.jpg";
 import handymanAppImg from "@assets/stock_images/home_repair_handyman_babd5e64.jpg";
-import homeserveAppImg from "@assets/stock_images/house_maintenance_hv_fcbd4934.jpg";
+import foodDeliveryImg from "@assets/stock_images/fresh_food_plate_res_ed324129.jpg";
 
 export default function Portfolio() {
   const projects = [
@@ -56,7 +56,7 @@ export default function Portfolio() {
       timeline: "12 days",
       result: "150+ restaurants, 5K orders",
       tech: ["React Native", "Node.js", "Stripe", "Google Maps"],
-      image: homeserveAppImg,
+      image: foodDeliveryImg,
     },
   ];
 
