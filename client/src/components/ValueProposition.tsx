@@ -24,33 +24,32 @@ export default function ValueProposition() {
   ];
 
   return (
-    <section className="py-32 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-card/30 to-background" />
-      <div className="container mx-auto px-4 max-w-7xl relative">
-        <div className="text-center mb-20">
-          <h2 className="text-5xl lg:text-6xl font-extrabold mb-6 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
+    <section className="py-24 bg-muted/30">
+      <div className="container mx-auto px-4 max-w-7xl">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl lg:text-5xl font-semibold mb-4 text-foreground">
             Why Persystance Networks?
           </h2>
-          <p className="text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Speed, quality, and cost-efficiency—the trifecta every startup needs
           </p>
         </div>
         
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-6">
           {values.map((value, index) => (
             <Card 
               key={index} 
-              className="p-10 hover-elevate active-elevate-2 cursor-default transition-all duration-500 hover:scale-105 bg-gradient-to-br from-card to-card/50 backdrop-blur-xl border-2 shadow-xl hover:shadow-2xl"
+              className="p-8 bg-background border-border hover-elevate"
               data-testid={`card-value-${index}`}
             >
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/10 to-chart-2/10 flex items-center justify-center mb-6">
+              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-6">
                 <div className="text-primary">{value.icon}</div>
               </div>
-              <div className="text-6xl font-black font-mono bg-gradient-to-r from-chart-2 to-primary bg-clip-text text-transparent mb-4">
+              <div className="text-4xl font-semibold text-primary mb-3">
                 {value.stat}
               </div>
-              <h3 className="text-2xl font-bold mb-4">{value.title}</h3>
-              <p className="text-muted-foreground leading-relaxed text-lg">
+              <h3 className="text-xl font-semibold mb-3">{value.title}</h3>
+              <p className="text-muted-foreground leading-relaxed">
                 {value.description}
               </p>
             </Card>

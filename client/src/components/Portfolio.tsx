@@ -61,62 +61,57 @@ export default function Portfolio() {
   ];
 
   return (
-    <section className="py-32 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-chart-2/5 to-background" />
-      <div className="container mx-auto px-4 max-w-7xl relative">
-        <div className="text-center mb-20">
-          <h2 className="text-5xl lg:text-6xl font-extrabold mb-6 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
+    <section className="py-24 bg-muted/30">
+      <div className="container mx-auto px-4 max-w-7xl">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl lg:text-5xl font-semibold mb-4 text-foreground">
             Success Stories
           </h2>
-          <p className="text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Real MVPs we've built and launched for startups worldwide
           </p>
         </div>
         
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 gap-6">
           {projects.map((project, index) => (
             <Card 
               key={index} 
-              className="overflow-hidden hover-elevate active-elevate-2 cursor-default transition-all duration-500 hover:scale-[1.02] border-2 shadow-xl hover:shadow-2xl"
+              className="overflow-hidden hover-elevate bg-background"
               data-testid={`card-project-${index}`}
             >
-              <div className="aspect-[16/10] overflow-hidden bg-gradient-to-br from-primary/10 to-chart-2/10">
+              <div className="aspect-[16/10] overflow-hidden bg-muted/50">
                 <img 
                   src={project.image} 
                   alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                  className="w-full h-full object-cover"
                 />
               </div>
-              <div className="p-8">
-                <h3 className="text-3xl font-extrabold mb-3 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
+              <div className="p-6">
+                <h3 className="text-2xl font-semibold mb-2 text-foreground">
                   {project.title}
                 </h3>
-                <p className="text-muted-foreground mb-6 text-lg leading-relaxed">{project.description}</p>
+                <p className="text-muted-foreground mb-5">{project.description}</p>
                 
-                <div className="flex flex-wrap gap-6 mb-6">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
-                      <Clock className="w-5 h-5 text-primary" />
-                    </div>
+                <div className="flex flex-wrap gap-6 mb-5">
+                  <div className="flex items-center gap-2">
+                    <Clock className="w-4 h-4 text-muted-foreground" />
                     <div>
-                      <div className="text-sm text-muted-foreground">Timeline</div>
-                      <div className="font-bold">{project.timeline}</div>
+                      <div className="text-xs text-muted-foreground">Timeline</div>
+                      <div className="font-semibold text-sm">{project.timeline}</div>
                     </div>
                   </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-chart-2/10 flex items-center justify-center">
-                      <TrendingUp className="w-5 h-5 text-chart-2" />
-                    </div>
+                  <div className="flex items-center gap-2">
+                    <TrendingUp className="w-4 h-4 text-muted-foreground" />
                     <div>
-                      <div className="text-sm text-muted-foreground">Result</div>
-                      <div className="font-bold">{project.result}</div>
+                      <div className="text-xs text-muted-foreground">Result</div>
+                      <div className="font-semibold text-sm">{project.result}</div>
                     </div>
                   </div>
                 </div>
                 
                 <div className="flex flex-wrap gap-2">
                   {project.tech.map((tech, i) => (
-                    <Badge key={i} variant="secondary" className="text-xs font-medium px-3 py-1">
+                    <Badge key={i} variant="secondary" className="text-xs px-2 py-1">
                       {tech}
                     </Badge>
                   ))}

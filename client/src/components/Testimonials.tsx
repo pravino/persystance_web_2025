@@ -31,44 +31,41 @@ export default function Testimonials() {
   ];
 
   return (
-    <section className="py-32 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-primary/5 to-background" />
-      <div className="container mx-auto px-4 max-w-7xl relative">
-        <div className="text-center mb-20">
-          <h2 className="text-5xl lg:text-6xl font-extrabold mb-6 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
+    <section className="py-24 bg-background">
+      <div className="container mx-auto px-4 max-w-7xl">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl lg:text-5xl font-semibold mb-4 text-foreground">
             What Our Clients Say
           </h2>
-          <p className="text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Trusted by founders and innovators worldwide
           </p>
         </div>
         
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-6">
           {testimonials.map((testimonial, index) => (
             <Card 
               key={index} 
-              className="p-10 hover-elevate transition-all duration-500 hover:scale-105 bg-gradient-to-br from-card to-card/50 backdrop-blur-xl border-2 shadow-xl hover:shadow-2xl"
+              className="p-8 bg-muted/30 border-border"
               data-testid={`card-testimonial-${index}`}
             >
-              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary/10 to-chart-2/10 flex items-center justify-center mb-6">
-                <Quote className="w-7 h-7 text-primary" />
-              </div>
-              <p className="text-lg text-foreground/90 mb-8 leading-relaxed italic font-medium">
+              <Quote className="w-8 h-8 text-primary mb-6" />
+              <p className="text-base text-foreground mb-8 leading-relaxed">
                 "{testimonial.quote}"
               </p>
-              <div className="border-t-2 border-border pt-6 flex items-center gap-4">
-                <Avatar className="w-16 h-16 border-2 border-primary/20">
+              <div className="border-t border-border pt-6 flex items-center gap-3">
+                <Avatar className="w-12 h-12">
                   <AvatarImage src={testimonial.image} alt={testimonial.author} />
-                  <AvatarFallback className="bg-gradient-to-br from-primary to-chart-1 text-primary-foreground font-bold">
+                  <AvatarFallback className="bg-primary text-primary-foreground">
                     {testimonial.author.split(' ').map(n => n[0]).join('')}
                   </AvatarFallback>
                 </Avatar>
                 <div>
-                  <p className="font-bold text-lg">{testimonial.author}</p>
-                  <p className="text-sm text-muted-foreground font-medium">
+                  <p className="font-semibold">{testimonial.author}</p>
+                  <p className="text-sm text-muted-foreground">
                     {testimonial.role}
                   </p>
-                  <p className="text-sm text-primary font-medium">
+                  <p className="text-sm text-muted-foreground">
                     {testimonial.company}
                   </p>
                 </div>

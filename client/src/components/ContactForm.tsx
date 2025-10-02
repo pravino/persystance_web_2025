@@ -52,52 +52,45 @@ export default function ContactForm() {
   };
 
   return (
-    <section id="contact" className="py-32 scroll-mt-20 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-chart-2/5 to-background" />
-      <div className="container mx-auto px-4 max-w-7xl relative">
-        <div className="grid lg:grid-cols-2 gap-16 items-start">
+    <section id="contact" className="py-24 scroll-mt-20 bg-muted/30">
+      <div className="container mx-auto px-4 max-w-7xl">
+        <div className="grid lg:grid-cols-2 gap-12 items-start">
           <div>
-            <h2 className="text-5xl lg:text-6xl font-extrabold mb-8 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent leading-tight">
+            <h2 className="text-4xl lg:text-5xl font-semibold mb-6 text-foreground leading-tight">
               Ready to Launch Your Idea?
             </h2>
-            <p className="text-2xl text-muted-foreground mb-12 leading-relaxed">
+            <p className="text-xl text-muted-foreground mb-10">
               Get a custom quote in 24 hours. Let's discuss your MVP and create a roadmap to success.
             </p>
             
-            <div className="space-y-6">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                  <CheckCircle2 className="w-6 h-6 text-primary" />
-                </div>
+            <div className="space-y-5">
+              <div className="flex items-start gap-3">
+                <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                 <div>
-                  <h3 className="font-semibold text-lg mb-1">Fast Response</h3>
-                  <p className="text-muted-foreground">Custom quote delivered within 24 hours</p>
+                  <h3 className="font-semibold mb-0.5">Fast Response</h3>
+                  <p className="text-sm text-muted-foreground">Custom quote delivered within 24 hours</p>
                 </div>
               </div>
               
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                  <CheckCircle2 className="w-6 h-6 text-primary" />
-                </div>
+              <div className="flex items-start gap-3">
+                <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                 <div>
-                  <h3 className="font-semibold text-lg mb-1">Transparent Pricing</h3>
-                  <p className="text-muted-foreground">No hidden costs, clear deliverables</p>
+                  <h3 className="font-semibold mb-0.5">Transparent Pricing</h3>
+                  <p className="text-sm text-muted-foreground">No hidden costs, clear deliverables</p>
                 </div>
               </div>
               
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                  <CheckCircle2 className="w-6 h-6 text-primary" />
-                </div>
+              <div className="flex items-start gap-3">
+                <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                 <div>
-                  <h3 className="font-semibold text-lg mb-1">Expert Consultation</h3>
-                  <p className="text-muted-foreground">Free 30-min strategy session included</p>
+                  <h3 className="font-semibold mb-0.5">Expert Consultation</h3>
+                  <p className="text-sm text-muted-foreground">Free 30-min strategy session included</p>
                 </div>
               </div>
             </div>
           </div>
           
-          <div className="bg-gradient-to-br from-card to-card/50 backdrop-blur-xl border-2 border-card-border rounded-2xl p-10 shadow-2xl">
+          <div className="bg-background border border-border rounded-xl p-8">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="space-y-2">
                 <Label htmlFor="name">Your Name *</Label>
