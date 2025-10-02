@@ -1,5 +1,9 @@
 import { Card } from "@/components/ui/card";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Quote } from "lucide-react";
+import testimonial1Img from "@assets/stock_images/professional_busines_62a43220.jpg";
+import testimonial2Img from "@assets/stock_images/professional_busines_df137c6c.jpg";
+import testimonial3Img from "@assets/stock_images/professional_busines_fa387071.jpg";
 
 export default function Testimonials() {
   const testimonials = [
@@ -8,18 +12,21 @@ export default function Testimonials() {
       author: "Sarah Chen",
       role: "Founder, HealthTrack",
       company: "USA",
+      image: testimonial1Img,
     },
     {
       quote: "Best investment we made. They saved us 6 months and $100K compared to hiring a full team. The MVP helped us secure seed funding.",
       author: "Michael Roberts",
       role: "CEO, SupremeX",
       company: "Singapore",
+      image: testimonial2Img,
     },
     {
       quote: "Professional, fast, and transparent. They guided us through every step and delivered exactly what we needed to validate our market.",
       author: "Priya Sharma",
       role: "Co-founder, Evender",
       company: "India",
+      image: testimonial3Img,
     },
   ];
 
@@ -44,14 +51,20 @@ export default function Testimonials() {
               <p className="text-muted-foreground mb-6 leading-relaxed">
                 "{testimonial.quote}"
               </p>
-              <div className="border-t border-border pt-4">
-                <p className="font-semibold">{testimonial.author}</p>
-                <p className="text-sm text-muted-foreground">
-                  {testimonial.role}
-                </p>
-                <p className="text-sm text-muted-foreground">
-                  {testimonial.company}
-                </p>
+              <div className="border-t border-border pt-6 flex items-center gap-4">
+                <Avatar className="w-12 h-12">
+                  <AvatarImage src={testimonial.image} alt={testimonial.author} />
+                  <AvatarFallback>{testimonial.author.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+                </Avatar>
+                <div>
+                  <p className="font-semibold">{testimonial.author}</p>
+                  <p className="text-sm text-muted-foreground">
+                    {testimonial.role}
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    {testimonial.company}
+                  </p>
+                </div>
               </div>
             </Card>
           ))}
