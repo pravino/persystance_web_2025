@@ -1,12 +1,12 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Clock, TrendingUp } from "lucide-react";
-import taxiAppImg from "@assets/stock_images/mobile_app_interface_be877588.jpg";
-import hotelAppImg from "@assets/stock_images/hotel_booking_app_in_2433916f.jpg";
-import salonAppImg from "@assets/stock_images/beauty_salon_appoint_72e84a4c.jpg";
-import carAppImg from "@assets/stock_images/car_repair_service_b_19584506.jpg";
-import handymanAppImg from "@assets/stock_images/home_services_handym_76f545a8.jpg";
-import homeserveAppImg from "@assets/stock_images/household_repair_ser_11f93b3d.jpg";
+import taxiAppImg from "@assets/stock_images/smartphone_displayin_b7501d26.jpg";
+import hotelAppImg from "@assets/stock_images/luxury_hotel_room_bo_97b745d5.jpg";
+import salonAppImg from "@assets/stock_images/beauty_salon_hair_st_3eaead1c.jpg";
+import carAppImg from "@assets/stock_images/auto_mechanic_car_re_0fd8939f.jpg";
+import handymanAppImg from "@assets/stock_images/home_repair_handyman_babd5e64.jpg";
+import homeserveAppImg from "@assets/stock_images/house_maintenance_hv_fcbd4934.jpg";
 
 export default function Portfolio() {
   const projects = [
