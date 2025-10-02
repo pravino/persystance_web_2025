@@ -1,7 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Clock, TrendingUp } from "lucide-react";
-import taxiAppImg from "@assets/stock_images/smartphone_displayin_b7501d26.jpg";
+import taxiAppImg from "@assets/stock_images/taxi_cab_car_yellow__4f428e56.jpg";
 import hotelAppImg from "@assets/stock_images/luxury_hotel_room_bo_97b745d5.jpg";
 import salonAppImg from "@assets/stock_images/beauty_salon_hair_st_3eaead1c.jpg";
 import carAppImg from "@assets/stock_images/auto_mechanic_car_re_0fd8939f.jpg";
