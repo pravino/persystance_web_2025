@@ -51,11 +51,11 @@ export default function Portfolio() {
       image: handymanAppImg,
     },
     {
-      title: "HomeServe Pro",
-      description: "Comprehensive household and office repair booking with talent matching",
+      title: "FreshMeal Delivery",
+      description: "Food delivery platform connecting restaurants with customers and delivery partners",
       timeline: "12 days",
-      result: "200+ bookings/week",
-      tech: ["Next.js", "PostgreSQL", "Twilio", "Stripe"],
+      result: "150+ restaurants, 5K orders",
+      tech: ["React Native", "Node.js", "Stripe", "Google Maps"],
       image: homeserveAppImg,
     },
   ];
