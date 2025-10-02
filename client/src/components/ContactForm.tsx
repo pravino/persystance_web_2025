@@ -52,12 +52,15 @@ export default function ContactForm() {
   };
 
   return (
-    <section id="contact" className="py-20 scroll-mt-20">
-      <div className="container mx-auto px-4 max-w-7xl">
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
+    <section id="contact" className="py-32 scroll-mt-20 relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-chart-2/5 to-background" />
+      <div className="container mx-auto px-4 max-w-7xl relative">
+        <div className="grid lg:grid-cols-2 gap-16 items-start">
           <div>
-            <h2 className="text-4xl font-bold mb-6">Ready to Launch Your Idea?</h2>
-            <p className="text-xl text-muted-foreground mb-8">
+            <h2 className="text-5xl lg:text-6xl font-extrabold mb-8 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent leading-tight">
+              Ready to Launch Your Idea?
+            </h2>
+            <p className="text-2xl text-muted-foreground mb-12 leading-relaxed">
               Get a custom quote in 24 hours. Let's discuss your MVP and create a roadmap to success.
             </p>
             
@@ -94,7 +97,7 @@ export default function ContactForm() {
             </div>
           </div>
           
-          <div className="bg-card border border-card-border rounded-lg p-8">
+          <div className="bg-gradient-to-br from-card to-card/50 backdrop-blur-xl border-2 border-card-border rounded-2xl p-10 shadow-2xl">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="space-y-2">
                 <Label htmlFor="name">Your Name *</Label>

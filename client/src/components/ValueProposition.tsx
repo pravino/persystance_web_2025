@@ -24,11 +24,14 @@ export default function ValueProposition() {
   ];
 
   return (
-    <section className="py-20 bg-card/50">
-      <div className="container mx-auto px-4 max-w-7xl">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4">Why Persystance Networks?</h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+    <section className="py-32 relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-card/30 to-background" />
+      <div className="container mx-auto px-4 max-w-7xl relative">
+        <div className="text-center mb-20">
+          <h2 className="text-5xl lg:text-6xl font-extrabold mb-6 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
+            Why Persystance Networks?
+          </h2>
+          <p className="text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             Speed, quality, and cost-efficiency—the trifecta every startup needs
           </p>
         </div>
@@ -37,15 +40,17 @@ export default function ValueProposition() {
           {values.map((value, index) => (
             <Card 
               key={index} 
-              className="p-8 hover-elevate active-elevate-2 cursor-default transition-all duration-300"
+              className="p-10 hover-elevate active-elevate-2 cursor-default transition-all duration-500 hover:scale-105 bg-gradient-to-br from-card to-card/50 backdrop-blur-xl border-2 shadow-xl hover:shadow-2xl"
               data-testid={`card-value-${index}`}
             >
-              <div className="text-primary mb-4">{value.icon}</div>
-              <div className="text-4xl font-bold font-mono text-chart-2 mb-2">
+              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/10 to-chart-2/10 flex items-center justify-center mb-6">
+                <div className="text-primary">{value.icon}</div>
+              </div>
+              <div className="text-6xl font-black font-mono bg-gradient-to-r from-chart-2 to-primary bg-clip-text text-transparent mb-4">
                 {value.stat}
               </div>
-              <h3 className="text-xl font-semibold mb-3">{value.title}</h3>
-              <p className="text-muted-foreground leading-relaxed">
+              <h3 className="text-2xl font-bold mb-4">{value.title}</h3>
+              <p className="text-muted-foreground leading-relaxed text-lg">
                 {value.description}
               </p>
             </Card>
