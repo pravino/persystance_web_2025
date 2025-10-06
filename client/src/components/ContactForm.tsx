@@ -2,10 +2,9 @@ import { Button } from "@/components/ui/button";
 import { CheckCircle2, MessageCircle } from "lucide-react";
 
 export default function ContactForm() {
-  // WhatsApp Business number - Update with your actual WhatsApp Business number
+  // WhatsApp Business number - Sri Lanka
   // Format: Country code + number (no spaces, no special characters)
-  // Example: 919876543210 for India, 15551234567 for US
-  const whatsappNumber = "919876543210"; // REPLACE WITH YOUR WHATSAPP BUSINESS NUMBER
+  const whatsappNumber = "94778005567";
   
   // Pre-filled message that appears when chat opens
   const message = "Hi! I'm interested in building an MVP with Persystance Networks. I'd like to discuss my project.";
