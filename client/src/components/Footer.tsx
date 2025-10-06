@@ -1,4 +1,4 @@
-import { Github, Linkedin, Mail } from "lucide-react";
+import { Linkedin, Mail } from "lucide-react";
 import logoImg from "@assets/persystance_1759398114872.webp";
 
 export default function Footer() {
@@ -37,13 +37,6 @@ export default function Footer() {
                 data-testid="link-linkedin"
               >
                 <Linkedin className="w-4 h-4" />
-              </a>
-              <a 
-                href="#" 
-                className="w-9 h-9 rounded-full bg-muted flex items-center justify-center hover-elevate"
-                data-testid="link-github"
-              >
-                <Github className="w-4 h-4" />
               </a>
               <a 
                 href="mailto:contact@persystance.com" 
