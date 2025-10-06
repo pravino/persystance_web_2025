@@ -1,5 +1,5 @@
 import { Github, Linkedin, Twitter, Mail } from "lucide-react";
-import logoImg from "@assets/ChatGPT Image Oct 6, 2025, 08_02_17 PM_1759761182294.png";
+import logoImg from "@assets/persystance_1759398114872.webp";
 
 export default function Footer() {
   return (
@@ -10,7 +10,7 @@ export default function Footer() {
             <img 
               src={logoImg} 
               alt="Persystance" 
-              className="h-16 mb-3"
+              className="h-7 mb-3"
             />
             <p className="text-sm text-muted-foreground leading-relaxed">
               Rapid MVP development for startups. Build in 2 weeks, launch in 30 days.
