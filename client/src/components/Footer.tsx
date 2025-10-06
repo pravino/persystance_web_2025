@@ -1,4 +1,4 @@
-import { Github, Linkedin, Twitter, Mail } from "lucide-react";
+import { Github, Linkedin, Mail } from "lucide-react";
 import logoImg from "@assets/persystance_1759398114872.webp";
 
 export default function Footer() {
@@ -30,14 +30,9 @@ export default function Footer() {
             <h4 className="font-semibold text-sm mb-3">Connect</h4>
             <div className="flex gap-3">
               <a 
-                href="#" 
-                className="w-9 h-9 rounded-full bg-muted flex items-center justify-center hover-elevate"
-                data-testid="link-twitter"
-              >
-                <Twitter className="w-4 h-4" />
-              </a>
-              <a 
-                href="#" 
+                href="https://lk.linkedin.com/company/persystance" 
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-9 h-9 rounded-full bg-muted flex items-center justify-center hover-elevate"
                 data-testid="link-linkedin"
               >
