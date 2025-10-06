@@ -1,5 +1,5 @@
 import { Github, Linkedin, Twitter, Mail } from "lucide-react";
-import logoImg from "@assets/persystance_1759398114872.webp";
+import logoImg from "@assets/ChatGPT Image Oct 6, 2025, 08_02_17 PM_1759761182294.png";
 
 export default function Footer() {
   return (

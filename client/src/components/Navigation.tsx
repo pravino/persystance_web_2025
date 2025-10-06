@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Moon, Sun, Menu, X } from "lucide-react";
 import { useTheme } from "@/hooks/use-theme";
-import logoImg from "@assets/persystance_1759398114872.webp";
+import logoImg from "@assets/ChatGPT Image Oct 6, 2025, 08_02_17 PM_1759761182294.png";
 
 export default function Navigation() {
   const { theme, setTheme } = useTheme();
