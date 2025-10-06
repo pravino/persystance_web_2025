@@ -32,7 +32,7 @@ export default function Navigation() {
             <img 
               src={logoImg} 
               alt="Persystance" 
-              className="h-8"
+              className="h-12"
             />
           </button>
           
