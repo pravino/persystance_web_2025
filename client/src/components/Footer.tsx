@@ -10,7 +10,7 @@ export default function Footer() {
             <img 
               src={logoImg} 
               alt="Persystance" 
-              className="h-10 mb-3"
+              className="h-16 mb-3"
             />
             <p className="text-sm text-muted-foreground leading-relaxed">
               Rapid MVP development for startups. Build in 2 weeks, launch in 30 days.
