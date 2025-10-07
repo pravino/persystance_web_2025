@@ -28,12 +28,11 @@ export default function Hero() {
             </div>
             
             <h1 className="text-5xl lg:text-7xl font-semibold leading-[1.1] tracking-tight text-foreground">
-              Ship Your MVP in{" "}
+              Turn Your Idea into a Working Product in{" "}
               <span className="text-primary">
                 2 Weeks
               </span>
-              <br />
-              Launch in{" "}
+              , Fully Ready in{" "}
               <span className="text-primary">
                 30 Days
               </span>
