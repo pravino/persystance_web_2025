@@ -14,6 +14,7 @@ Preferred communication style: Simple, everyday language.
 
 ### October 2025
 - Added dedicated `/telegram-games` landing page showcasing Telegram/Web3 game development services
+- Added "Trading & Exchanges" to Industry Expertise section (mid-market value matching engines, DEX platforms, bot attack prevention)
 - Added "Web3 Games" to Industry Expertise section (Telegram mini apps, tap-to-earn games, blockchain gaming, NFT integration)
 - Replaced contact form with WhatsApp Business integration (94778005567)
 - Updated navigation with smart routing for cross-page section navigation
