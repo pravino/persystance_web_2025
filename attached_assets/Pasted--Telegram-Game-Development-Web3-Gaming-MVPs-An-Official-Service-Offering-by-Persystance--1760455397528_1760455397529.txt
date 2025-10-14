@@ -1,0 +1,102 @@
+# Telegram Game Development & Web3 Gaming MVPs  
+### An Official Service Offering by Persystance
+
+We now build **Telegram-native games** designed for **viral growth, resale, and brand engagement**. These games can be delivered as **white-label products** or **custom builds** for creators, Web3 brands, media companies, communities, and startups.
+
+---
+
+## 🚀 Why Telegram Games
+
+Telegram has become the new launchpad for simple, viral Web3 experiences:
+- Over **900M active users worldwide**
+- **No download**, instant onboarding via mini apps
+- Built-in **social virality** (group play & invite links)
+- **Crypto-ready** via TON, Telegram Stars, USDT
+- Perfect for **engaging and monetizing** communities
+
+---
+
+## ✅ What Persystance Delivers
+
+| Package | Features | Delivery |
+|----------|----------|----------|
+| **Game MVP (Core Loop)** | Game + leaderboard + profile system | 10–14 days |
+| **Growth Game** | Missions + referral system + analytics | 21 days |
+| **Web3 Game Pack** | TON integration + airdrop logic + badges | 30 days |
+| **Resell Rights Edition** | White-label + full licensing docs + admin panel | Custom |
+
+Each build is delivered **end-to-end**, production ready, with clean code and full handover.
+
+---
+
+## 🎮 Ready-to-Sell Game Concepts
+
+We offer pre-designed game frameworks that can be **skinned, themed, or extended** to match any brand or buyer.
+
+| Game Name | Genre | Why It Sells |
+|-----------|--------|--------------|
+| **Mafia Minis** | Social deduction | Perfect for Telegram communities |
+| **TapCrew** | Tap economy game | Proven viral mechanics |
+| **Quiz Rush** | Trivia + live events | Ideal for media brands |
+| **Pixel Heist** | Team puzzle raids | Great engagement |
+| **Market Mayhem** | Prediction mini-leagues | Strong competitive loop |
+
+_Custom game ideas welcome for VIP builds._
+
+---
+
+## 💰 Business Models We Support
+
+✅ Sell games to clients as a **white-label product**  
+✅ Build **custom games** for your brand or community  
+✅ Run **reward or airdrop campaigns** via gameplay  
+✅ Sell **resell licenses** as a digital product  
+✅ Launch **sponsored gaming seasons** for brands  
+
+---
+
+## 🛠 Technology Stack
+
+- **Frontend**: Telegram Mini App (React/Next.js)
+- **Bot Logic**: Node.js (NestJS) or Python (Aiogram)
+- **Realtime**: WebSockets / Socket.IO
+- **Database**: PostgreSQL + Redis
+- **Web3 (optional)**: TON Connect • NFT badges • Airdrop systems
+- **Payments**: Telegram Stars • TON • Stripe
+- **Deployment**: Docker • Cloud VPS • CI/CD ready
+
+---
+
+## 🔐 Anti-Cheat & Security
+
+We protect gameplay integrity using:
+- Server-validated game logic
+- Rate limiting + anti-bot traps
+- Fraud scoring system
+- hCaptcha on abuse triggers
+
+---
+
+## 📦 Deliverables
+
+Every build includes:
+- Full source code
+- Deployment scripts (Docker)
+- Admin dashboard
+- User economy config
+- Game UI + UX flows
+- Documentation + runbook
+- Optional reseller license
+
+---
+
+## 📞 Contact
+
+Want to launch or resell your own Telegram game?
+
+📧 Email: team@persystance.com  
+🌐 Website: https://www.persystance.com  
+💬 Telegram: _add your handle here_
+
+---
+
