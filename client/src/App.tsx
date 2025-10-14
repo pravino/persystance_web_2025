@@ -5,12 +5,14 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "@/hooks/use-theme";
 import Home from "@/pages/Home";
+import TelegramGames from "@/pages/TelegramGames";
 import NotFound from "@/pages/not-found";
 
 function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
+      <Route path="/telegram-games" component={TelegramGames} />
       <Route component={NotFound} />
     </Switch>
   );
