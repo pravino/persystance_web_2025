@@ -2,13 +2,23 @@
 
 ## Overview
 
-Persystance Networks is a marketing website and lead generation platform for a rapid MVP development service. The platform showcases the company's ability to build production-ready MVPs in 2 weeks and launch them within 30 days, targeting startups and entrepreneurs looking for fast, cost-effective development solutions.
+Persystance Networks (founded 2012, 13+ years experience) is a marketing website and lead generation platform for a rapid MVP development service. The platform showcases the company's ability to build production-ready MVPs in 2 weeks and launch them within 30 days, targeting startups and entrepreneurs looking for fast, cost-effective development solutions.
 
-The application is built as a single-page marketing site with multiple sections highlighting value propositions, technology expertise, portfolio examples, client testimonials, and a contact form for lead capture.
+The application is built as a marketing site with multiple sections highlighting value propositions, technology expertise, portfolio examples, client testimonials, and WhatsApp contact integration. The site now includes a specialized Telegram/Web3 game development landing page.
 
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
+
+## Recent Changes
+
+### October 2025
+- Added dedicated `/telegram-games` landing page showcasing Telegram/Web3 game development services
+- Added "Web3 Games" to Industry Expertise section (Telegram mini apps, tap-to-earn games, blockchain gaming, NFT integration)
+- Replaced contact form with WhatsApp Business integration (94778005567)
+- Updated navigation with smart routing for cross-page section navigation
+- Updated social links: LinkedIn company page, removed Twitter/GitHub
+- Simplified hero headline for non-tech audience (removed "MVP" jargon)
 
 ## System Architecture
 

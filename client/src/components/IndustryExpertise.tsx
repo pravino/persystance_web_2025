@@ -1,5 +1,5 @@
 import { Card } from "@/components/ui/card";
-import { Smartphone, Wallet, Hotel, Heart, Car, Wrench } from "lucide-react";
+import { Smartphone, Wallet, Hotel, Heart, Car, Wrench, Gamepad2 } from "lucide-react";
 
 export default function IndustryExpertise() {
   const industries = [
@@ -12,6 +12,11 @@ export default function IndustryExpertise() {
       icon: <Wallet className="w-8 h-8" />,
       title: "Fintech & Payments",
       description: "Mobile wallets, payment gateways, wealth management, cryptocurrency, and instant loan platforms.",
+    },
+    {
+      icon: <Gamepad2 className="w-8 h-8" />,
+      title: "Web3 Games",
+      description: "Telegram mini apps, tap-to-earn games, blockchain gaming, NFT integration, and viral game mechanics.",
     },
     {
       icon: <Car className="w-8 h-8" />,
