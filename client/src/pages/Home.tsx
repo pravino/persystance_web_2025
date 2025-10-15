@@ -10,10 +10,14 @@ import IndustryExpertise from "@/components/IndustryExpertise";
 import Testimonials from "@/components/Testimonials";
 import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
+import SEO, { seoConfig } from "@/components/SEO";
+import StructuredData from "@/components/StructuredData";
 
 export default function Home() {
   return (
     <div className="min-h-screen">
+      <SEO {...seoConfig.home} />
+      <StructuredData type="all" />
       <Navigation />
       <main>
         <Hero />

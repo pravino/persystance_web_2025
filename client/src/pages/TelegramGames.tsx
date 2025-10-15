@@ -3,6 +3,8 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { MessageCircle, Gamepad2, Users, Zap, DollarSign, Shield, CheckCircle2, TrendingUp, Globe } from "lucide-react";
 import { Card } from "@/components/ui/card";
+import SEO, { seoConfig } from "@/components/SEO";
+import StructuredData from "@/components/StructuredData";
 
 export default function TelegramGames() {
   const scrollToPackages = () => {
@@ -22,6 +24,12 @@ export default function TelegramGames() {
 
   return (
     <div className="min-h-screen">
+      <SEO {...seoConfig.telegramGames} />
+      <StructuredData 
+        type="service" 
+        serviceName="Telegram & Web3 Game Development"
+        serviceDescription="Build viral Telegram games and Web3 gaming platforms in 10-30 days. Tap-to-earn games, blockchain gaming, NFT integration for 900M+ Telegram users."
+      />
       <Navigation />
       <main>
         {/* Hero Section */}

@@ -1,0 +1,10 @@
+# robots.txt for Persystance Networks
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://persystance.com/sitemap.xml
+
+# Crawl delay (optional, helps prevent server overload)
+Crawl-delay: 1
