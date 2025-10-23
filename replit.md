@@ -22,7 +22,13 @@ Preferred communication style: Simple, everyday language.
     - localStorage persistence (saves tokens, upgrades, energy state)
     - Proves expertise in Telegram games, game economy, and Web3 integration
   - **Web3 Wallet Connect**: MetaMask integration demo for blockchain expertise
-  - **Data Visualization Dashboard**: Interactive recharts with toggleable line/bar charts showing analytics capabilities
+  - **Web3 Taxi App**: Decentralized ride-hailing application
+    - Available driver list with ratings, vehicle info, distance, ETA
+    - Ride booking flow with crypto payment (MATIC tokens)
+    - Simulated ride states: Searching → Driver Assigned → Picking Up → In Transit → Completed
+    - Wallet balance display and smart contract escrow simulation
+    - Trip progress tracking with countdown timers
+    - Proves expertise in Web3 applications, DeFi, and decentralized marketplaces
   - **Network Traffic Visualizer**: Real-time distributed system monitoring
     - Live packet flow visualization (Client → API Gateway → Database/Cache → Server)
     - Color-coded packets by request type (GET, POST, Cache Hit, Error)
