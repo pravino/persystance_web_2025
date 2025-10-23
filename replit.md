@@ -13,6 +13,20 @@ Preferred communication style: Simple, everyday language.
 ## Recent Changes
 
 ### October 2025
+- **Interactive Capabilities Demos**: Added live technology demonstrations
+  - 3D Model Viewer using Three.js showcasing spatial computing capabilities
+  - Web3 Wallet Connect demo with MetaMask integration for blockchain expertise
+  - Interactive demo section positioned between Portfolio and Testimonials
+  - Proves technical capabilities with working examples instead of static screenshots
+- **Institute Consulting Page**: Enterprise-tier services at `/institute`
+  - Strategic technology consulting for enterprises
+  - Web3, AI, and spatial computing expertise highlighted
+  - Enterprise solutions and strategic partnerships
+  - SEO-optimized separate landing page for qualified leads
+- **Enhanced Portfolio & Tech Stack**: Improved visual interactivity
+  - Portfolio cards with image zoom on hover
+  - Technology Stack with hover animations
+  - Smooth transitions and interactive states throughout
 - **SEO Implementation**: Comprehensive SEO optimization for Google visibility
   - Dynamic meta tags with react-helmet-async for all pages
   - Open Graph tags for Facebook/LinkedIn social sharing with luxury tech OG image

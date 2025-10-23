@@ -5,6 +5,11 @@ import { Card } from "@/components/ui/card";
 export default function ThreeDViewer() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isRotating, setIsRotating] = useState(true);
+  const isRotatingRef = useRef(isRotating);
+
+  useEffect(() => {
+    isRotatingRef.current = isRotating;
+  }, [isRotating]);
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -54,7 +59,7 @@ export default function ThreeDViewer() {
     const animate = () => {
       animationFrameId = requestAnimationFrame(animate);
 
-      if (isRotating) {
+      if (isRotatingRef.current) {
         torusKnot.rotation.x += 0.01;
         torusKnot.rotation.y += 0.01;
       }
@@ -86,7 +91,7 @@ export default function ThreeDViewer() {
       material.dispose();
       renderer.dispose();
     };
-  }, [isRotating]);
+  }, []);
 
   return (
     <Card className="p-6 hover-elevate">
