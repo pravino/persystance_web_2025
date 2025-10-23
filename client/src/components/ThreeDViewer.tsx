@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 export default function ThreeDViewer() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isRotating, setIsRotating] = useState(true);
+  const [webGLAvailable, setWebGLAvailable] = useState(true);
   const isRotatingRef = useRef(isRotating);
 
   useEffect(() => {
@@ -15,24 +16,27 @@ export default function ThreeDViewer() {
   useEffect(() => {
     if (!containerRef.current) return;
 
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(
-      75,
-      containerRef.current.clientWidth / containerRef.current.clientHeight,
-      0.1,
-      1000
-    );
+    let renderer: THREE.WebGLRenderer;
     
-    const renderer = new THREE.WebGLRenderer({ 
-      antialias: true, 
-      alpha: true 
-    });
-    renderer.setSize(
-      containerRef.current.clientWidth,
-      containerRef.current.clientHeight
-    );
-    renderer.setClearColor(0x000000, 0);
-    containerRef.current.appendChild(renderer.domElement);
+    try {
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(
+        75,
+        containerRef.current.clientWidth / containerRef.current.clientHeight,
+        0.1,
+        1000
+      );
+      
+      renderer = new THREE.WebGLRenderer({ 
+        antialias: true, 
+        alpha: true 
+      });
+      renderer.setSize(
+        containerRef.current.clientWidth,
+        containerRef.current.clientHeight
+      );
+      renderer.setClearColor(0x000000, 0);
+      containerRef.current.appendChild(renderer.domElement);
 
     const geometry = new THREE.TorusKnotGeometry(1, 0.3, 100, 16);
     const material = new THREE.MeshPhongMaterial({
@@ -82,16 +86,21 @@ export default function ThreeDViewer() {
 
     window.addEventListener("resize", handleResize);
 
-    return () => {
-      window.removeEventListener("resize", handleResize);
-      cancelAnimationFrame(animationFrameId);
-      if (containerRef.current) {
-        containerRef.current.removeChild(renderer.domElement);
-      }
-      geometry.dispose();
-      material.dispose();
-      renderer.dispose();
-    };
+      return () => {
+        window.removeEventListener("resize", handleResize);
+        cancelAnimationFrame(animationFrameId);
+        if (containerRef.current && renderer.domElement.parentNode) {
+          containerRef.current.removeChild(renderer.domElement);
+        }
+        geometry.dispose();
+        material.dispose();
+        renderer.dispose();
+      };
+    } catch (error) {
+      console.warn("WebGL not available:", error);
+      setWebGLAvailable(false);
+      return () => {};
+    }
   }, []);
 
   return (
@@ -104,18 +113,26 @@ export default function ThreeDViewer() {
           </p>
         </div>
         
-        <div 
-          ref={containerRef} 
-          className="w-full h-64 rounded-md bg-gradient-to-br from-background to-muted"
-          data-testid="canvas-3d-viewer"
-        />
-        
-        <Button
-          onClick={() => setIsRotating(!isRotating)}
-          data-testid="button-toggle-rotation"
-        >
-          {isRotating ? "Pause Rotation" : "Resume Rotation"}
-        </Button>
+        {webGLAvailable ? (
+          <>
+            <div 
+              ref={containerRef} 
+              className="w-full h-64 rounded-md bg-gradient-to-br from-background to-muted"
+              data-testid="canvas-3d-viewer"
+            />
+            
+            <Button
+              onClick={() => setIsRotating(!isRotating)}
+              data-testid="button-toggle-rotation"
+            >
+              {isRotating ? "Pause Rotation" : "Resume Rotation"}
+            </Button>
+          </>
+        ) : (
+          <div className="w-full h-64 rounded-md bg-gradient-to-br from-background to-muted flex items-center justify-center" data-testid="canvas-3d-viewer">
+            <p className="text-sm text-muted-foreground">WebGL not available in this environment</p>
+          </div>
+        )}
       </div>
     </Card>
   );

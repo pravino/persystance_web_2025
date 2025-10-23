@@ -13,9 +13,14 @@ Preferred communication style: Simple, everyday language.
 ## Recent Changes
 
 ### October 2025
-- **Interactive Capabilities Demos**: Added live technology demonstrations
-  - 3D Model Viewer using Three.js showcasing spatial computing capabilities
+- **Interactive Capabilities Demos**: Added 5 live technology demonstrations
+  - 3D Model Viewer using Three.js showcasing spatial computing capabilities with pause/resume
   - Web3 Wallet Connect demo with MetaMask integration for blockchain expertise
+  - Data Visualization Dashboard using recharts with toggleable line/bar charts showing analytics capabilities
+  - Real-time Form Validation demo with email/password validation showcasing advanced UX
+  - Interactive Particle Animation using canvas API demonstrating creative coding and physics simulation
+  - All demos use Shadcn Button component for design consistency
+  - Responsive 3-column grid layout (2 columns on tablet, 1 on mobile)
   - Interactive demo section positioned between Portfolio and Testimonials
   - Proves technical capabilities with working examples instead of static screenshots
 - **Institute Consulting Page**: Enterprise-tier services at `/institute`
@@ -132,6 +137,11 @@ Preferred communication style: Simple, everyday language.
 
 ### Date & Time
 - **date-fns**: Date manipulation and formatting library
+
+### Graphics & Visualization
+- **Three.js**: 3D graphics library for spatial computing demos
+- **ethers.js**: Web3 library for blockchain wallet integration
+- **recharts**: Composable charting library for data visualization
 
 ### Assets
 The application uses stock images stored in `/attached_assets/stock_images/` for portfolio items and testimonials, referenced through Vite's asset import system.
