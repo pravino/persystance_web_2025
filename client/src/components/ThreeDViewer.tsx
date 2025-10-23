@@ -38,53 +38,53 @@ export default function ThreeDViewer() {
       renderer.setClearColor(0x000000, 0);
       containerRef.current.appendChild(renderer.domElement);
 
-    const geometry = new THREE.TorusKnotGeometry(1, 0.3, 100, 16);
-    const material = new THREE.MeshPhongMaterial({
-      color: 0x3b82f6,
-      shininess: 100,
-      specular: 0x00ffff,
-    });
-    const torusKnot = new THREE.Mesh(geometry, material);
-    scene.add(torusKnot);
+      const geometry = new THREE.TorusKnotGeometry(1, 0.3, 100, 16);
+      const material = new THREE.MeshPhongMaterial({
+        color: 0x3b82f6,
+        shininess: 100,
+        specular: 0x00ffff,
+      });
+      const torusKnot = new THREE.Mesh(geometry, material);
+      scene.add(torusKnot);
 
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
-    scene.add(ambientLight);
+      const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+      scene.add(ambientLight);
 
-    const pointLight = new THREE.PointLight(0xffffff, 1);
-    pointLight.position.set(5, 5, 5);
-    scene.add(pointLight);
+      const pointLight = new THREE.PointLight(0xffffff, 1);
+      pointLight.position.set(5, 5, 5);
+      scene.add(pointLight);
 
-    const pointLight2 = new THREE.PointLight(0x00ffff, 0.5);
-    pointLight2.position.set(-5, -5, 5);
-    scene.add(pointLight2);
+      const pointLight2 = new THREE.PointLight(0x00ffff, 0.5);
+      pointLight2.position.set(-5, -5, 5);
+      scene.add(pointLight2);
 
-    camera.position.z = 5;
+      camera.position.z = 5;
 
-    let animationFrameId: number;
-    const animate = () => {
-      animationFrameId = requestAnimationFrame(animate);
+      let animationFrameId: number;
+      const animate = () => {
+        animationFrameId = requestAnimationFrame(animate);
 
-      if (isRotatingRef.current) {
-        torusKnot.rotation.x += 0.01;
-        torusKnot.rotation.y += 0.01;
-      }
+        if (isRotatingRef.current) {
+          torusKnot.rotation.x += 0.01;
+          torusKnot.rotation.y += 0.01;
+        }
 
-      renderer.render(scene, camera);
-    };
+        renderer.render(scene, camera);
+      };
 
-    animate();
+      animate();
 
-    const handleResize = () => {
-      if (!containerRef.current) return;
-      camera.aspect = containerRef.current.clientWidth / containerRef.current.clientHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(
-        containerRef.current.clientWidth,
-        containerRef.current.clientHeight
-      );
-    };
+      const handleResize = () => {
+        if (!containerRef.current) return;
+        camera.aspect = containerRef.current.clientWidth / containerRef.current.clientHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(
+          containerRef.current.clientWidth,
+          containerRef.current.clientHeight
+        );
+      };
 
-    window.addEventListener("resize", handleResize);
+      window.addEventListener("resize", handleResize);
 
       return () => {
         window.removeEventListener("resize", handleResize);
