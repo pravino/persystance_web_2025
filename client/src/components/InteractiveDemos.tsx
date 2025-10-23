@@ -1,7 +1,7 @@
 import TapToEarnGame from "./TapToEarnGame";
 import Web3WalletDemo from "./Web3WalletDemo";
 import Web3TaxiDemo from "./Web3TaxiDemo";
-import NetworkTrafficVisualizer from "./NetworkTrafficVisualizer";
+import Web3HotelManagement from "./Web3HotelManagement";
 import { Sparkles } from "lucide-react";
 
 export default function InteractiveDemos() {
@@ -25,12 +25,12 @@ export default function InteractiveDemos() {
           <TapToEarnGame />
           <Web3WalletDemo />
           <Web3TaxiDemo />
-          <NetworkTrafficVisualizer />
+          <Web3HotelManagement />
         </div>
 
         <div className="mt-12 text-center">
           <p className="text-sm text-muted-foreground">
-            These demos prove our ability to build production-ready features for Telegram mini-apps, Web3 games, decentralized applications, and trading platforms.
+            These demos prove our ability to build production-ready features for Telegram mini-apps, Web3 games, decentralized applications, and hospitality platforms.
           </p>
         </div>
       </div>

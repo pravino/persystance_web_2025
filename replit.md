@@ -29,12 +29,14 @@ Preferred communication style: Simple, everyday language.
     - Wallet balance display and smart contract escrow simulation
     - Trip progress tracking with countdown timers
     - Proves expertise in Web3 applications, DeFi, and decentralized marketplaces
-  - **Network Traffic Visualizer**: Real-time distributed system monitoring
-    - Live packet flow visualization (Client → API Gateway → Database/Cache → Server)
-    - Color-coded packets by request type (GET, POST, Cache Hit, Error)
-    - Realistic burst traffic patterns and network behavior simulation
-    - Live statistics (total requests, error count, success rate)
-    - Proves infrastructure monitoring and distributed system expertise for DEX/trading platforms
+  - **Web3 Hotel Management**: Decentralized hospitality booking platform
+    - Room inventory with 4 types (Standard, Deluxe, Suite, Penthouse) and real-time availability
+    - Live stats dashboard (available rooms, occupancy rate, revenue in MATIC)
+    - Booking flow: click room → enter guest details → connect wallet → confirm with crypto payment
+    - NFT room key generation (blockchain-verified access credentials)
+    - Simulated room status transitions (Available → Booked → Occupied → Checkout)
+    - Recent bookings list with NFT key tracking
+    - Proves expertise in hospitality tech, decentralized booking platforms, and NFT utility
   - All demos showcase real-world applications, not standalone effects
   - Responsive 2-column grid layout
   - Interactive demo section positioned between Portfolio and Testimonials
