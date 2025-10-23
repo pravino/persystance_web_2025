@@ -31,12 +31,19 @@ Preferred communication style: Simple, everyday language.
     - Proves expertise in Web3 applications, DeFi, and decentralized marketplaces
   - **Web3 Hotel Management**: Decentralized hospitality booking platform
     - Room inventory with 4 types (Standard, Deluxe, Suite, Penthouse) and real-time availability
+    - Multi-tab interface: Dashboard, Calendar, Housekeeping
     - Live stats dashboard (available rooms, occupancy rate, revenue in MATIC)
     - Booking flow: click room → enter guest details → connect wallet → confirm with crypto payment
     - NFT room key generation (blockchain-verified access credentials)
-    - Simulated room status transitions (Available → Booked → Occupied → Checkout)
+    - Cleaning status tracking (clean, needs_cleaning, cleaning_in_progress) with visual indicators
+    - Monthly calendar view showing daily availability counts
+    - Housekeeping dashboard with manual controls:
+      * "Start Cleaning" button transitions rooms to cleaning_in_progress
+      * "Mark Ready" button completes cleaning and returns checkout rooms to available status
+      * Stats cards showing rooms needing cleaning and checkout count
+    - Automated room status cycle: Available → Booked → Occupied → Checkout → (needs cleaning) → (cleaning in progress) → (clean) → Available
     - Recent bookings list with NFT key tracking
-    - Proves expertise in hospitality tech, decentralized booking platforms, and NFT utility
+    - Proves expertise in hospitality tech, property management systems, decentralized booking platforms, and NFT utility
   - All demos showcase real-world applications, not standalone effects
   - Responsive 2-column grid layout
   - Interactive demo section positioned between Portfolio and Testimonials
