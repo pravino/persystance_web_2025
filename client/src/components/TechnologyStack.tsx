@@ -32,7 +32,7 @@ export default function TechnologyStack() {
           {Object.entries(technologies).map(([category, techs], index) => (
             <div 
               key={index} 
-              className="bg-muted/30 border border-border rounded-xl p-8"
+              className="bg-muted/30 border border-border rounded-xl p-8 hover-elevate transition-all duration-300"
               data-testid={`tech-category-${index}`}
             >
               <h3 className="text-xl font-semibold mb-6 text-foreground">
@@ -43,7 +43,7 @@ export default function TechnologyStack() {
                   <Badge 
                     key={i} 
                     variant="secondary" 
-                    className="px-3 py-1 text-sm"
+                    className="px-3 py-1 text-sm transition-all duration-200 hover:scale-105"
                     data-testid={`badge-tech-${tech.toLowerCase().replace(/\s+/g, '-')}`}
                   >
                     {tech}

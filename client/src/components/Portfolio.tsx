@@ -85,14 +85,14 @@ export default function Portfolio() {
           {projects.map((project, index) => (
             <Card 
               key={index} 
-              className="overflow-hidden hover-elevate bg-background"
+              className="overflow-hidden hover-elevate bg-background group"
               data-testid={`card-project-${index}`}
             >
               <div className="aspect-[16/10] overflow-hidden bg-muted/50">
                 <img 
                   src={project.image} 
                   alt={project.title}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
               </div>
               <div className="p-6">

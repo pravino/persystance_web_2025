@@ -7,6 +7,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "@/hooks/use-theme";
 import Home from "@/pages/Home";
 import TelegramGames from "@/pages/TelegramGames";
+import Institute from "@/pages/Institute";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -14,6 +15,7 @@ function Router() {
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/telegram-games" component={TelegramGames} />
+      <Route path="/institute" component={Institute} />
       <Route component={NotFound} />
     </Switch>
   );
