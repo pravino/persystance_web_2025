@@ -13,16 +13,26 @@ Preferred communication style: Simple, everyday language.
 ## Recent Changes
 
 ### October 2025
-- **Interactive Capabilities Demos**: Added 5 live technology demonstrations
-  - 3D Model Viewer using Three.js showcasing spatial computing capabilities with pause/resume
-  - Web3 Wallet Connect demo with MetaMask integration for blockchain expertise
-  - Data Visualization Dashboard using recharts with toggleable line/bar charts showing analytics capabilities
-  - Real-time Form Validation demo with email/password validation showcasing advanced UX
-  - Interactive Particle Animation using canvas API demonstrating creative coding and physics simulation
-  - All demos use Shadcn Button component for design consistency
-  - Responsive 3-column grid layout (2 columns on tablet, 1 on mobile)
+- **Interactive Capabilities Demos**: 4 production-focused technology demonstrations
+  - **Tap-to-Earn Game**: Full-featured Telegram mini-app style clicker game
+    - Click mechanics with satisfying animations and particle effects
+    - Energy system (depletes on click, refills over time with visual bar)
+    - Upgrade shop (auto-miners, click multipliers, energy capacity)
+    - Web3 wallet integration (connect MetaMask, sign progress, display wallet)
+    - localStorage persistence (saves tokens, upgrades, energy state)
+    - Proves expertise in Telegram games, game economy, and Web3 integration
+  - **Web3 Wallet Connect**: MetaMask integration demo for blockchain expertise
+  - **Data Visualization Dashboard**: Interactive recharts with toggleable line/bar charts showing analytics capabilities
+  - **Network Traffic Visualizer**: Real-time distributed system monitoring
+    - Live packet flow visualization (Client → API Gateway → Database/Cache → Server)
+    - Color-coded packets by request type (GET, POST, Cache Hit, Error)
+    - Realistic burst traffic patterns and network behavior simulation
+    - Live statistics (total requests, error count, success rate)
+    - Proves infrastructure monitoring and distributed system expertise for DEX/trading platforms
+  - All demos showcase real-world applications, not standalone effects
+  - Responsive 2-column grid layout
   - Interactive demo section positioned between Portfolio and Testimonials
-  - Proves technical capabilities with working examples instead of static screenshots
+  - 100% client-side (no Node.js or APIs needed for production deployment)
 - **Institute Consulting Page**: Enterprise-tier services at `/institute`
   - Strategic technology consulting for enterprises
   - Web3, AI, and spatial computing expertise highlighted

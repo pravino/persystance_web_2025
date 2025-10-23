@@ -1,14 +1,13 @@
-import ThreeDViewer from "./ThreeDViewer";
+import TapToEarnGame from "./TapToEarnGame";
 import Web3WalletDemo from "./Web3WalletDemo";
 import DataVisualizationDemo from "./DataVisualizationDemo";
-import FormValidationDemo from "./FormValidationDemo";
-import ParticleAnimationDemo from "./ParticleAnimationDemo";
+import NetworkTrafficVisualizer from "./NetworkTrafficVisualizer";
 import { Sparkles } from "lucide-react";
 
 export default function InteractiveDemos() {
   return (
     <section className="py-20 px-4 bg-muted/30" id="demos">
-      <div className="container max-w-7xl mx-auto">
+      <div className="container max-w-6xl mx-auto">
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary mb-4">
             <Sparkles className="w-4 h-4" />
@@ -18,21 +17,20 @@ export default function InteractiveDemos() {
             Interactive Technology Demos
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Experience our technical capabilities firsthand. These live demonstrations showcase our expertise in cutting-edge technologies.
+            Experience our technical capabilities firsthand. These live demonstrations showcase real-world applications, not just standalone effects.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <ThreeDViewer />
+        <div className="grid md:grid-cols-2 gap-6">
+          <TapToEarnGame />
           <Web3WalletDemo />
           <DataVisualizationDemo />
-          <FormValidationDemo />
-          <ParticleAnimationDemo />
+          <NetworkTrafficVisualizer />
         </div>
 
         <div className="mt-12 text-center">
           <p className="text-sm text-muted-foreground">
-            These are just examples of our capabilities. We build production-ready MVPs with any technology stack in 2 weeks.
+            These demos prove our ability to build production-ready features for Telegram mini-apps, Web3 games, trading platforms, and enterprise dashboards.
           </p>
         </div>
       </div>
