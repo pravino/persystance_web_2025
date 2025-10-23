@@ -7,6 +7,7 @@ import ProcessTimeline from "@/components/ProcessTimeline";
 import TechnologyStack from "@/components/TechnologyStack";
 import Portfolio from "@/components/Portfolio";
 import IndustryExpertise from "@/components/IndustryExpertise";
+import InteractiveDemos from "@/components/InteractiveDemos";
 import Testimonials from "@/components/Testimonials";
 import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
@@ -30,6 +31,7 @@ export default function Home() {
           <Portfolio />
         </div>
         <IndustryExpertise />
+        <InteractiveDemos />
         <Testimonials />
         <ContactForm />
       </main>
