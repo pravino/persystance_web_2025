@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
 export default function ThreeDViewer() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -109,13 +110,12 @@ export default function ThreeDViewer() {
           data-testid="canvas-3d-viewer"
         />
         
-        <button
+        <Button
           onClick={() => setIsRotating(!isRotating)}
-          className="px-4 py-2 rounded-md bg-primary text-primary-foreground hover-elevate active-elevate-2"
           data-testid="button-toggle-rotation"
         >
           {isRotating ? "Pause Rotation" : "Resume Rotation"}
-        </button>
+        </Button>
       </div>
     </Card>
   );

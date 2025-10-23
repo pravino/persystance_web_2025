@@ -1,11 +1,14 @@
 import ThreeDViewer from "./ThreeDViewer";
 import Web3WalletDemo from "./Web3WalletDemo";
+import DataVisualizationDemo from "./DataVisualizationDemo";
+import FormValidationDemo from "./FormValidationDemo";
+import ParticleAnimationDemo from "./ParticleAnimationDemo";
 import { Sparkles } from "lucide-react";
 
 export default function InteractiveDemos() {
   return (
     <section className="py-20 px-4 bg-muted/30" id="demos">
-      <div className="container max-w-6xl mx-auto">
+      <div className="container max-w-7xl mx-auto">
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary mb-4">
             <Sparkles className="w-4 h-4" />
@@ -19,9 +22,12 @@ export default function InteractiveDemos() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           <ThreeDViewer />
           <Web3WalletDemo />
+          <DataVisualizationDemo />
+          <FormValidationDemo />
+          <ParticleAnimationDemo />
         </div>
 
         <div className="mt-12 text-center">
