@@ -120,7 +120,7 @@ export default function ProjectCalculator() {
       "Source code ownership",
       "Documentation & handover",
       "30-day post-launch support",
-      "Direct access to 23-year veteran developer",
+      "Direct access to senior developer",
       ...config.selectedFeatures.map(id => {
         const feature = availableFeatures.find(f => f.id === id);
         return feature?.name || "";
@@ -167,11 +167,11 @@ export default function ProjectCalculator() {
     doc.setFontSize(11);
     doc.text("Why Persystance Networks?", 20, 220);
     doc.setFontSize(9);
-    doc.text("✓ 23 Years Personal Experience (since 2002)", 25, 230);
-    doc.text("✓ 13 Years in Business - Proven Track Record", 25, 238);
-    doc.text("✓ Direct Access to Senior Developer (No Juniors)", 25, 246);
-    doc.text("✓ Full Code Ownership & Documentation", 25, 254);
-    doc.text("✓ 30-Day Post-Launch Support Included", 25, 262);
+    doc.text("✓ 13 Years in Business - Proven Track Record", 25, 230);
+    doc.text("✓ Direct Access to Senior Developer (No Juniors)", 25, 238);
+    doc.text("✓ Full Code Ownership & Documentation", 25, 246);
+    doc.text("✓ 30-Day Post-Launch Support Included", 25, 254);
+    doc.text("✓ Transparent Pricing, No Hidden Costs", 25, 262);
     
     doc.setFontSize(9);
     doc.text("This is an automated estimate. Book a discovery call for detailed technical proposal.", 20, 277);

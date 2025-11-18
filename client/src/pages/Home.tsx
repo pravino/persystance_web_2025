@@ -40,7 +40,7 @@ export default function Home() {
         <CaseStudies />
         <IndustryExpertise />
         <InteractiveDemos />
-        <section className="py-20 px-6 bg-gradient-to-br from-background via-primary/5 to-background">
+        <section id="calculator" className="py-20 px-6 bg-gradient-to-br from-background via-primary/5 to-background">
           <div className="max-w-7xl mx-auto">
             <ProjectCalculator />
           </div>

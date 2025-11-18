@@ -2,8 +2,8 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Zap, DollarSign, CheckCircle2 } from "lucide-react";
 
 export default function Hero() {
-  const scrollToContact = () => {
-    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+  const scrollToCalculator = () => {
+    document.getElementById("calculator")?.scrollIntoView({ behavior: "smooth" });
   };
 
   const scrollToProcess = () => {
@@ -26,7 +26,7 @@ export default function Hero() {
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass">
               <Zap className="w-4 h-4 text-primary" />
               <span className="text-sm font-medium text-foreground">
-                23 Years Personal Experience • 13 Years in Business
+                13 Years in Business
               </span>
             </div>
             
@@ -50,7 +50,7 @@ export default function Hero() {
               <Button 
                 size="lg" 
                 className="text-base px-8 shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 transition-all"
-                onClick={scrollToContact}
+                onClick={scrollToCalculator}
                 data-testid="button-get-quote"
               >
                 Get Your MVP Quote

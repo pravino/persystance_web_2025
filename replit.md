@@ -101,7 +101,7 @@ The application maintains a 100% static site architecture with no backend depend
 ## Recent Changes (November 18, 2025)
 
 ### Pricing & Positioning Overhaul
-**Business Reality**: Solo Sri Lankan developer with 23 years personal experience (since 2002), operating a 13-year company (founded 2012) with 2-person team. Monthly overhead: 2.5M LKR (~$8,300 USD). All MVPs built on modern cloud infrastructure (not mentioned in marketing).
+**Business Reality**: Sri Lankan development company founded 2012 (13 years in business) with 2-person team. Monthly overhead: 2.5M LKR (~$8,300 USD). All MVPs built on modern cloud infrastructure (not mentioned in marketing).
 
 ### New Transparent Pricing Strategy
 - **Starter MVP**: $5,000 - $7,000 (2 weeks, up to 5 basic features, quick market validation - Web only)
@@ -126,10 +126,10 @@ Complete 2-step wizard with fixed timelines:
 
 ### Credibility Updates
 All site-wide mentions updated to:
-- Hero: "23 Years Personal Experience • 13 Years in Business"
-- About Us stats: "23 Years Personal Experience", "13 Years In Business"
-- About Us copy: "Founded in 2012, backed by 23 years of personal software development experience since 2002"
-- Values section: "23 years of personal experience, 13 years in business - direct access to senior developer, no juniors"
+- Hero: "13 Years in Business"
+- About Us stats: "13 Years In Business", "200+ MVPs Launched"
+- About Us copy: "Founded in 2012 with over a decade of proven expertise"
+- Values section: "13 years in business - direct access to senior developer, no juniors"
 
 ### Nexus Trading Repositioning
 - Badge changed from "Live Demo" to "UI/UX Showcase Demo • Web Platform"
@@ -140,12 +140,12 @@ All site-wide mentions updated to:
 ### Competitive Positioning
 **vs FCode Labs** (€4.5k MVP, 200+ employees, 7 years in business):
 - Transparent calculator with instant pricing (vs "contact us")
-- 23 years personal experience (vs 7-year company)
+- 13 years in business (vs 7-year company)
 - Direct senior developer access (vs large team delegation)
 - Live interactive demos proving capabilities
 
 **vs Low-Cost Offshore** (Fiverr/Upwork $500-2k):
-- 23 years accountability and track record
+- 13 years proven track record and accountability
 - Production-grade code, not prototypes
 - 30-day post-launch support included
 - Direct communication, no timezone/language barriers
@@ -154,7 +154,7 @@ All site-wide mentions updated to:
 - Full source code ownership
 - Comprehensive documentation & handover  
 - 30-day post-launch support
-- Direct access to 23-year veteran developer
+- Direct access to senior developer
 - Production-grade architecture (not prototypes)
 - Modern tech stack:
   - **Web**: React, TypeScript, cloud infrastructure
