@@ -1,5 +1,6 @@
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
+import TrustBadges from "@/components/TrustBadges";
 import ClientLogos from "@/components/ClientLogos";
 import AboutUs from "@/components/AboutUs";
 import ValueProposition from "@/components/ValueProposition";
@@ -24,6 +25,7 @@ export default function Home() {
       <Navigation />
       <main>
         <Hero />
+        <TrustBadges />
         <ClientLogos />
         <AboutUs />
         <ValueProposition />

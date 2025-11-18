@@ -10,6 +10,7 @@ import Home from "@/pages/Home";
 import TelegramGames from "@/pages/TelegramGames";
 import Institute from "@/pages/Institute";
 import ManagedServices from "@/pages/ManagedServices";
+import Compliance from "@/pages/Compliance";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -22,6 +23,7 @@ function Router() {
       <Route path="/telegram-games" component={TelegramGames} />
       <Route path="/institute" component={Institute} />
       <Route path="/managed-services" component={ManagedServices} />
+      <Route path="/compliance" component={Compliance} />
       <Route component={NotFound} />
     </Switch>
   );
