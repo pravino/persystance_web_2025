@@ -5,17 +5,23 @@ import { HelmetProvider } from "react-helmet-async";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "@/hooks/use-theme";
+import { usePageTracking, useScrollTracking } from "@/hooks/use-analytics";
 import Home from "@/pages/Home";
 import TelegramGames from "@/pages/TelegramGames";
 import Institute from "@/pages/Institute";
+import ManagedServices from "@/pages/ManagedServices";
 import NotFound from "@/pages/not-found";
 
 function Router() {
+  usePageTracking();
+  useScrollTracking();
+  
   return (
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/telegram-games" component={TelegramGames} />
       <Route path="/institute" component={Institute} />
+      <Route path="/managed-services" component={ManagedServices} />
       <Route component={NotFound} />
     </Switch>
   );

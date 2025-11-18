@@ -5,22 +5,39 @@ import { Quote } from "lucide-react";
 export default function Testimonials() {
   const testimonials = [
     {
-      quote: "Persystance turned our idea into a working product in just 2 weeks. The quality exceeded our expectations and we launched on time.",
-      author: "Keith Buck",
-      role: "Founder",
-      company: "Prime Group",
+      quote: "Persystance built our complete ERP system from raw material procurement to final product shipment. Their 24/7 managed services ensure our operations run smoothly with 99.9% uptime. The system has transformed our manufacturing workflow and improved efficiency by 40%.",
+      author: "Management Team",
+      role: "Operations Director",
+      company: "Work Wear Uniform Group",
+      highlight: true,
     },
     {
-      quote: "Best investment we made. They saved us 6 months and $100K compared to hiring a full team. The MVP helped us secure seed funding.",
+      quote: "Their cloud infrastructure management and enterprise solutions have been exceptional. Zero downtime deployments, proactive monitoring, and enterprise-grade security. They've reduced our infrastructure costs by 50% while improving performance significantly.",
+      author: "Leadership Team",
+      role: "CTO",
+      company: "Supreme Global",
+      highlight: true,
+    },
+    {
+      quote: "Working with Persystance on our scalable infrastructure has been a game-changer. Multi-region deployment, automated CI/CD, and comprehensive security implementation. They've supported our 10x user growth seamlessly with continuous optimization.",
+      author: "Technology Team",
+      role: "VP of Engineering",
+      company: "Prime Global",
+      highlight: true,
+    },
+    {
+      quote: "Best investment we made. They saved us 6 months and $100K compared to hiring a full team. The MVP helped us secure seed funding and validate our market quickly.",
       author: "R. Mannivaran",
-      role: "CEO, SupremeX",
-      company: "Singapore",
+      role: "CEO",
+      company: "SupremeX, Singapore",
+      highlight: false,
     },
     {
-      quote: "Professional, fast, and transparent. They guided us through every step and delivered exactly what we needed to validate our market.",
+      quote: "Professional, fast, and transparent. They guided us through every step and delivered exactly what we needed to validate our market. Highly recommend for any startup.",
       author: "Kusal Fonseka",
       role: "Director",
       company: "Kangaroo Cabs",
+      highlight: false,
     },
   ];
 
@@ -36,11 +53,11 @@ export default function Testimonials() {
           </p>
         </div>
         
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {testimonials.map((testimonial, index) => (
             <Card 
               key={index} 
-              className="p-8 bg-muted/30 border-border"
+              className={`p-8 ${testimonial.highlight ? 'bg-primary/5 border-primary/20' : 'bg-muted/30'} border-border`}
               data-testid={`card-testimonial-${index}`}
             >
               <Quote className="w-8 h-8 text-primary mb-6" />

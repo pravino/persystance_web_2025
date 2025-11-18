@@ -1,17 +1,21 @@
 import { Helmet } from "react-helmet-async";
 
 interface StructuredDataProps {
-  type: "organization" | "service" | "aggregateRating" | "all";
+  type: "organization" | "service" | "aggregateRating" | "faq" | "breadcrumb" | "localBusiness" | "all";
   serviceName?: string;
   serviceDescription?: string;
   price?: string;
+  faqItems?: Array<{ question: string; answer: string }>;
+  breadcrumbItems?: Array<{ name: string; url: string }>;
 }
 
 export default function StructuredData({ 
   type, 
   serviceName, 
   serviceDescription, 
-  price 
+  price,
+  faqItems = [],
+  breadcrumbItems = []
 }: StructuredDataProps) {
   
   const organizationSchema = {
@@ -93,14 +97,88 @@ export default function StructuredData({
     }
   };
 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqItems.map(item => ({
+      "@type": "Question",
+      "name": item.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": item.answer
+      }
+    }))
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": breadcrumbItems.map((item, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "name": item.name,
+      "item": item.url
+    }))
+  };
+
+  const localBusinessSchema = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Persystance Networks",
+    "image": "https://persystance.com/logo-square.png",
+    "description": "Enterprise MVP development and managed cloud infrastructure services. Specializing in ERP systems, cloud management, and rapid application development.",
+    "url": "https://persystance.com",
+    "telephone": "+94-778005567",
+    "priceRange": "$$$$",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Colombo",
+      "addressLocality": "Colombo",
+      "addressRegion": "Western Province",
+      "postalCode": "00100",
+      "addressCountry": "LK"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "6.9271",
+      "longitude": "79.8612"
+    },
+    "areaServed": [
+      { "@type": "Country", "name": "United States" },
+      { "@type": "Country", "name": "United Kingdom" },
+      { "@type": "Country", "name": "Germany" },
+      { "@type": "Country", "name": "United Arab Emirates" },
+      { "@type": "Country", "name": "Saudi Arabia" }
+    ],
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "09:00",
+      "closes": "18:00"
+    },
+    "sameAs": [
+      "https://lk.linkedin.com/company/persystance"
+    ]
+  };
+
   const getSchemaData = () => {
     if (type === "organization") return organizationSchema;
     if (type === "service") return serviceSchema;
     if (type === "aggregateRating") return ratingSchema;
+    if (type === "faq") return faqSchema;
+    if (type === "breadcrumb") return breadcrumbSchema;
+    if (type === "localBusiness") return localBusinessSchema;
     if (type === "all") {
+      const schemas: any[] = [organizationSchema, serviceSchema, ratingSchema, localBusinessSchema];
+      if (faqItems.length > 0) {
+        schemas.push(faqSchema);
+      }
+      if (breadcrumbItems.length > 0) {
+        schemas.push(breadcrumbSchema);
+      }
       return {
         "@context": "https://schema.org",
-        "@graph": [organizationSchema, serviceSchema, ratingSchema]
+        "@graph": schemas
       };
     }
     return organizationSchema;

@@ -8,7 +8,9 @@ import TechnologyStack from "@/components/TechnologyStack";
 import Portfolio from "@/components/Portfolio";
 import IndustryExpertise from "@/components/IndustryExpertise";
 import InteractiveDemos from "@/components/InteractiveDemos";
+import CaseStudies from "@/components/CaseStudies";
 import Testimonials from "@/components/Testimonials";
+import FAQ from "@/components/FAQ";
 import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
 import SEO, { seoConfig } from "@/components/SEO";
@@ -30,9 +32,11 @@ export default function Home() {
         <div id="portfolio">
           <Portfolio />
         </div>
+        <CaseStudies />
         <IndustryExpertise />
         <InteractiveDemos />
         <Testimonials />
+        <FAQ />
         <ContactForm />
       </main>
       <Footer />

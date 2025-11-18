@@ -1,7 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { CheckCircle2, MessageCircle } from "lucide-react";
+import { useAnalytics } from "@/hooks/use-analytics";
 
 export default function ContactForm() {
+  const { trackWhatsAppClick, trackContactAttempt, trackLeadGeneration } = useAnalytics();
+  
   // WhatsApp Business number - Sri Lanka
   // Format: Country code + number (no spaces, no special characters)
   const whatsappNumber = "94778005567";
@@ -13,6 +16,9 @@ export default function ContactForm() {
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
 
   const handleWhatsAppClick = () => {
+    trackWhatsAppClick();
+    trackContactAttempt('whatsapp');
+    trackLeadGeneration('contact_form');
     window.open(whatsappUrl, '_blank');
   };
 

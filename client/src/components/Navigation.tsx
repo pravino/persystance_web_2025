@@ -26,6 +26,7 @@ export default function Navigation() {
     { label: "About", id: "about", type: "scroll" as const },
     { label: "Process", id: "process", type: "scroll" as const },
     { label: "Portfolio", id: "portfolio", type: "scroll" as const },
+    { label: "Managed Services", id: "/managed-services", type: "link" as const },
     { label: "Telegram Games", id: "/telegram-games", type: "link" as const },
     { label: "Institute", id: "/institute", type: "link" as const },
     { label: "Contact", id: "contact", type: "scroll" as const },

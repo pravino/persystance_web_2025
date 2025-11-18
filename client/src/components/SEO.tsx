@@ -8,6 +8,7 @@ interface SEOProps {
   ogType?: string;
   twitterCard?: string;
   keywords?: string;
+  hreflang?: boolean;
 }
 
 export default function SEO({
@@ -18,6 +19,7 @@ export default function SEO({
   ogType = "website",
   twitterCard = "summary_large_image",
   keywords = "MVP development, rapid prototyping, startup development, 2 week MVP, Telegram games, Web3 games, blockchain gaming",
+  hreflang = true,
 }: SEOProps) {
   const siteName = "Persystance Networks";
   const fullTitle = `${title} | ${siteName}`;
@@ -51,6 +53,30 @@ export default function SEO({
       <meta name="language" content="English" />
       <meta name="revisit-after" content="7 days" />
       <meta name="author" content="Persystance Networks" />
+      
+      {/* Geo-Targeting for Tier 1 & Tier 2 Markets */}
+      <meta name="geo.region" content="US" />
+      <meta name="geo.region" content="GB" />
+      <meta name="geo.region" content="DE" />
+      <meta name="geo.region" content="AE" />
+      <meta name="geo.region" content="SA" />
+      <meta name="geo.placename" content="United States" />
+      <meta name="geo.placename" content="United Kingdom" />
+      <meta name="geo.placename" content="Germany" />
+      <meta name="geo.placename" content="United Arab Emirates" />
+      <meta name="geo.placename" content="Saudi Arabia" />
+      
+      {/* Regional Content Hints */}
+      <meta name="coverage" content="Worldwide" />
+      <meta name="distribution" content="Global" />
+      <meta name="target" content="all" />
+      
+      {/* Hreflang Tags for International SEO */}
+      {hreflang && (
+        <>
+          <link rel="alternate" hrefLang="x-default" href={canonicalUrl} />
+        </>
+      )}
     </Helmet>
   );
 }
