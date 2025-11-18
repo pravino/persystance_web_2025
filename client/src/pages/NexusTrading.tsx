@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
@@ -14,6 +14,12 @@ import {
   Lock,
   Zap
 } from "lucide-react";
+
+// Seeded random for deterministic builds (SSR-friendly)
+function seededRandom(seed: number) {
+  const x = Math.sin(seed++) * 10000;
+  return x - Math.floor(x);
+}
 
 interface OrderBookEntry {
   price: number;
@@ -32,27 +38,33 @@ interface Trade {
 export default function NexusTrading() {
   const [currentPrice, setCurrentPrice] = useState(45230.50);
   const [priceChange, setPriceChange] = useState(2.3);
-  const [bids, setBids] = useState<OrderBookEntry[]>([]);
-  const [asks, setAsks] = useState<OrderBookEntry[]>([]);
-  const [recentTrades, setRecentTrades] = useState<Trade[]>([]);
-  const [portfolio, setPortfolio] = useState({
+  const seedRef = useRef(0);
+  
+  // Memoized portfolio data (deterministic)
+  const portfolio = useMemo(() => ({
     btc: 2.5,
     usd: 50000,
     totalValue: 163076.25,
     profitLoss: 8542.15,
     profitLossPercent: 5.52
-  });
+  }), []);
 
-  // Generate realistic order book
+  const [bids, setBids] = useState<OrderBookEntry[]>([]);
+  const [asks, setAsks] = useState<OrderBookEntry[]>([]);
+  const [recentTrades, setRecentTrades] = useState<Trade[]>([]);
+
+  // Generate realistic order book with seeded random
   useEffect(() => {
     const generateOrderBook = () => {
       const newBids: OrderBookEntry[] = [];
       const newAsks: OrderBookEntry[] = [];
+      const localSeed = seedRef.current;
+      let currentSeed = localSeed;
       
       // Generate bid side (buyers)
       for (let i = 0; i < 15; i++) {
-        const price = currentPrice - (i + 1) * (Math.random() * 5 + 2);
-        const amount = Math.random() * 2 + 0.1;
+        const price = currentPrice - (i + 1) * (seededRandom(currentSeed++) * 5 + 2);
+        const amount = seededRandom(currentSeed++) * 2 + 0.1;
         newBids.push({
           price: Number(price.toFixed(2)),
           amount: Number(amount.toFixed(4)),
@@ -62,8 +74,8 @@ export default function NexusTrading() {
 
       // Generate ask side (sellers)
       for (let i = 0; i < 15; i++) {
-        const price = currentPrice + (i + 1) * (Math.random() * 5 + 2);
-        const amount = Math.random() * 2 + 0.1;
+        const price = currentPrice + (i + 1) * (seededRandom(currentSeed++) * 5 + 2);
+        const amount = seededRandom(currentSeed++) * 2 + 0.1;
         newAsks.push({
           price: Number(price.toFixed(2)),
           amount: Number(amount.toFixed(4)),
@@ -73,6 +85,7 @@ export default function NexusTrading() {
 
       setBids(newBids);
       setAsks(newAsks.reverse());
+      seedRef.current += 1;
     };
 
     generateOrderBook();
@@ -80,10 +93,11 @@ export default function NexusTrading() {
     return () => clearInterval(interval);
   }, [currentPrice]);
 
-  // Simulate price movements
+  // Simulate price movements with seeded random
   useEffect(() => {
+    let priceSeed = 1000;
     const interval = setInterval(() => {
-      const change = (Math.random() - 0.5) * 10;
+      const change = (seededRandom(priceSeed++) - 0.5) * 10;
       setCurrentPrice(prev => {
         const newPrice = prev + change;
         setPriceChange(Number(((change / prev) * 100).toFixed(2)));
@@ -94,15 +108,16 @@ export default function NexusTrading() {
     return () => clearInterval(interval);
   }, []);
 
-  // Generate recent trades
+  // Generate recent trades with seeded random
   useEffect(() => {
+    let tradeSeed = 2000;
     const generateTrade = () => {
       const trade: Trade = {
         id: `trade-${Date.now()}`,
-        price: currentPrice + (Math.random() - 0.5) * 20,
-        amount: Math.random() * 0.5 + 0.01,
+        price: currentPrice + (seededRandom(tradeSeed++) - 0.5) * 20,
+        amount: seededRandom(tradeSeed++) * 0.5 + 0.01,
         time: new Date(),
-        type: Math.random() > 0.5 ? "buy" : "sell"
+        type: seededRandom(tradeSeed++) > 0.5 ? "buy" : "sell"
       };
 
       setRecentTrades(prev => [trade, ...prev].slice(0, 20));
