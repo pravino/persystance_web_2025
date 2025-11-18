@@ -5,7 +5,7 @@ declare global {
   }
 }
 
-export const GA_MEASUREMENT_ID = 'G-XXXXXXXXXX'; // Replace with your actual GA4 Measurement ID
+export const GA_MEASUREMENT_ID = 'G-M8GS24T2SW';
 
 export const pageview = (url: string) => {
   if (typeof window.gtag !== 'undefined') {
