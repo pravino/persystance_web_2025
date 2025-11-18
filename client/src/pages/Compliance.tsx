@@ -88,11 +88,11 @@ export default function Compliance() {
       title: "Asset Management Systems",
       description: "INSPIRA Exchange - institutional trading platform with Fireblocks custody and real-world Liechtenstein operations",
       expertise: [
-        "Built INSPIRA Exchange with high-performance matching engine",
+        "Built INSPIRA Exchange institutional trading platform",
         "Fireblocks custody integration for institutional security",
         "Multi-jurisdictional client onboarding with KYC/AML compliance",
         "Proof of funds verification across multiple countries",
-        "B2B connectivity to Merkle.trade exchange ($28.7B volume)",
+        "B2B connectivity to major exchange networks",
         "Real-time ledger system for position tracking",
         "Smart order routing for best execution",
         "Regulatory reporting (MiFID II, AIFMD)",

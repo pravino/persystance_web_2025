@@ -41,8 +41,8 @@ export default function TradingPortfolio() {
         "Cryptocurrency spot & derivatives",
         "FIAT currency pairs (forex)",
         "Commodity futures (gold, silver, oil)",
-        "150x leverage on crypto",
-        "1000x leverage on forex",
+        "Configurable leverage options",
+        "Advanced margin management",
         "Real-time price feeds"
       ]
     },
@@ -62,9 +62,9 @@ export default function TradingPortfolio() {
     {
       icon: Zap,
       title: "Matching Engine",
-      description: "High-performance order matching with microsecond latency",
+      description: "High-performance order matching for institutional trading",
       features: [
-        "Sub-millisecond order matching",
+        "High-throughput order processing",
         "Price-time priority algorithm",
         "Market, limit, stop orders",
         "Smart order routing",
@@ -77,10 +77,10 @@ export default function TradingPortfolio() {
       title: "B2B Exchange Connectivity",
       description: "Seamless integration with major exchanges for best execution",
       features: [
-        "Merkle.trade integration ($28.7B volume)",
+        "B2B connectivity to major exchanges",
         "Multi-exchange routing",
         "Best price discovery",
-        "Automated arbitrage",
+        "Automated arbitrage capabilities",
         "Cross-exchange settlement",
         "API & FIX protocol support"
       ]
@@ -193,20 +193,20 @@ export default function TradingPortfolio() {
 
   const caseStudy = {
     name: "INSPIRA Exchange",
-    description: "Institutional-grade trading platform for multi-jurisdictional asset management",
+    description: "Institutional trading platform built for asset management operations in Liechtenstein",
     achievements: [
-      "Integrated Fireblocks custody for institutional security",
-      "Built high-performance matching engine with sub-millisecond latency",
-      "Established B2B connectivity with Merkle.trade ($28.7B volume)",
-      "Implemented real-time ledger system for position tracking",
-      "Deployed multi-jurisdictional KYC/AML compliance (Europe, USA, Middle East, Asia)",
-      "Enabled smart order routing for best execution across venues"
+      "Integrated Fireblocks custody infrastructure for institutional-grade security",
+      "Developed high-performance matching engine for efficient order execution",
+      "Established B2B connectivity with major exchange networks",
+      "Implemented real-time ledger system for transparent position tracking",
+      "Deployed multi-jurisdictional KYC/AML compliance workflows (Europe, USA, Middle East, Asia)",
+      "Built smart order routing system for optimal execution across venues"
     ],
     technologies: [
       "Fireblocks MPC Custody",
       "Custom Matching Engine",
       "Real-Time Ledger",
-      "Merkle.trade B2B API",
+      "B2B Exchange APIs",
       "Multi-Exchange Routing",
       "KYC/AML Workflows"
     ]
@@ -298,19 +298,19 @@ export default function TradingPortfolio() {
                 <Coins className="w-12 h-12 mx-auto mb-4 text-primary" />
                 <h3 className="font-bold text-xl mb-2">Cryptocurrency</h3>
                 <p className="text-muted-foreground mb-4">Spot, derivatives, perpetuals, futures</p>
-                <Badge variant="secondary">Up to 150x Leverage</Badge>
+                <Badge variant="secondary">Flexible Leverage</Badge>
               </Card>
               <Card className="p-6 text-center bg-gradient-to-br from-accent/5 to-primary/5">
                 <DollarSign className="w-12 h-12 mx-auto mb-4 text-accent" />
                 <h3 className="font-bold text-xl mb-2">FIAT Currency</h3>
                 <p className="text-muted-foreground mb-4">Forex pairs, currency derivatives</p>
-                <Badge variant="secondary">Up to 1000x Leverage</Badge>
+                <Badge variant="secondary">Advanced Margin</Badge>
               </Card>
               <Card className="p-6 text-center bg-gradient-to-br from-primary/5 to-accent/5">
                 <TrendingUp className="w-12 h-12 mx-auto mb-4 text-primary" />
                 <h3 className="font-bold text-xl mb-2">Commodities</h3>
                 <p className="text-muted-foreground mb-4">Gold, silver, oil, agricultural</p>
-                <Badge variant="secondary">Futures Trading</Badge>
+                <Badge variant="secondary">Futures & Forwards</Badge>
               </Card>
             </div>
           </div>
@@ -360,8 +360,7 @@ export default function TradingPortfolio() {
                     <span className="font-semibold">B2B Integration</span>
                   </div>
                   <p className="text-sm text-muted-foreground">
-                    Connected to Merkle.trade exchange ($28.7B trading volume) for optimal 
-                    order execution and liquidity aggregation
+                    Connected to major exchange networks for optimal order execution and liquidity aggregation
                   </p>
                 </div>
               </Card>

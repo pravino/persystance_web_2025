@@ -26,7 +26,7 @@ export default function IndustryExpertise() {
     {
       icon: <ArrowRightLeft className="w-8 h-8" />,
       title: "Trading & Exchanges",
-      description: "White-label exchange development with institutional custody (Fireblocks). Built INSPIRA Exchange with matching engine, real-time ledger, and B2B connectivity to Merkle.trade ($28.7B volume).",
+      description: "White-label exchange development with institutional custody (Fireblocks). Built INSPIRA Exchange with high-performance matching engine, real-time ledger, and B2B connectivity to major exchange networks.",
     },
     {
       icon: <Gamepad2 className="w-8 h-8" />,
