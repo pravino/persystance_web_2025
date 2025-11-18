@@ -72,14 +72,14 @@ export default function Navigation() {
                       {servicesItems.map((item) => (
                         <li key={item.id}>
                           {item.type === "link" ? (
-                            <Link href={item.id}>
-                              <a className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                            <NavigationMenuLink asChild>
+                              <Link href={item.id} className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
                                 <div className="text-sm font-medium leading-none">{item.label}</div>
                                 <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
                                   {item.description}
                                 </p>
-                              </a>
-                            </Link>
+                              </Link>
+                            </NavigationMenuLink>
                           ) : (
                             <button
                               onClick={() => scrollToSection(item.id)}
@@ -106,14 +106,14 @@ export default function Navigation() {
                       {companyItems.map((item) => (
                         <li key={item.id}>
                           {item.type === "link" ? (
-                            <Link href={item.id}>
-                              <a className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                            <NavigationMenuLink asChild>
+                              <Link href={item.id} className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
                                 <div className="text-sm font-medium leading-none">{item.label}</div>
                                 <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
                                   {item.description}
                                 </p>
-                              </a>
-                            </Link>
+                              </Link>
+                            </NavigationMenuLink>
                           ) : (
                             <button
                               onClick={() => scrollToSection(item.id)}
@@ -188,12 +188,12 @@ export default function Navigation() {
                   {servicesItems.map((item) =>
                     item.type === "link" ? (
                       <Link key={item.id} href={item.id}>
-                        <span
+                        <div
                           onClick={() => setMobileMenuOpen(false)}
                           className="block text-left py-2 hover:text-primary transition-colors cursor-pointer"
                         >
                           {item.label}
-                        </span>
+                        </div>
                       </Link>
                     ) : (
                       <button
@@ -214,12 +214,12 @@ export default function Navigation() {
                   {companyItems.map((item) =>
                     item.type === "link" ? (
                       <Link key={item.id} href={item.id}>
-                        <span
+                        <div
                           onClick={() => setMobileMenuOpen(false)}
                           className="block text-left py-2 hover:text-primary transition-colors cursor-pointer"
                         >
                           {item.label}
-                        </span>
+                        </div>
                       </Link>
                     ) : (
                       <button
