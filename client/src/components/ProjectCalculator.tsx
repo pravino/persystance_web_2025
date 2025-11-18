@@ -173,7 +173,7 @@ export default function ProjectCalculator() {
     
     const weeks = calculatedWeeks;
     
-    // Build features list
+    // Build features list - All tiers include Starter MVP core features
     const baselineFeatures = [
       "Source code ownership",
       "Documentation & handover",
@@ -181,14 +181,14 @@ export default function ProjectCalculator() {
       "Direct access to senior developer"
     ];
     
-    // Add Starter MVP specific features if applicable
-    const starterFeatures = config.projectType === 'starter' ? [
+    // Starter MVP core features (included in all tiers)
+    const starterFeatures = [
       "User Authentication (Email/password login & signup)",
       "Database Design (PostgreSQL with up to 5 simple tables)",
       "RESTful API (Simple CRUD operations for 1 entity with up to 10 fields)",
       "Mobile Responsive UI (Works on all devices)",
       "Basic Dashboard (5 pre-defined screens: Home, List, Detail, Settings, Profile)"
-    ] : [];
+    ];
     
     // Add selected add-on features
     const addOnFeatures = config.selectedFeatures.map(id => {
@@ -331,39 +331,36 @@ export default function ProjectCalculator() {
     
     yPos += 22;
     
-    // Starter MVP Core Features (if applicable)
-    if (config.projectType === 'starter') {
-      doc.setFontSize(12);
-      doc.setFont('helvetica', 'bold');
-      doc.text("Starter MVP Core Features:", 15, yPos);
-      
-      yPos += 8;
-      doc.setFontSize(9);
-      doc.setFont('helvetica', 'normal');
-      
-      const starterMVPFeatures = [
-        "User Authentication - Email/password login & signup",
-        "Database Design - PostgreSQL with up to 5 simple tables",
-        "RESTful API - Simple CRUD operations for 1 entity (up to 10 fields)",
-        "Mobile Responsive UI - Works on all devices",
-        "Basic Dashboard - 5 pre-defined screens (Home, List, Detail, Settings, Profile)"
-      ];
-      
-      starterMVPFeatures.forEach(feature => {
-        doc.setFillColor(66, 135, 245);
-        doc.circle(18, yPos + 1, 0.8, 'F');
-        doc.text(feature, 22, yPos + 2);
-        yPos += 5;
-      });
-      
-      yPos += 5;
-    }
-    
-    // Included Baseline Features
+    // Starter MVP Core Features (included in all tiers)
     doc.setFontSize(12);
     doc.setFont('helvetica', 'bold');
-    const baselineTitle = config.projectType === 'starter' ? "Additional Benefits:" : "Included Baseline Features:";
-    doc.text(baselineTitle, 15, yPos);
+    doc.text("Starter MVP Core Features (Included):", 15, yPos);
+    
+    yPos += 8;
+    doc.setFontSize(9);
+    doc.setFont('helvetica', 'normal');
+    
+    const starterMVPFeatures = [
+      "User Authentication - Email/password login & signup",
+      "Database Design - PostgreSQL with up to 5 simple tables",
+      "RESTful API - Simple CRUD operations for 1 entity (up to 10 fields)",
+      "Mobile Responsive UI - Works on all devices",
+      "Basic Dashboard - 5 pre-defined screens (Home, List, Detail, Settings, Profile)"
+    ];
+    
+    starterMVPFeatures.forEach(feature => {
+      doc.setFillColor(66, 135, 245);
+      doc.circle(18, yPos + 1, 0.8, 'F');
+      doc.text(feature, 22, yPos + 2);
+      yPos += 5;
+    });
+    
+    yPos += 5;
+    
+    // Additional Baseline Benefits
+    doc.setFontSize(12);
+    doc.setFont('helvetica', 'bold');
+    doc.text("Additional Benefits:", 15, yPos);
     
     yPos += 8;
     doc.setFontSize(9);
