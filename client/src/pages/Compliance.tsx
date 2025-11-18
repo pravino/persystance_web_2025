@@ -123,13 +123,18 @@ export default function Compliance() {
       description: "Full compliance with European data protection and financial regulations"
     },
     {
+      region: "Liechtenstein",
+      regulations: ["KYC/AML", "Financial Market Authority (FMA)", "Due Diligence Act", "GDPR", "Swiss Banking Standards"],
+      description: "Real-world operations in Liechtenstein financial center with cross-border client onboarding expertise"
+    },
+    {
       region: "United States",
-      regulations: ["SOC 2 Type II", "ISO 27001", "State Privacy Laws", "SEC Regulations"],
+      regulations: ["SOC 2 Type II", "ISO 27001", "State Privacy Laws", "SEC Regulations", "BSA/AML"],
       description: "Adherence to US security standards and financial regulatory requirements"
     },
     {
       region: "Middle East",
-      regulations: ["ISO 27001", "Data Sovereignty", "Local Data Protection Laws"],
+      regulations: ["ISO 27001", "Data Sovereignty", "Local Data Protection Laws", "KYC/AML"],
       description: "Compliance with regional data protection and sovereignty requirements"
     }
   ];
@@ -222,7 +227,7 @@ export default function Compliance() {
         title="Compliance & Security Standards"
         description="Enterprise-grade compliance for asset management and secure data rooms. GDPR, ISO 27001, ISO 27017, ISO 27018 compliant development serving Europe, USA, and Middle East."
         canonicalUrl="https://persystance.com/compliance"
-        keywords="GDPR compliance, ISO 27001, data room security, asset management compliance, SOC 2, cloud security, enterprise compliance"
+        keywords="GDPR compliance, ISO 27001, KYC AML compliance, Liechtenstein financial center, asset management compliance, SOC 2, data room security, multi-jurisdictional onboarding, proof of funds verification, enterprise compliance"
       />
 
       <div className="min-h-screen bg-background">
