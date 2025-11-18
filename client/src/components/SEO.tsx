@@ -84,8 +84,8 @@ export default function SEO({
 // SEO configurations for different pages
 export const seoConfig = {
   home: {
-    title: "Turn Your Idea into a Working Product in 2 Weeks",
-    description: "Persystance Networks builds production-ready MVPs in 2 weeks and launches in 30 days. 13+ years experience, 50% cost optimization. Web, mobile, SaaS, blockchain, and AI development.",
+    title: "MVP in 2 Weeks, Launch in 30 Days",
+    description: "Build production-ready MVPs in 2 weeks, launch in 30 days. 13+ years experience, 50% cost optimization. Web, mobile, blockchain, and AI development.",
     canonicalUrl: "https://persystance.com/",
     ogImage: "https://persystance.com/og-image.jpg",
     keywords: "MVP development, rapid prototyping, startup development, 2 week MVP, cost effective development, SaaS development, mobile app development",
