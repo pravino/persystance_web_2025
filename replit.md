@@ -100,6 +100,35 @@ The application maintains a 100% static site architecture with no backend depend
 
 ## Recent Changes (November 18, 2025)
 
+### Scope Protection Updates (Latest)
+Added comprehensive scope definitions to prevent client exploitation:
+
+**Terms & Conditions Added:**
+- Revision policy: 2 rounds included per feature, additional $150/hour
+- Support policy: 30 days bug-fix warranty, 48-hour response time
+- Hosting: Deployment included, hosting costs (server/domain/SSL) paid by client
+- Baseline scope: Dashboard = 5 screens, CRUD = 1 entity (10 fields), Database = 5 simple tables
+
+**Add-on Scope Definitions:**
+Each of 8 add-on features now has explicit scope shown during selection AND in results/PDF:
+- Payment Integration: "Stripe one-time checkout only (no subscriptions)"
+- Analytics Dashboard: "Basic charts (5 metrics: users, revenue, activity, growth, conversion)"
+- Live Chat Support: "Basic message list with send/receive (no typing indicators)"
+- Notifications: "Transactional emails via SendGrid/Twilio (up to 3 templates)"
+- Real-time Features: "Basic WebSocket updates for 1 feature (e.g., live notifications)"
+- Advanced Search: "Text search with filters (up to 5 fields)"
+- PDF Reports: "Simple PDF with tables & text (up to 3 report types)"
+- Admin Dashboard: "Basic admin panel with user management & content CRUD"
+
+**Baseline Features Clarified:**
+- User Authentication: Email/password login only
+- Database Design: Up to 5 simple tables
+- RESTful API: CRUD for 1 entity (10 fields max)
+- Mobile Responsive UI: All breakpoints
+- Basic Dashboard: 5 screens (Home, List, Detail, Settings, Profile)
+
+## Recent Changes (November 18, 2025)
+
 ### Pricing & Positioning Overhaul
 **Business Reality**: Sri Lankan development company founded 2012 (13 years in business) with 2-person team. Monthly overhead: 2.5M LKR (~$8,300 USD). All MVPs built on modern cloud infrastructure (not mentioned in marketing).
 

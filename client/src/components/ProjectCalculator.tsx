@@ -32,7 +32,7 @@ const projectTypes = [
   {
     id: "starter",
     name: "Starter MVP",
-    description: "2 weeks - Up to 5 basic features for quick validation",
+    description: "2 weeks - Fixed 5 baseline features for quick validation",
     baseMin: 5000,
     baseMax: 7000,
     icon: Zap
@@ -40,7 +40,7 @@ const projectTypes = [
   {
     id: "standard",
     name: "Standard MVP",
-    description: "4-6 weeks - Production-ready with 7-10 features (Web or React Native)",
+    description: "4 weeks - Baseline + up to 3 add-ons (Web or React Native)",
     baseMin: 8300,
     baseMax: 12000,
     icon: Code
@@ -48,7 +48,7 @@ const projectTypes = [
   {
     id: "full",
     name: "Full Web Application",
-    description: "6-8 weeks - Comprehensive features & integrations",
+    description: "6 weeks - Baseline + up to 6 add-ons",
     baseMin: 12000,
     baseMax: 18000,
     icon: Store
@@ -56,7 +56,7 @@ const projectTypes = [
   {
     id: "enterprise",
     name: "Enterprise Solution",
-    description: "8+ weeks - Advanced systems (Web, Mobile, or Both)",
+    description: "8 weeks - Baseline + all 8 available add-ons (Web, Mobile, or Both)",
     baseMin: 20000,
     baseMax: 30000,
     icon: Rocket
@@ -64,18 +64,18 @@ const projectTypes = [
 ];
 
 const availableFeatures = [
-  { id: "auth", name: "User Authentication", cost: 800 },
-  { id: "dashboard", name: "Admin Dashboard", cost: 1200 },
-  { id: "api", name: "RESTful API", cost: 1000 },
-  { id: "database", name: "Database Design", cost: 1000 },
-  { id: "payments", name: "Payment Integration", cost: 1500 },
-  { id: "realtime", name: "Real-time Features", cost: 2000 },
-  { id: "notifications", name: "Email/SMS Notifications", cost: 800 },
-  { id: "analytics", name: "Analytics Dashboard", cost: 1500 },
-  { id: "mobile", name: "Mobile Responsive", cost: 600 },
-  { id: "search", name: "Advanced Search", cost: 1200 },
-  { id: "chat", name: "Live Chat Support", cost: 1800 },
-  { id: "reports", name: "PDF Report Generation", cost: 1000 }
+  { id: "auth", name: "User Authentication", cost: 800, scope: "Email/password login only" },
+  { id: "dashboard", name: "Admin Dashboard", cost: 1200, scope: "Basic admin panel with user management & content CRUD" },
+  { id: "api", name: "RESTful API", cost: 1000, scope: "Standard CRUD endpoints" },
+  { id: "database", name: "Database Design", cost: 1000, scope: "Up to 5 simple tables" },
+  { id: "payments", name: "Payment Integration", cost: 1500, scope: "Stripe one-time checkout only (no subscriptions)" },
+  { id: "realtime", name: "Real-time Features", cost: 2000, scope: "Basic WebSocket updates for 1 feature (e.g., live notifications)" },
+  { id: "notifications", name: "Email/SMS Notifications", cost: 800, scope: "Transactional emails via SendGrid/Twilio (up to 3 templates)" },
+  { id: "analytics", name: "Analytics Dashboard", cost: 1500, scope: "Basic charts (5 metrics: users, revenue, activity, growth, conversion)" },
+  { id: "mobile", name: "Mobile Responsive", cost: 600, scope: "Responsive breakpoints" },
+  { id: "search", name: "Advanced Search", cost: 1200, scope: "Text search with filters (up to 5 fields)" },
+  { id: "chat", name: "Live Chat Support", cost: 1800, scope: "Basic message list with send/receive (no typing indicators)" },
+  { id: "reports", name: "PDF Report Generation", cost: 1000, scope: "Simple PDF with tables & text (up to 3 report types)" }
 ];
 
 export default function ProjectCalculator() {
@@ -123,7 +123,7 @@ export default function ProjectCalculator() {
       "Direct access to senior developer",
       ...config.selectedFeatures.map(id => {
         const feature = availableFeatures.find(f => f.id === id);
-        return feature?.name || "";
+        return feature ? `${feature.name} (${feature.scope})` : "";
       }).filter(Boolean)
     ];
 
@@ -165,17 +165,21 @@ export default function ProjectCalculator() {
     });
     
     doc.setFontSize(11);
-    doc.text("Why Persystance Networks?", 20, 220);
+    doc.text("Important Terms & Conditions", 20, 220);
     doc.setFontSize(9);
-    doc.text("✓ 13 Years in Business - Proven Track Record", 25, 230);
-    doc.text("✓ Direct Access to Senior Developer (No Juniors)", 25, 238);
-    doc.text("✓ Full Code Ownership & Documentation", 25, 246);
-    doc.text("✓ 30-Day Post-Launch Support Included", 25, 254);
-    doc.text("✓ Transparent Pricing, No Hidden Costs", 25, 262);
+    doc.text("• Revisions: 2 rounds included per feature. Additional: $150/hour", 25, 230);
+    doc.text("• Support: 30 days bug-fix warranty. Response: 48 hours", 25, 238);
+    doc.text("• Hosting: Deployment included. Hosting costs paid by client", 25, 246);
+    doc.text("• Scope: Dashboard = 5 screens, CRUD = 1 entity (10 fields), DB = 5 tables", 25, 254);
+    
+    doc.setFontSize(11);
+    doc.text("Why Persystance Networks?", 20, 267);
+    doc.setFontSize(9);
+    doc.text("✓ 13 Years in Business - Proven Track Record", 25, 277);
+    doc.text("✓ Direct Access to Senior Developer (No Juniors)", 25, 284);
     
     doc.setFontSize(9);
-    doc.text("This is an automated estimate. Book a discovery call for detailed technical proposal.", 20, 277);
-    doc.text("www.persystance.com | contact@persystance.com | WhatsApp: +94 77 123 4567", 20, 284);
+    doc.text("This is an automated estimate. Book a discovery call for detailed proposal.", 20, 295);
 
     doc.save(`persystance-estimate-${Date.now()}.pdf`);
   };
@@ -320,14 +324,14 @@ export default function ProjectCalculator() {
                           <CheckCircle2 className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
                           <div>
                             <strong>Database Design</strong>
-                            <p className="text-sm text-muted-foreground">PostgreSQL setup with 3-5 tables</p>
+                            <p className="text-sm text-muted-foreground">PostgreSQL with up to 5 simple tables</p>
                           </div>
                         </div>
                         <div className="flex items-start gap-2">
                           <CheckCircle2 className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
                           <div>
                             <strong>RESTful API</strong>
-                            <p className="text-sm text-muted-foreground">CRUD operations & endpoints</p>
+                            <p className="text-sm text-muted-foreground">Simple CRUD operations for 1 entity (up to 10 fields)</p>
                           </div>
                         </div>
                         <div className="flex items-start gap-2">
@@ -341,7 +345,7 @@ export default function ProjectCalculator() {
                           <CheckCircle2 className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
                           <div>
                             <strong>Basic Dashboard</strong>
-                            <p className="text-sm text-muted-foreground">5-8 functional pages</p>
+                            <p className="text-sm text-muted-foreground">5 pre-defined screens (Home, List, Detail, Settings, Profile)</p>
                           </div>
                         </div>
                       </div>
@@ -363,12 +367,12 @@ export default function ProjectCalculator() {
                         <CheckCircle2 className="w-5 h-5" />
                         ✓ Includes All Starter MVP Features (No Extra Cost)
                       </h4>
-                      <div className="grid md:grid-cols-2 gap-3 text-sm text-muted-foreground">
-                        <div>• User Authentication</div>
-                        <div>• Database Design</div>
-                        <div>• RESTful API</div>
-                        <div>• Mobile Responsive UI</div>
-                        <div>• Basic Dashboard</div>
+                      <div className="space-y-2 text-sm text-muted-foreground">
+                        <div>• <strong>User Authentication:</strong> Email/password login</div>
+                        <div>• <strong>Database Design:</strong> Up to 5 simple tables</div>
+                        <div>• <strong>RESTful API:</strong> CRUD for 1 entity (10 fields max)</div>
+                        <div>• <strong>Mobile Responsive UI:</strong> All breakpoints</div>
+                        <div>• <strong>Basic Dashboard:</strong> 5 screens (Home, List, Detail, Settings, Profile)</div>
                       </div>
                     </Card>
 
@@ -418,7 +422,8 @@ export default function ProjectCalculator() {
                               </div>
                               <div className="flex-1">
                                 <h4 className="font-medium mb-1">{feature.name}</h4>
-                                <p className="text-xs text-muted-foreground">+${feature.cost.toLocaleString()}</p>
+                                <p className="text-xs text-muted-foreground mb-1">+${feature.cost.toLocaleString()}</p>
+                                <p className="text-xs text-muted-foreground italic">{feature.scope}</p>
                               </div>
                             </button>
                           );
@@ -478,6 +483,28 @@ export default function ProjectCalculator() {
                 </div>
               </Card>
 
+              <Card className="p-6 bg-blue-500/5 border-blue-500/20">
+                <h4 className="font-bold mb-3 text-blue-700 dark:text-blue-400">Important Terms & Conditions:</h4>
+                <div className="space-y-3 text-sm text-muted-foreground">
+                  <div className="flex items-start gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0 mt-1.5" />
+                    <span><strong>Revisions:</strong> 2 rounds of revisions included per feature. Additional revisions: $150/hour</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0 mt-1.5" />
+                    <span><strong>Support:</strong> 30 days bug-fix warranty (no new features). Response time: 48 hours</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0 mt-1.5" />
+                    <span><strong>Hosting:</strong> Deployment included. Hosting costs (server, domain, SSL) paid by client</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0 mt-1.5" />
+                    <span><strong>Baseline Scope:</strong> Dashboard = 5 pre-defined screens. CRUD = simple operations for 1 entity (up to 10 fields). Database = up to 5 simple tables</span>
+                  </div>
+                </div>
+              </Card>
+
               <Card className="p-6 bg-gradient-to-r from-primary/5 to-accent/5 border-primary/20">
                 <h4 className="font-bold mb-3 flex items-center gap-2">
                   <Zap className="w-5 h-5 text-primary" />
@@ -486,7 +513,7 @@ export default function ProjectCalculator() {
                 <div className="grid md:grid-cols-2 gap-3 text-sm mb-4">
                   <div className="flex items-start gap-2">
                     <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
-                    <span><strong>23 years</strong> personal experience vs 7-year agencies</span>
+                    <span><strong>13 years</strong> in business vs 7-year agencies</span>
                   </div>
                   <div className="flex items-start gap-2">
                     <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
