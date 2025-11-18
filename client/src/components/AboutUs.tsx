@@ -4,8 +4,8 @@ import teamImage from "@assets/stock_images/professional_office__b5e9cf53.jpg";
 
 export default function AboutUs() {
   const stats = [
-    { value: "13+", label: "Years Experience" },
-    { value: "150+", label: "MVPs Delivered" },
+    { value: "23 Years", label: "Personal Experience" },
+    { value: "13 Years", label: "In Business" },
     { value: "98%", label: "Client Satisfaction" },
     { value: "30 Days", label: "Average Launch" },
   ];
@@ -29,7 +29,7 @@ export default function AboutUs() {
     {
       icon: <Award className="w-8 h-8" />,
       title: "Proven Expertise",
-      description: "Over a decade of delivering mission-critical systems for enterprise clients.",
+      description: "23 years of personal experience, 13 years in business - direct access to senior developer, no juniors.",
     },
   ];
 
@@ -42,19 +42,19 @@ export default function AboutUs() {
               About Persystance Networks
             </h2>
             <p className="text-xl text-muted-foreground mb-6 leading-relaxed">
-              Since 2012, we've been transforming ideas into market-ready products. 
-              What sets us apart is our unique ability to deliver production-grade MVPs in 
-              just 2 weeks and launch them within 30 days.
+              Founded in 2012, backed by 23 years of personal software development experience 
+              since 2002. What sets us apart is our unique ability to deliver production-grade MVPs 
+              in just 2 weeks and launch them within 30 days.
             </p>
             <p className="text-xl text-muted-foreground mb-6 leading-relaxed">
               We've partnered with leading enterprises across telecommunications, fintech, 
               healthcare, and transportation sectors, building scalable solutions that 
-              handle millions of users.
+              handle millions of users with direct access to senior-level expertise.
             </p>
             <p className="text-xl text-muted-foreground leading-relaxed">
               Our proven methodology combines rapid development with enterprise-grade 
-              architecture, delivering 50% cost optimization without compromising quality 
-              or security.
+              architecture, delivering transparent pricing and honest timelines - no "contact us" 
+              games, just real estimates you can trust.
             </p>
           </div>
           

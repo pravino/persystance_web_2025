@@ -2,96 +2,128 @@ import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Slider } from "@/components/ui/slider";
 import { 
   Calculator, 
   Download, 
   CheckCircle2,
   Clock,
   DollarSign,
-  Users,
-  Zap
+  Zap,
+  Code,
+  Store,
+  Rocket,
+  MessageCircle
 } from "lucide-react";
 import jsPDF from "jspdf";
 
 interface ProjectConfig {
   projectType: string;
-  features: number;
-  complexity: number;
+  selectedFeatures: string[];
   timeline: number;
-  teamSize: number;
 }
 
 interface Estimate {
-  cost: number;
+  minCost: number;
+  maxCost: number;
   weeks: number;
-  team: string;
   features: string[];
 }
+
+const projectTypes = [
+  {
+    id: "mvp",
+    name: "Rapid MVP",
+    description: "Launch-ready product to test your idea",
+    baseMin: 8000,
+    baseMax: 12000,
+    icon: Zap
+  },
+  {
+    id: "webapp",
+    name: "Full Web Application",
+    description: "Production-grade web application",
+    baseMin: 12000,
+    baseMax: 18000,
+    icon: Code
+  },
+  {
+    id: "ecommerce",
+    name: "E-Commerce Platform",
+    description: "Complete online store with payments",
+    baseMin: 15000,
+    baseMax: 22000,
+    icon: Store
+  },
+  {
+    id: "enterprise",
+    name: "Enterprise Solution",
+    description: "Scalable systems with advanced features",
+    baseMin: 20000,
+    baseMax: 30000,
+    icon: Rocket
+  }
+];
+
+const availableFeatures = [
+  { id: "auth", name: "User Authentication", cost: 800 },
+  { id: "dashboard", name: "Admin Dashboard", cost: 1200 },
+  { id: "api", name: "RESTful API", cost: 1000 },
+  { id: "database", name: "Database Design", cost: 1000 },
+  { id: "payments", name: "Payment Integration", cost: 1500 },
+  { id: "realtime", name: "Real-time Features", cost: 2000 },
+  { id: "notifications", name: "Email/SMS Notifications", cost: 800 },
+  { id: "analytics", name: "Analytics Dashboard", cost: 1500 },
+  { id: "mobile", name: "Mobile Responsive", cost: 600 },
+  { id: "search", name: "Advanced Search", cost: 1200 },
+  { id: "chat", name: "Live Chat Support", cost: 1800 },
+  { id: "reports", name: "PDF Report Generation", cost: 1000 }
+];
 
 export default function ProjectCalculator() {
   const [step, setStep] = useState(0);
   const [config, setConfig] = useState<ProjectConfig>({
     projectType: "mvp",
-    features: 5,
-    complexity: 2,
-    timeline: 2,
-    teamSize: 2
+    selectedFeatures: [],
+    timeline: 2
   });
   const [estimate, setEstimate] = useState<Estimate | null>(null);
 
-  const projectTypes = [
-    {
-      id: "mvp",
-      name: "MVP Development",
-      description: "Launch-ready product in 2 weeks",
-      basePrice: 15000,
-      icon: Zap
-    },
-    {
-      id: "enterprise",
-      name: "Enterprise Solution",
-      description: "Scalable, secure, compliant systems",
-      basePrice: 50000,
-      icon: Users
-    },
-    {
-      id: "trading",
-      name: "Trading Platform",
-      description: "Institutional-grade trading infrastructure",
-      basePrice: 100000,
-      icon: DollarSign
-    }
-  ];
-
   const calculateEstimate = (): Estimate => {
     const selectedType = projectTypes.find(t => t.id === config.projectType);
-    const basePrice = selectedType?.basePrice || 15000;
+    if (!selectedType) {
+      return { minCost: 8300, maxCost: 12000, weeks: 2, features: [] };
+    }
     
-    const featureMultiplier = 1 + (config.features * 0.15);
-    const complexityMultiplier = config.complexity === 1 ? 0.8 : config.complexity === 2 ? 1 : 1.5;
-    const timelineMultiplier = config.timeline === 2 ? 1 : config.timeline === 4 ? 0.85 : 0.7;
+    const featureCost = config.selectedFeatures.reduce((total, featureId) => {
+      const feature = availableFeatures.find(f => f.id === featureId);
+      return total + (feature?.cost || 0);
+    }, 0);
     
-    const totalCost = Math.round(basePrice * featureMultiplier * complexityMultiplier * timelineMultiplier);
+    const timelineMultiplier = config.timeline === 2 ? 1 : config.timeline === 4 ? 0.95 : 0.92;
+    
+    // Calculate with multiplier, then enforce minimum floor of $8,300 (covers 2.5M LKR overhead)
+    const MINIMUM_PROJECT_COST = 8300;
+    let minCost = Math.round((selectedType.baseMin + featureCost) * timelineMultiplier);
+    let maxCost = Math.round((selectedType.baseMax + featureCost) * timelineMultiplier);
+    
+    // Enforce absolute floor and ensure reasonable spread
+    minCost = Math.max(MINIMUM_PROJECT_COST, minCost);
+    maxCost = Math.max(minCost + 2000, maxCost);
+    
     const weeks = config.timeline;
     
-    const teamConfig = config.teamSize === 2 ? "Core Team (2-3)" : 
-                       config.teamSize === 4 ? "Extended Team (4-5)" : "Full Team (6+)";
-    
     const features = [
-      "Full-stack development",
-      "UI/UX design",
-      "Database architecture",
-      config.features >= 5 ? "API integration" : null,
-      config.features >= 7 ? "Real-time features" : null,
-      config.features >= 9 ? "Advanced analytics" : null,
-      config.complexity >= 2 ? "Security hardening" : null,
-      config.complexity >= 3 ? "Load balancing & scaling" : null,
-      config.teamSize >= 4 ? "DevOps & CI/CD" : null,
-      config.teamSize >= 6 ? "24/7 monitoring" : null,
-    ].filter(Boolean) as string[];
+      "Source code ownership",
+      "Documentation & handover",
+      "30-day post-launch support",
+      "Direct access to 23-year veteran developer",
+      ...config.selectedFeatures.map(id => {
+        const feature = availableFeatures.find(f => f.id === id);
+        return feature?.name || "";
+      }).filter(Boolean)
+    ];
 
-    return { cost: totalCost, weeks, team: teamConfig, features };
+    return { minCost, maxCost, weeks, features };
   };
 
   const generatePDF = () => {
@@ -107,29 +139,38 @@ export default function ProjectCalculator() {
     doc.setFontSize(14);
     doc.text("Project Configuration", 20, 50);
     doc.setFontSize(11);
-    doc.text(`Type: ${projectTypes.find(t => t.id === config.projectType)?.name}`, 25, 60);
-    doc.text(`Features: ${config.features}`, 25, 68);
-    doc.text(`Complexity: ${config.complexity === 1 ? 'Simple' : config.complexity === 2 ? 'Medium' : 'Complex'}`, 25, 76);
-    doc.text(`Timeline: ${config.timeline} weeks`, 25, 84);
-    doc.text(`Team Size: ${est.team}`, 25, 92);
+    const selectedType = projectTypes.find(t => t.id === config.projectType);
+    doc.text(`Type: ${selectedType?.name}`, 25, 60);
+    doc.text(`Features: ${config.selectedFeatures.length} custom features`, 25, 68);
+    doc.text(`Timeline: ${config.timeline} weeks`, 25, 76);
     
     doc.setFontSize(14);
-    doc.text("Estimate Summary", 20, 110);
+    doc.text("Estimate Summary", 20, 95);
     doc.setFontSize(16);
-    doc.text(`Total Investment: $${est.cost.toLocaleString()}`, 25, 122);
+    doc.text(`Investment Range: $${est.minCost.toLocaleString()} - $${est.maxCost.toLocaleString()}`, 25, 107);
     doc.setFontSize(11);
-    doc.text(`Delivery Timeline: ${est.weeks} weeks`, 25, 132);
+    doc.text(`Delivery Timeline: ${est.weeks} weeks`, 25, 117);
     
     doc.setFontSize(14);
-    doc.text("Included Services", 20, 150);
+    doc.text("What's Included", 20, 135);
     doc.setFontSize(10);
-    est.features.forEach((feature, index) => {
-      doc.text(`• ${feature}`, 25, 160 + (index * 7));
+    const maxFeaturesPerPage = 18;
+    est.features.slice(0, maxFeaturesPerPage).forEach((feature, index) => {
+      doc.text(`• ${feature}`, 25, 145 + (index * 7));
     });
     
+    doc.setFontSize(11);
+    doc.text("Why Persystance Networks?", 20, 220);
     doc.setFontSize(9);
-    doc.text("This is an automated estimate. Contact us for a detailed proposal.", 20, 270);
-    doc.text("www.persystance.com | contact@persystance.com", 20, 277);
+    doc.text("✓ 23 Years Personal Experience (since 2002)", 25, 230);
+    doc.text("✓ 13 Years in Business - Proven Track Record", 25, 238);
+    doc.text("✓ Direct Access to Senior Developer (No Juniors)", 25, 246);
+    doc.text("✓ Full Code Ownership & Documentation", 25, 254);
+    doc.text("✓ 30-Day Post-Launch Support Included", 25, 262);
+    
+    doc.setFontSize(9);
+    doc.text("This is an automated estimate. Book a discovery call for detailed technical proposal.", 20, 277);
+    doc.text("www.persystance.com | contact@persystance.com | WhatsApp: +94 77 123 4567", 20, 284);
 
     doc.save(`persystance-estimate-${Date.now()}.pdf`);
   };
@@ -140,19 +181,28 @@ export default function ProjectCalculator() {
     setStep(3);
   };
 
+  const toggleFeature = (featureId: string) => {
+    setConfig(prev => ({
+      ...prev,
+      selectedFeatures: prev.selectedFeatures.includes(featureId)
+        ? prev.selectedFeatures.filter(id => id !== featureId)
+        : [...prev.selectedFeatures, featureId]
+    }));
+  };
+
   return (
     <div className="w-full">
       {/* Header */}
       <div className="text-center mb-12">
         <Badge className="mb-4" variant="outline">
           <Calculator className="w-3 h-3 mr-1" />
-          Smart Calculator
+          Transparent Pricing Calculator
         </Badge>
         <h2 className="text-3xl md:text-4xl font-bold mb-4">
-          Get Your Project Estimate
+          Get Instant, Honest Pricing
         </h2>
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-          Answer a few questions and get an instant, transparent estimate for your project. 
+          No "contact us for pricing" games. Select what you need and get a real estimate instantly.
           Download your personalized quote as a PDF.
         </p>
       </div>
@@ -175,7 +225,7 @@ export default function ProjectCalculator() {
           {step === 0 && (
             <div className="space-y-6">
               <h3 className="text-2xl font-bold mb-6">What type of project do you need?</h3>
-              <div className="grid md:grid-cols-3 gap-4">
+              <div className="grid md:grid-cols-2 gap-4">
                 {projectTypes.map((type) => {
                   const Icon = type.icon;
                   return (
@@ -193,9 +243,9 @@ export default function ProjectCalculator() {
                     >
                       <Icon className="w-8 h-8 mb-3 text-primary" />
                       <h4 className="font-bold mb-2">{type.name}</h4>
-                      <p className="text-sm text-muted-foreground">{type.description}</p>
-                      <p className="text-xs text-muted-foreground mt-3">
-                        From ${type.basePrice.toLocaleString()}
+                      <p className="text-sm text-muted-foreground mb-3">{type.description}</p>
+                      <p className="text-xs text-muted-foreground">
+                        Starting from ${type.baseMin.toLocaleString()} - ${type.baseMax.toLocaleString()}
                       </p>
                     </button>
                   );
@@ -204,70 +254,64 @@ export default function ProjectCalculator() {
             </div>
           )}
 
-          {/* Step 1: Features & Complexity */}
+          {/* Step 1: Features Selection */}
           {step === 1 && (
             <div className="space-y-8">
               <div>
-                <h3 className="text-2xl font-bold mb-2">How many core features?</h3>
+                <h3 className="text-2xl font-bold mb-2">Select the features you need</h3>
                 <p className="text-muted-foreground mb-6">
-                  Typical features: user auth, dashboard, data management, integrations, etc.
+                  Choose all features your MVP requires. Each adds to the final estimate.
                 </p>
-                <div className="flex items-center gap-4">
-                  <Slider
-                    value={[config.features]}
-                    onValueChange={(value) => setConfig({ ...config, features: value[0] })}
-                    min={3}
-                    max={12}
-                    step={1}
-                    className="flex-1"
-                  />
-                  <Badge variant="secondary" className="text-lg px-4 py-2">
-                    {config.features}
-                  </Badge>
-                </div>
-              </div>
-
-              <div>
-                <h3 className="text-2xl font-bold mb-2">Complexity level?</h3>
-                <div className="grid grid-cols-3 gap-4 mt-4">
-                  {[
-                    { level: 1, name: "Simple", desc: "Standard features" },
-                    { level: 2, name: "Medium", desc: "Custom logic" },
-                    { level: 3, name: "Complex", desc: "Advanced systems" }
-                  ].map((option) => (
-                    <button
-                      key={option.level}
-                      onClick={() => setConfig({ ...config, complexity: option.level })}
-                      className={`p-4 rounded-lg border-2 transition-all ${
-                        config.complexity === option.level
-                          ? 'border-primary bg-primary/5'
-                          : 'border-border hover:border-primary/50'
-                      }`}
-                    >
-                      <h4 className="font-bold mb-1">{option.name}</h4>
-                      <p className="text-xs text-muted-foreground">{option.desc}</p>
-                    </button>
-                  ))}
+                <div className="grid md:grid-cols-2 gap-3">
+                  {availableFeatures.map((feature) => {
+                    const isSelected = config.selectedFeatures.includes(feature.id);
+                    return (
+                      <button
+                        key={feature.id}
+                        onClick={() => toggleFeature(feature.id)}
+                        className={`p-4 rounded-lg border-2 transition-all text-left flex items-start gap-3 ${
+                          isSelected
+                            ? 'border-primary bg-primary/5'
+                            : 'border-border hover:border-primary/50'
+                        }`}
+                      >
+                        <div className={`w-5 h-5 rounded border-2 flex items-center justify-center flex-shrink-0 mt-0.5 ${
+                          isSelected ? 'border-primary bg-primary' : 'border-muted-foreground'
+                        }`}>
+                          {isSelected && <CheckCircle2 className="w-3 h-3 text-primary-foreground" />}
+                        </div>
+                        <div className="flex-1">
+                          <h4 className="font-medium mb-1">{feature.name}</h4>
+                          <p className="text-xs text-muted-foreground">+${feature.cost.toLocaleString()}</p>
+                        </div>
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
 
               <div className="flex gap-3">
                 <Button variant="outline" onClick={() => setStep(0)}>Back</Button>
-                <Button onClick={() => setStep(2)} className="flex-1">Continue</Button>
+                <Button onClick={() => setStep(2)} className="flex-1">
+                  Continue to Timeline
+                </Button>
               </div>
             </div>
           )}
 
-          {/* Step 2: Timeline & Team */}
+          {/* Step 2: Timeline */}
           {step === 2 && (
             <div className="space-y-8">
               <div>
-                <h3 className="text-2xl font-bold mb-2">Delivery timeline?</h3>
-                <div className="grid grid-cols-3 gap-4 mt-4">
+                <h3 className="text-2xl font-bold mb-2">When do you need it?</h3>
+                <p className="text-muted-foreground mb-6">
+                  Longer timelines allow for better planning and slight cost savings.
+                </p>
+                <div className="grid grid-cols-3 gap-4">
                   {[
-                    { weeks: 2, name: "Express", desc: "2 weeks", badge: "MVP Ready" },
-                    { weeks: 4, name: "Standard", desc: "4 weeks", badge: "Recommended" },
-                    { weeks: 8, name: "Extended", desc: "8+ weeks", badge: "Enterprise" }
+                    { weeks: 2, name: "Express", desc: "2 weeks", badge: "Fastest", discount: "Standard Price" },
+                    { weeks: 4, name: "Standard", desc: "4 weeks", badge: "Popular", discount: "5% Savings" },
+                    { weeks: 8, name: "Flexible", desc: "8 weeks", badge: "Best Value", discount: "8% Savings" }
                   ].map((option) => (
                     <button
                       key={option.weeks}
@@ -280,26 +324,10 @@ export default function ProjectCalculator() {
                     >
                       <Badge variant="secondary" className="mb-2">{option.badge}</Badge>
                       <h4 className="font-bold mb-1">{option.name}</h4>
-                      <p className="text-xs text-muted-foreground">{option.desc}</p>
+                      <p className="text-xs text-muted-foreground mb-2">{option.desc}</p>
+                      <p className="text-xs text-primary font-medium">{option.discount}</p>
                     </button>
                   ))}
-                </div>
-              </div>
-
-              <div>
-                <h3 className="text-2xl font-bold mb-2">Preferred team size?</h3>
-                <div className="flex items-center gap-4">
-                  <Slider
-                    value={[config.teamSize]}
-                    onValueChange={(value) => setConfig({ ...config, teamSize: value[0] })}
-                    min={2}
-                    max={8}
-                    step={2}
-                    className="flex-1"
-                  />
-                  <Badge variant="secondary" className="text-lg px-4 py-2">
-                    {config.teamSize === 2 ? "2-3" : config.teamSize === 4 ? "4-5" : "6+"} people
-                  </Badge>
                 </div>
               </div>
 
@@ -307,7 +335,7 @@ export default function ProjectCalculator() {
                 <Button variant="outline" onClick={() => setStep(1)}>Back</Button>
                 <Button onClick={handleCalculate} className="flex-1">
                   <Calculator className="w-4 h-4 mr-2" />
-                  Calculate Estimate
+                  Calculate My Estimate
                 </Button>
               </div>
             </div>
@@ -318,55 +346,106 @@ export default function ProjectCalculator() {
             <div className="space-y-6">
               <div className="text-center mb-8">
                 <CheckCircle2 className="w-16 h-16 text-green-500 mx-auto mb-4" />
-                <h3 className="text-3xl font-bold mb-2">Your Project Estimate</h3>
+                <h3 className="text-3xl font-bold mb-2">Your Personalized Estimate</h3>
                 <p className="text-muted-foreground">
-                  Based on your requirements, here's what we recommend
+                  Based on your requirements, here's an honest price range
                 </p>
               </div>
 
               <div className="grid md:grid-cols-2 gap-6">
                 <Card className="p-6 bg-gradient-to-br from-primary/10 to-accent/10">
                   <DollarSign className="w-8 h-8 text-primary mb-3" />
-                  <div className="text-sm text-muted-foreground mb-1">Total Investment</div>
-                  <div className="text-4xl font-bold">${estimate.cost.toLocaleString()}</div>
+                  <div className="text-sm text-muted-foreground mb-1">Investment Range</div>
+                  <div className="text-3xl font-bold">${estimate.minCost.toLocaleString()} - ${estimate.maxCost.toLocaleString()}</div>
+                  <p className="text-xs text-muted-foreground mt-2">Final price depends on specific requirements</p>
                 </Card>
 
                 <Card className="p-6 bg-gradient-to-br from-accent/10 to-primary/10">
                   <Clock className="w-8 h-8 text-accent mb-3" />
                   <div className="text-sm text-muted-foreground mb-1">Delivery Timeline</div>
-                  <div className="text-4xl font-bold">{estimate.weeks} weeks</div>
+                  <div className="text-3xl font-bold">{estimate.weeks} weeks</div>
+                  <p className="text-xs text-muted-foreground mt-2">From project kickoff to launch</p>
                 </Card>
               </div>
 
               <Card className="p-6 bg-muted/30">
-                <h4 className="font-bold mb-4 flex items-center gap-2">
-                  <Users className="w-5 h-5" />
-                  Team Configuration: {estimate.team}
-                </h4>
-                <div className="space-y-2">
+                <h4 className="font-bold mb-4">What's Included in Your Package:</h4>
+                <div className="grid md:grid-cols-2 gap-x-6 gap-y-2">
                   {estimate.features.map((feature, index) => (
-                    <div key={index} className="flex items-center gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0" />
+                    <div key={index} className="flex items-start gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
                       <span className="text-sm">{feature}</span>
                     </div>
                   ))}
                 </div>
               </Card>
 
+              <Card className="p-6 bg-gradient-to-r from-primary/5 to-accent/5 border-primary/20">
+                <h4 className="font-bold mb-3 flex items-center gap-2">
+                  <Zap className="w-5 h-5 text-primary" />
+                  Why Choose Quality Over Cheap?
+                </h4>
+                <div className="grid md:grid-cols-2 gap-3 text-sm mb-4">
+                  <div className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
+                    <span><strong>23 years</strong> personal experience vs 7-year agencies</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
+                    <span>Direct <strong>senior developer</strong> access, no delegation</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
+                    <span><strong>Transparent pricing</strong> vs "contact us" games</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
+                    <span><strong>Accountability</strong> - 13 years in business</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
+                    <span>Production code vs Fiverr <strong>$500 prototypes</strong></span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
+                    <span><strong>30-day support</strong> vs abandoned projects</span>
+                  </div>
+                </div>
+                <p className="text-xs text-muted-foreground">
+                  Unlike €4.5k agencies with 200+ employee overhead or $500 offshore freelancers who disappear, 
+                  you get senior-level expertise with transparent, honest pricing.
+                </p>
+              </Card>
+
               <div className="bg-primary/5 border border-primary/20 rounded-lg p-4">
                 <p className="text-sm">
-                  💡 <strong>Pro tip:</strong> This is an automated estimate. Contact us for a detailed 
-                  technical proposal with architecture diagrams, timeline breakdown, and team introductions.
+                  💡 <strong>Next Steps:</strong> This automated estimate gives you transparent pricing. 
+                  Book a free discovery call to discuss your specific requirements, see our portfolio, 
+                  and get a detailed technical proposal with timeline breakdown.
                 </p>
               </div>
 
-              <div className="flex gap-3">
+              <div className="grid md:grid-cols-2 gap-3">
                 <Button variant="outline" onClick={() => { setStep(0); setEstimate(null); }}>
                   Start Over
                 </Button>
-                <Button onClick={generatePDF} className="flex-1">
+                <Button onClick={generatePDF}>
                   <Download className="w-4 h-4 mr-2" />
                   Download PDF Quote
+                </Button>
+              </div>
+              
+              <div className="text-center pt-4">
+                <Button 
+                  size="lg" 
+                  onClick={() => {
+                    const contactSection = document.getElementById("contact");
+                    contactSection?.scrollIntoView({ behavior: "smooth" });
+                  }}
+                  className="w-full md:w-auto"
+                >
+                  <MessageCircle className="w-4 h-4 mr-2" />
+                  Book Free Discovery Call
                 </Button>
               </div>
             </div>

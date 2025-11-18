@@ -26,7 +26,7 @@ export default function Hero() {
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass">
               <Zap className="w-4 h-4 text-primary" />
               <span className="text-sm font-medium text-foreground">
-                13+ Years of Excellence
+                23 Years Personal Experience • 13 Years in Business
               </span>
             </div>
             

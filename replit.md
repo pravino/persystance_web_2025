@@ -2,110 +2,52 @@
 
 ## Overview
 
-Persystance Networks offers rapid MVP development services, aiming to build production-ready MVPs in 2 weeks and launch within 30 days. The platform serves as a marketing website to generate leads, targeting startups and entrepreneurs seeking fast, cost-effective development. It showcases value propositions, technology expertise, portfolio examples, client testimonials, and integrates WhatsApp for contact. Key additions include a specialized Telegram/Web3 game development landing page and comprehensive enterprise compliance features, alongside a new section for institutional trading and portfolio management services.
-
-**Persystance 2.0 Transformation (November 2025)**: Major upgrade to future-forward interactive design with glassmorphism UI, live demos, animated metrics, and comprehensive trading platform simulator - designed to be "way ahead" of competitors like FCode Labs while maintaining 100% static site architecture.
+Persystance Networks provides rapid MVP development services, aiming for production-ready MVPs in 2 weeks and launch within 30 days. The platform functions as a marketing website to generate leads for startups and entrepreneurs, showcasing value propositions, technology expertise, and portfolio examples. It integrates WhatsApp for contact and includes a specialized landing page for Telegram/Web3 game development, enterprise compliance features, and a section for institutional trading and portfolio management services. The platform is undergoing a major upgrade to a future-forward interactive design with glassmorphism UI, live demos, and a comprehensive trading platform simulator, all built on a 100% static site architecture.
 
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
 
-## Recent Changes (November 18, 2025)
-
-### Branding Updates
-- **Nexus Trading Rebrand**: Renamed INSPIRA Exchange → Nexus Trading across all pages (TradingPortfolio, IndustryExpertise, Compliance, Navigation)
-- Consistent branding for institutional trading platform showcasing real client work
-
-### New Interactive Features
-
-#### 1. Live Nexus Trading Simulator (`/nexus-trading`)
-A comprehensive, fully functional trading platform demo featuring:
-- Real-time order book with bid/ask spreads
-- Live price movements and market simulation
-- Trading interface with buy/sell order placement
-- Portfolio dashboard with P&L tracking
-- Recent trades feed
-- All client-side with realistic mock data
-- Demonstrates institutional-grade capabilities without backend dependencies
-
-#### 2. Smart Project Calculator Component
-Interactive cost estimation tool with:
-- Multi-step wizard (project type, features, complexity, timeline, team size)
-- Real-time cost and timeline calculations
-- PDF quote generation with jsPDF
-- Transparent pricing methodology
-- Positioned after Interactive Demos section on homepage
-- Powerful lead generation and conversion tool
-
-#### 3. Live Metrics Component
-Animated statistics showcase featuring:
-- Count-up animations with custom hook (`use-count-up.ts`)
-- Glassmorphism card designs
-- Key metrics: MVPs delivered, countries served, client retention
-- Intersection Observer for scroll-triggered animations
-- Added to homepage after Trust Badges
-
-### Design System Enhancements
-
-#### Glassmorphism & Modern Effects
-New CSS utilities in `client/src/index.css`:
-- `.glass` - Glassmorphism utility with backdrop blur
-- `.animate-shimmer` - Shimmer animation for gradient text
-- `.card-enhanced` - Premium card hover effects with elevation
-- `.bg-grid-white` - Subtle grid background pattern
-- `.parallax-slow` - Parallax scroll effects
-
-#### Hero Section Transformation
-Enhanced `client/src/components/Hero.tsx`:
-- Multi-layered animated gradients (radial gradients from multiple origins)
-- Shimmer effect on key headline text ("2 Weeks", "30 Days")
-- Glassmorphism on badge and timeline card
-- Enhanced button styling with shadows and hover effects
-- Grid background pattern overlay
-- Improved visual hierarchy and modern aesthetics
-
-### New Dependencies
-- **jspdf** (v2.5.2): PDF generation for project calculator quotes
-- **react-intersection-observer** (v9.14.0): Scroll-triggered animations
-- **lottie-react** (v2.4.0): Animation support (installed for future use)
-- **react-syntax-highlighter** (v15.6.1): Code display (installed for future use)
-
-### Architecture & Routing
-- Added `/nexus-trading` route to showcase live trading demo
-- Linked from Trading Portfolio page with prominent "View Live Demo" button
-- Maintained 100% static site architecture (no backend dependencies)
-
 ## System Architecture
 
 ### Frontend Architecture
 
-**Framework**: React 18+ with TypeScript, using Vite for development and build.
-**Routing**: Wouter, a minimal client-side router for a single-page application.
+**Framework**: React 18+ with TypeScript and Vite.
+**Routing**: Wouter.
 **UI Component Library**: Shadcn/ui (Radix UI primitives) with "New York" style.
-**Styling**: Tailwind CSS with custom design tokens, implementing a dual-theme system (dark mode primary, light mode secondary), following specific brand guidelines with electric blue and teal accents.
-**State Management**: React Query (TanStack Query) for server state management and data fetching.
-**Theme System**: Custom React Context API provider with localStorage for theme persistence.
+**Styling**: Tailwind CSS with custom design tokens, dual-theme system (dark mode primary, light mode secondary), electric blue and teal accents.
+**State Management**: React Query (TanStack Query).
+**Theme System**: Custom React Context API with localStorage.
+**Design System Enhancements**: Glassmorphism, animated gradients, shimmer effects, premium card hover effects, subtle grid backgrounds, and parallax scroll effects.
+**Interactive Features**:
+- **Live Nexus Trading Simulator**: Client-side demo with real-time order book, price movements, trading interface, portfolio dashboard, and recent trades feed using mock data.
+- **Smart Project Calculator**: 3-step wizard for project type, feature selection with individual costs, and timeline selection. Displays price ranges, generates PDF quotes, and offers "Download PDF Quote" and "Book Free Discovery Call" CTAs.
+- **Live Metrics Component**: Animated count-up statistics with glassmorphism cards and Intersection Observer for scroll-triggered animations.
 
 ### Backend Architecture
 
 **Server Framework**: Express.js with TypeScript on Node.js.
 **API Design**: RESTful API pattern with `/api` prefix.
-**Data Storage**: In-memory storage abstraction (`MemStorage`) for flexibility in migration.
+**Data Storage**: In-memory storage abstraction (`MemStorage`).
 **Session Management**: Configured for PostgreSQL session storage using `connect-pg-simple` (when implemented).
 
 ### Database Design
 
 **ORM**: Drizzle ORM configured for PostgreSQL with Neon serverless adapter.
-**Schema**: Defines a `contact_inquiries` table for lead capture.
-**Validation**: Zod schemas derived from Drizzle definitions for type safety.
+**Schema**: `contact_inquiries` table for lead capture.
+**Validation**: Zod schemas derived from Drizzle definitions.
 **Migration Strategy**: Drizzle Kit with a schema-first approach.
 
 ### Design System
 
 **Typography**: Inter font family for text, Space Grotesk for accents.
-**Color System**: HSL-based custom properties with distinct light/dark palettes and an elevation system.
+**Color System**: HSL-based custom properties with light/dark palettes and an elevation system.
 **Component Patterns**: Composition with variant-based styling using `class-variance-authority`.
-**Responsive Design**: Mobile-first approach with Tailwind breakpoints and a custom mobile detection hook.
+**Responsive Design**: Mobile-first approach with Tailwind breakpoints.
+
+### Architecture & Routing
+
+The application maintains a 100% static site architecture with no backend dependencies. The `/nexus-trading` route showcases the live trading demo.
 
 ## External Dependencies
 
@@ -151,56 +93,66 @@ Enhanced `client/src/components/Hero.tsx`:
 - **recharts**: Composable charting library.
 
 ### Utilities & Enhancements
-- **jsPDF**: Client-side PDF generation for project quotes
-- **react-intersection-observer**: Scroll-based animations and lazy loading
-- **lottie-react**: Lottie animation player for React
-- **react-syntax-highlighter**: Syntax highlighting for code examples
+- **jspdf**: Client-side PDF generation for project quotes.
+- **react-intersection-observer**: Scroll-based animations and lazy loading.
+- **lottie-react**: Lottie animation player for React.
+- **react-syntax-highlighter**: Syntax highlighting for code examples.
 
-### Assets
-Stock images for portfolio and testimonials are stored in `/attached_assets/stock_images/`.
+## Recent Changes (November 18, 2025)
 
-## Key Features & Differentiators
+### Pricing & Positioning Overhaul
+**Business Reality**: Solo Sri Lankan developer with 23 years personal experience (since 2002), operating a 13-year company (founded 2012) with 2-person team. Monthly overhead: 2.5M LKR (~$8,300 USD). All MVPs built on modern cloud infrastructure (not mentioned in marketing).
 
-### Interactive Proof of Capability
-Unlike static agency websites, Persystance demonstrates capabilities through:
-1. **Live Trading Simulator** - Working order book, portfolio management, real-time updates
-2. **Smart Project Calculator** - Interactive cost estimation with PDF export
-3. **Animated Metrics** - Real-time count-up animations showing achievements
-4. **Glassmorphism Design** - Future-forward UI with depth and modern aesthetics
+### New Transparent Pricing Strategy
+- **Rapid MVP**: Starts at $8,300 (2-4 weeks, core features, market validation)
+- **Full Web Application**: Starts at $12,000 (4-6 weeks, comprehensive features, production-ready)
+- **E-Commerce Platform**: Starts at $15,000 (4-8 weeks, payment integration, inventory)
+- **Enterprise Solution**: Starts at $20,000 (6-12 weeks, advanced features, scalability)
 
-### Competitive Advantage
-**vs FCode Labs and Traditional Agencies**:
-- Interactive demos vs. static portfolios
-- Transparent pricing calculator vs. "contact for quote"
-- Live platform simulators vs. screenshots
-- Modern glassmorphism UI vs. standard card layouts
-- Animated metrics vs. static numbers
-- PDF quote generation for instant gratification
+**Pricing Logic**: All quotes maintain minimum $8,300 threshold (covers 2.5M LKR overhead). Final pricing = base price + selected features, with 5%/8% savings for longer timelines.
 
-### Technical Highlights
-- **100% Static**: No backend required, deployable anywhere
-- **Performance First**: Optimized animations, lazy loading, efficient rendering
-- **Accessible**: ARIA labels, keyboard navigation, semantic HTML
-- **Responsive**: Mobile-first design with progressive enhancement
-- **SEO Optimized**: Structured data, meta tags, semantic markup
+### Calculator Redesign
+Complete 3-step wizard replacing old slider-based system:
+1. **Step 1**: Project type selection (4 types with honest price ranges)
+2. **Step 2**: Feature checkboxes - users select exactly what they need (Auth $800, Payments $1,500, Dashboard $1,200, etc.) with individual costs
+3. **Step 3**: Timeline selection (2 weeks Express, 4 weeks Standard with 5% savings, 8 weeks Flexible with 8% savings)
+4. **Results**: Price range display ($X - $Y), not single number for transparency
+5. **Pricing Floor**: All quotes maintain minimum $8,300 threshold (covers 2.5M LKR overhead)
+6. **Trust Elements**: "Why Choose Quality Over Cheap" section comparing FCode Labs (€4.5k) and $500 Fiverr developers
+7. **PDF Quote**: Professional download with included services, pricing breakdown, company credentials
 
-## Future Roadmap
+### Credibility Updates
+All site-wide mentions updated to:
+- Hero: "23 Years Personal Experience • 13 Years in Business"
+- About Us stats: "23 Years Personal Experience", "13 Years In Business"
+- About Us copy: "Founded in 2012, backed by 23 years of personal software development experience since 2002"
+- Values section: "23 years of personal experience, 13 years in business - direct access to senior developer, no juniors"
 
-### Planned Enhancements
-- Industry-specific microsites (`/fintech`, `/healthcare`, `/web3`)
-- Interactive Service Discovery component (decision tree)
-- Before/after sliders for portfolio section
-- Insights Hub with markdown-based blog articles
-- Advanced micro-interactions (magnetic buttons, card tilts)
-- Enhanced portfolio with case study deep-dives
-- Client testimonial video integration
+### Nexus Trading Repositioning
+- Badge changed from "Live Demo" to "UI/UX Showcase Demo"
+- Added disclaimer: "This is a UI demonstration with simulated data. It showcases interface design capabilities, not a $100k trading platform offering."
+- Clarifies demo purpose while maintaining interactive functionality
 
-## Deployment
+### Competitive Positioning
+**vs FCode Labs** (€4.5k MVP, 200+ employees, 7 years in business):
+- Transparent calculator with instant pricing (vs "contact us")
+- 23 years personal experience (vs 7-year company)
+- Direct senior developer access (vs large team delegation)
+- Live interactive demos proving capabilities
 
-**Workflow**: 
-1. Git push to repository
-2. Production server: `git pull`
-3. Build: `npm run build`
-4. Copy built files to web folder
+**vs Low-Cost Offshore** (Fiverr/Upwork $500-2k):
+- 23 years accountability and track record
+- Production-grade code, not prototypes
+- 30-day post-launch support included
+- Direct communication, no timezone/language barriers
 
-**Environment**: Fully static site, no server-side rendering or API required
+### Included in All Projects
+- Full source code ownership
+- Comprehensive documentation & handover  
+- 30-day post-launch support
+- Direct access to 23-year veteran developer
+- Production-grade architecture (not prototypes)
+- Modern tech stack (React, TypeScript, cloud infrastructure)
+
+### Key Differentiator
+Only agency offering instant transparent pricing calculator with honest ranges vs "contact us for quote" - builds trust and accelerates lead conversion while maintaining sustainable pricing above $8,300 overhead threshold.
