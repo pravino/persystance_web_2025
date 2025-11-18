@@ -507,8 +507,11 @@ export default function ProjectCalculator() {
 
     doc.save(`persystance-quote-${Date.now()}.pdf`);
     
-    // Track PDF download
+    // Track PDF download (custom event)
     analytics.trackCalculatorPDFDownload(config.projectType, est.minCost, est.maxCost);
+    
+    // Track lead generation (GA4 recommended event for Conversions reporting)
+    analytics.trackGenerateLead(config.projectType, est.minCost, est.maxCost, config.selectedFeatures.length);
   };
 
   const handleCalculate = () => {

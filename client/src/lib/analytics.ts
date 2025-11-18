@@ -114,3 +114,26 @@ export const trackCalculatorStep = (step: number, stepName: string) => {
 export const trackCalculatorAbandonment = (step: number, tier: string, featureCount: number) => {
   event('calculator_abandoned', 'calculator', `${tier}_step_${step}_${featureCount}_features`);
 };
+
+// GA4 Recommended Event: generate_lead
+// This unlocks GA4's built-in Conversions reporting and Google Ads integration
+export const trackGenerateLead = (
+  tier: string, 
+  minCost: number, 
+  maxCost: number,
+  featureCount: number
+) => {
+  const leadValue = Math.round((minCost + maxCost) / 2);
+  
+  if (typeof window.gtag !== 'undefined') {
+    window.gtag('event', 'generate_lead', {
+      currency: 'USD',
+      value: leadValue,
+      tier_name: tier,
+      feature_count: featureCount,
+      min_value: minCost,
+      max_value: maxCost,
+      lead_source: 'pricing_calculator'
+    });
+  }
+};
