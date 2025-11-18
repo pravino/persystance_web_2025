@@ -41,7 +41,7 @@ const projectTypes = [
   {
     id: "standard",
     name: "Standard MVP",
-    description: "4 weeks - Baseline + up to 6 add-ons including Firebase (Web or React Native)",
+    description: "4-6 weeks - Baseline + up to 6 add-ons including Firebase (Web or React Native)",
     baseMin: 8300,
     baseMax: 12000,
     icon: Code
@@ -49,7 +49,7 @@ const projectTypes = [
   {
     id: "full",
     name: "Full Web Application",
-    description: "6 weeks - Baseline + up to 9 add-ons including KYC/AML, Stripe Commerce (Web)",
+    description: "6-9 weeks - Baseline + up to 9 add-ons including KYC/AML, Stripe Commerce (Web)",
     baseMin: 12000,
     baseMax: 18000,
     icon: Store
@@ -57,7 +57,7 @@ const projectTypes = [
   {
     id: "enterprise",
     name: "Enterprise Solution",
-    description: "8+ weeks - Baseline + all 17 add-ons including SSO, Web3, Fireblocks, Full Commerce (Web, Mobile, or Both)",
+    description: "8-14 weeks - Baseline + all 17 add-ons including SSO, Web3, Fireblocks, Full Commerce (Web, Mobile, or Both)",
     baseMin: 20000,
     baseMax: 40000,
     icon: Rocket
@@ -65,23 +65,23 @@ const projectTypes = [
 ];
 
 const availableFeatures = [
-  { id: "payments", name: "Payment Integration", cost: 1500, scope: "Stripe one-time checkout only (no subscriptions)", minTier: "standard" },
-  { id: "analytics", name: "Analytics Dashboard", cost: 1500, scope: "Basic charts (5 metrics: users, revenue, activity, growth, conversion)", minTier: "standard" },
-  { id: "notifications", name: "Email/SMS Notifications", cost: 800, scope: "Transactional emails via SendGrid/Twilio (up to 3 templates)", minTier: "standard" },
-  { id: "search", name: "Advanced Search", cost: 1200, scope: "Text search with filters (up to 5 fields)", minTier: "standard" },
-  { id: "chat", name: "Live Chat Support", cost: 1800, scope: "Basic message list with send/receive (no typing indicators)", minTier: "standard" },
-  { id: "reports", name: "PDF Report Generation", cost: 1000, scope: "Simple PDF with tables & text (up to 3 report types)", minTier: "standard" },
-  { id: "realtime", name: "Real-time Features", cost: 2000, scope: "Basic WebSocket updates for 1 feature (e.g., live notifications)", minTier: "standard" },
-  { id: "social_login", name: "Social Media Login", cost: 1200, scope: "OAuth integration for Google, Facebook (2 providers max)", minTier: "standard" },
-  { id: "location", name: "Location Intelligence Pack", cost: 1600, scope: "Embedded map (Google/Mapbox) with 10 markers, address autocomplete, geocoding, distance matrix (100 daily requests). Client provides API key & billing", minTier: "standard" },
-  { id: "firebase", name: "Firebase Integration", cost: 2000, scope: "Firebase Auth (email + 2 social providers), Firestore database (basic CRUD for 3 collections), Storage (file upload/download). Client provides Firebase project", minTier: "standard" },
-  { id: "kyc", name: "KYC/AML Compliance", cost: 3500, scope: "Identity verification via 1 provider (Onfido/Jumio) - document + sanctions check. Client provides vendor API keys", minTier: "full" },
-  { id: "stripe_commerce", name: "Stripe Commerce Suite", cost: 3800, scope: "Subscriptions (5 plans), shopping cart (50 SKUs), customer portal, webhooks. Client provides Stripe API keys", minTier: "full" },
-  { id: "sso", name: "Enterprise SSO", cost: 2000, scope: "SAML/OAuth SSO via 1 provider (Okta/Auth0). Client provides vendor account", minTier: "enterprise" },
-  { id: "web3_basic", name: "Web3 Basic (Infrastructure)", cost: 3000, scope: "Wallet integration (MetaMask/WalletConnect) for 1 EVM chain, deploy YOUR existing contract to testnet. Does not include writing contracts", minTier: "enterprise" },
-  { id: "token_dev", name: "Token Development", cost: 2500, scope: "Create NEW ERC-20 OR ERC-721 token from audited template, deploy to testnet. We write the token code. Client handles legal compliance & mainnet fees", minTier: "enterprise" },
-  { id: "smart_contracts", name: "Smart Contract Expansion", cost: 1800, scope: "Design & code up to 3 NEW custom contracts with your business logic + unit tests. Excludes security audits (recommend 3rd-party)", minTier: "enterprise" },
-  { id: "fireblocks", name: "Fireblocks Integration", cost: 4500, scope: "Integrate with client Fireblocks tenant, configure 1 vault + policy engine, transaction signing/transfer flow for 1 asset. Client provides Fireblocks license + API credentials", minTier: "enterprise" }
+  { id: "payments", name: "Payment Integration", cost: 1500, complexity: 1.5, scope: "Stripe one-time checkout only (no subscriptions)", minTier: "standard" },
+  { id: "analytics", name: "Analytics Dashboard", cost: 1500, complexity: 1.5, scope: "Basic charts (5 metrics: users, revenue, activity, growth, conversion)", minTier: "standard" },
+  { id: "notifications", name: "Email/SMS Notifications", cost: 800, complexity: 1, scope: "Transactional emails via SendGrid/Twilio (up to 3 templates)", minTier: "standard" },
+  { id: "search", name: "Advanced Search", cost: 1200, complexity: 1, scope: "Text search with filters (up to 5 fields)", minTier: "standard" },
+  { id: "chat", name: "Live Chat Support", cost: 1800, complexity: 2, scope: "Basic message list with send/receive (no typing indicators)", minTier: "standard" },
+  { id: "reports", name: "PDF Report Generation", cost: 1000, complexity: 1, scope: "Simple PDF with tables & text (up to 3 report types)", minTier: "standard" },
+  { id: "realtime", name: "Real-time Features", cost: 2000, complexity: 2, scope: "Basic WebSocket updates for 1 feature (e.g., live notifications)", minTier: "standard" },
+  { id: "social_login", name: "Social Media Login", cost: 1200, complexity: 1, scope: "OAuth integration for Google, Facebook (2 providers max)", minTier: "standard" },
+  { id: "location", name: "Location Intelligence Pack", cost: 1600, complexity: 1.5, scope: "Embedded map (Google/Mapbox) with 10 markers, address autocomplete, geocoding, distance matrix (100 daily requests). Client provides API key & billing", minTier: "standard" },
+  { id: "firebase", name: "Firebase Integration", cost: 2000, complexity: 2, scope: "Firebase Auth (email + 2 social providers), Firestore database (basic CRUD for 3 collections), Storage (file upload/download). Client provides Firebase project", minTier: "standard" },
+  { id: "kyc", name: "KYC/AML Compliance", cost: 3500, complexity: 3, scope: "Identity verification via 1 provider (Onfido/Jumio) - document + sanctions check. Client provides vendor API keys", minTier: "full" },
+  { id: "stripe_commerce", name: "Stripe Commerce Suite", cost: 3800, complexity: 3, scope: "Subscriptions (5 plans), shopping cart (50 SKUs), customer portal, webhooks. Client provides Stripe API keys", minTier: "full" },
+  { id: "sso", name: "Enterprise SSO", cost: 2000, complexity: 3, scope: "SAML/OAuth SSO via 1 provider (Okta/Auth0). Client provides vendor account", minTier: "enterprise" },
+  { id: "web3_basic", name: "Web3 Basic (Infrastructure)", cost: 3000, complexity: 3, scope: "Wallet integration (MetaMask/WalletConnect) for 1 EVM chain, deploy YOUR existing contract to testnet. Does not include writing contracts", minTier: "enterprise" },
+  { id: "token_dev", name: "Token Development", cost: 2500, complexity: 3, scope: "Create NEW ERC-20 OR ERC-721 token from audited template, deploy to testnet. We write the token code. Client handles legal compliance & mainnet fees", minTier: "enterprise" },
+  { id: "smart_contracts", name: "Smart Contract Expansion", cost: 1800, complexity: 3, scope: "Design & code up to 3 NEW custom contracts with your business logic + unit tests. Excludes security audits (recommend 3rd-party)", minTier: "enterprise" },
+  { id: "fireblocks", name: "Fireblocks Integration", cost: 4500, complexity: 3.5, scope: "Integrate with client Fireblocks tenant, configure 1 vault + policy engine, transaction signing/transfer flow for 1 asset. Client provides Fireblocks license + API credentials", minTier: "enterprise" }
 ];
 
 export default function ProjectCalculator() {
@@ -103,13 +103,64 @@ export default function ProjectCalculator() {
       return total + (feature?.cost || 0);
     }, 0);
     
-    // Fixed timelines per project type
-    const projectTimelines: Record<string, number> = {
+    // Calculate total complexity points
+    const totalComplexity = config.selectedFeatures.reduce((total, featureId) => {
+      const feature = availableFeatures.find(f => f.id === featureId);
+      return total + (feature?.complexity || 0);
+    }, 0);
+    
+    // Dynamic timeline calculation with complexity weighting
+    const baseTimelines: Record<string, number> = {
       starter: 2,
       standard: 4,
       full: 6,
       enterprise: 8
     };
+    
+    const tierCapacities: Record<string, number> = {
+      starter: 0,
+      standard: 6,
+      full: 9,
+      enterprise: 12
+    };
+    
+    const timelineDivisors: Record<string, number> = {
+      starter: 1,
+      standard: 3,
+      full: 3,
+      enterprise: 4
+    };
+    
+    const maxTimelines: Record<string, number> = {
+      starter: 2,
+      standard: 6,
+      full: 9,
+      enterprise: 14
+    };
+    
+    const baseWeeks = baseTimelines[config.projectType] || 4;
+    const capacity = tierCapacities[config.projectType] || 6;
+    const divisor = timelineDivisors[config.projectType] || 3;
+    const maxWeeks = maxTimelines[config.projectType] || 6;
+    
+    // Calculate additional weeks based on complexity over capacity
+    const excessComplexity = Math.max(0, totalComplexity - capacity);
+    const additionalWeeks = Math.ceil(excessComplexity / divisor);
+    const calculatedWeeks = Math.min(baseWeeks + additionalWeeks, maxWeeks);
+    
+    // Generate display string
+    let weeksDisplay: string;
+    if (config.projectType === 'enterprise') {
+      if (calculatedWeeks > baseWeeks) {
+        weeksDisplay = `${baseWeeks}-${calculatedWeeks} weeks`;
+      } else {
+        weeksDisplay = `${baseWeeks}+ weeks`;
+      }
+    } else if (calculatedWeeks > baseWeeks) {
+      weeksDisplay = `${baseWeeks}-${calculatedWeeks} weeks`;
+    } else {
+      weeksDisplay = `${baseWeeks} weeks`;
+    }
     
     // Starter MVP has lower floor ($5k), others maintain $8.3k floor (covers 2.5M LKR overhead)
     const MINIMUM_PROJECT_COST = config.projectType === 'starter' ? 5000 : 8300;
@@ -120,8 +171,7 @@ export default function ProjectCalculator() {
     minCost = Math.max(MINIMUM_PROJECT_COST, minCost);
     maxCost = Math.max(minCost + 2000, maxCost);
     
-    const weeks = projectTimelines[config.projectType] || 4;
-    const weeksDisplay = config.projectType === 'enterprise' ? `${weeks}+ weeks` : `${weeks} weeks`;
+    const weeks = calculatedWeeks;
     
     const features = [
       "Source code ownership",
@@ -181,15 +231,16 @@ export default function ProjectCalculator() {
     doc.text("• Blockchain: Client funds gas fees, handles legal compliance for tokens", 25, 270);
     doc.text("• Fireblocks: Requires enterprise Fireblocks license (client-provided)", 25, 278);
     doc.text("• Firebase/Maps: Client provides Firebase project & Google Maps billing account", 25, 286);
+    doc.text("• Timeline: Scales with complexity. Complex features (KYC/AML, Web3, Fireblocks) extend delivery", 25, 294);
     
     doc.setFontSize(11);
-    doc.text("Why Persystance Networks?", 20, 298);
+    doc.text("Why Persystance Networks?", 20, 306);
     doc.setFontSize(9);
-    doc.text("✓ 13 Years in Business - Institutional-Grade Solutions", 25, 308);
-    doc.text("✓ Fireblocks Integration + Firebase + Token Engineering + Full Commerce", 25, 315);
+    doc.text("✓ 13 Years in Business - Institutional-Grade Solutions", 25, 316);
+    doc.text("✓ Fireblocks Integration + Firebase + Token Engineering + Full Commerce", 25, 323);
     
     doc.setFontSize(9);
-    doc.text("This is an automated estimate. Book a discovery call for detailed proposal.", 20, 326);
+    doc.text("This is an automated estimate. Book a discovery call for detailed proposal.", 20, 334);
 
     doc.save(`persystance-estimate-${Date.now()}.pdf`);
   };
@@ -551,7 +602,11 @@ export default function ProjectCalculator() {
                   <Clock className="w-8 h-8 text-accent mb-3" />
                   <div className="text-sm text-muted-foreground mb-1">Delivery Timeline</div>
                   <div className="text-3xl font-bold">{estimate.weeksDisplay}</div>
-                  <p className="text-xs text-muted-foreground mt-2">From project kickoff to launch</p>
+                  <p className="text-xs text-muted-foreground mt-2">
+                    {config.projectType === 'starter' 
+                      ? 'Fixed 2-week timeline for rapid validation'
+                      : 'Timeline scales with feature complexity. Complex features (Firebase, Real-time, KYC/AML, Web3, Fireblocks) extend delivery time.'}
+                  </p>
                 </Card>
               </div>
 
@@ -593,6 +648,10 @@ export default function ProjectCalculator() {
                   <div className="flex items-start gap-2">
                     <div className="w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0 mt-1.5" />
                     <span><strong>Blockchain/Web3:</strong> Client handles gas fees, mainnet deployment costs, legal compliance for tokens, and 3rd-party security audits. Fireblocks requires enterprise license</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0 mt-1.5" />
+                    <span><strong>Timeline Calculation:</strong> Delivery time scales with feature complexity. Simple features add minimal time, while complex integrations (KYC/AML, Fireblocks, Web3, Real-time, Firebase) extend the timeline proportionally. Enterprise projects with all 17 features may require up to 14 weeks</span>
                   </div>
                 </div>
               </Card>
