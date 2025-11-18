@@ -863,24 +863,24 @@ export default function ProjectCalculator() {
               <Card className="p-6 bg-gradient-to-r from-primary/5 to-accent/5 border-primary/20">
                 <h4 className="font-bold mb-3 flex items-center gap-2">
                   <Zap className="w-5 h-5 text-primary" />
-                  Why Choose Quality Over Cheap?
+                  Why Persystance Networks?
                 </h4>
                 <div className="grid md:grid-cols-2 gap-3 text-sm mb-4">
                   <div className="flex items-start gap-2">
                     <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
-                    <span><strong>13 years</strong> in business vs 7-year agencies</span>
+                    <span><strong>13 years</strong> of proven business continuity</span>
                   </div>
                   <div className="flex items-start gap-2">
                     <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
-                    <span>Direct <strong>senior developer</strong> access, no delegation</span>
+                    <span>Direct <strong>senior developer</strong> access throughout project</span>
                   </div>
                   <div className="flex items-start gap-2">
                     <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
-                    <span><strong>Transparent pricing</strong> vs "contact us" games</span>
+                    <span><strong>Transparent pricing</strong> and instant quotes</span>
                   </div>
                   <div className="flex items-start gap-2">
                     <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
-                    <span>Production code vs Fiverr <strong>$500 prototypes</strong></span>
+                    <span><strong>Production-ready</strong> code with full documentation</span>
                   </div>
                   <div className="flex items-start gap-2">
                     <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
@@ -888,27 +888,27 @@ export default function ProjectCalculator() {
                   </div>
                   <div className="flex items-start gap-2">
                     <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
-                    <span><strong>Full Commerce Suite</strong> - Stripe subscriptions, shopping cart, webhooks</span>
+                    <span><strong>Full Commerce Suite</strong> with Stripe subscriptions & webhooks</span>
                   </div>
                   <div className="flex items-start gap-2">
                     <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
-                    <span><strong>Location Intelligence</strong> - Google Maps integration, geocoding, distance matrix</span>
+                    <span><strong>Location Intelligence</strong> with Maps, geocoding & distance matrix</span>
                   </div>
                   <div className="flex items-start gap-2">
                     <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
-                    <span><strong>Firebase Backend</strong> - Auth, Firestore database, file storage out-of-the-box</span>
+                    <span><strong>Firebase Backend</strong> with Auth, Firestore & Storage included</span>
                   </div>
                   <div className="flex items-start gap-2">
                     <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
-                    <span><strong>Institutional Web3</strong> - Fireblocks integration, token dev, smart contracts</span>
+                    <span><strong>Institutional Web3</strong> with Fireblocks, token dev & smart contracts</span>
                   </div>
                   <div className="flex items-start gap-2">
                     <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
-                    <span><strong>Enterprise SSO</strong> ready for regulated industries</span>
+                    <span><strong>Enterprise SSO</strong> integration for regulated industries</span>
                   </div>
                   <div className="flex items-start gap-2">
                     <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
-                    <span><strong>30-day support</strong> vs abandoned projects</span>
+                    <span><strong>30-day warranty</strong> with 48-hour response time</span>
                   </div>
                 </div>
               </Card>
