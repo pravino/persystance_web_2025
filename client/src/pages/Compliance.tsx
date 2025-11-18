@@ -86,19 +86,20 @@ export default function Compliance() {
     {
       icon: Database,
       title: "Asset Management Systems",
-      description: "Secure, compliant systems for financial asset management with real-world Liechtenstein operations",
+      description: "INSPIRA Exchange - institutional trading platform with Fireblocks custody and real-world Liechtenstein operations",
       expertise: [
-        "Portfolio management platforms (Liechtenstein financial center experience)",
+        "Built INSPIRA Exchange with high-performance matching engine",
+        "Fireblocks custody integration for institutional security",
         "Multi-jurisdictional client onboarding with KYC/AML compliance",
         "Proof of funds verification across multiple countries",
-        "Country-specific regulatory requirements (Europe, USA, Middle East)",
-        "Real-time asset tracking and reporting",
+        "B2B connectivity to Merkle.trade exchange ($28.7B volume)",
+        "Real-time ledger system for position tracking",
+        "Smart order routing for best execution",
         "Regulatory reporting (MiFID II, AIFMD)",
         "Audit trail and compliance logging",
-        "Secure API integrations",
-        "Multi-currency and multi-asset support"
+        "Multi-currency and multi-asset support (crypto, FIAT, commodities)"
       ],
-      regions: ["Europe", "USA", "Middle East", "Liechtenstein"]
+      regions: ["Europe", "USA", "Middle East", "Liechtenstein", "Asia"]
     },
     {
       icon: Eye,

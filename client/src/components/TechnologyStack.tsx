@@ -14,6 +14,9 @@ export default function TechnologyStack() {
     "AI & Blockchain": [
       "OpenAI", "TensorFlow", "Ethereum", "Smart Contracts", "Web3"
     ],
+    "Trading & Custody": [
+      "Fireblocks", "BitGo", "Matching Engines", "Order Routing", "FIX Protocol", "Market Data Feeds"
+    ],
   };
 
   return (
