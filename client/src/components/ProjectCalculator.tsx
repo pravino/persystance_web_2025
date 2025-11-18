@@ -186,13 +186,40 @@ export default function ProjectCalculator() {
     setStep(2);
   };
 
+  const getFeatureLimit = (projectType: string): number => {
+    const limits: Record<string, number> = {
+      starter: 0,
+      standard: 3,
+      full: 6,
+      enterprise: 10
+    };
+    return limits[projectType] || 3;
+  };
+
   const toggleFeature = (featureId: string) => {
-    setConfig(prev => ({
-      ...prev,
-      selectedFeatures: prev.selectedFeatures.includes(featureId)
-        ? prev.selectedFeatures.filter(id => id !== featureId)
-        : [...prev.selectedFeatures, featureId]
-    }));
+    const limit = getFeatureLimit(config.projectType);
+    
+    setConfig(prev => {
+      const isCurrentlySelected = prev.selectedFeatures.includes(featureId);
+      
+      // If deselecting, always allow
+      if (isCurrentlySelected) {
+        return {
+          ...prev,
+          selectedFeatures: prev.selectedFeatures.filter(id => id !== featureId)
+        };
+      }
+      
+      // If selecting, check limit
+      if (prev.selectedFeatures.length >= limit) {
+        return prev; // Don't add if at limit
+      }
+      
+      return {
+        ...prev,
+        selectedFeatures: [...prev.selectedFeatures, featureId]
+      };
+    });
   };
 
   return (
@@ -347,17 +374,40 @@ export default function ProjectCalculator() {
 
                     {/* Show additional features to select */}
                     <div>
-                      <h4 className="font-semibold mb-3">Add Additional Features:</h4>
+                      <div className="flex items-center justify-between mb-3">
+                        <h4 className="font-semibold">Add Additional Features:</h4>
+                        <div className="text-sm text-muted-foreground">
+                          {config.selectedFeatures.length} of {getFeatureLimit(config.projectType)} selected
+                        </div>
+                      </div>
+                      
+                      {config.selectedFeatures.length >= getFeatureLimit(config.projectType) && (
+                        <div className="bg-amber-500/10 border border-amber-500/20 rounded-lg p-3 mb-4">
+                          <p className="text-sm text-amber-700 dark:text-amber-400">
+                            <strong>Feature limit reached.</strong> {
+                              config.projectType === 'standard' ? 'Need more? Choose Full Application for up to 6 features.' :
+                              config.projectType === 'full' ? 'Need more? Choose Enterprise Solution for up to 10 features.' :
+                              'Contact us for custom requirements beyond 10 features.'
+                            }
+                          </p>
+                        </div>
+                      )}
+                      
                       <div className="grid md:grid-cols-2 gap-3">
                         {availableFeatures.filter(f => !['auth', 'database', 'api', 'mobile'].includes(f.id)).map((feature) => {
                           const isSelected = config.selectedFeatures.includes(feature.id);
+                          const isLimitReached = config.selectedFeatures.length >= getFeatureLimit(config.projectType) && !isSelected;
+                          
                           return (
                             <button
                               key={feature.id}
                               onClick={() => toggleFeature(feature.id)}
+                              disabled={isLimitReached}
                               className={`p-4 rounded-lg border-2 transition-all text-left flex items-start gap-3 ${
                                 isSelected
                                   ? 'border-primary bg-primary/5'
+                                  : isLimitReached
+                                  ? 'border-border bg-muted/30 opacity-50 cursor-not-allowed'
                                   : 'border-border hover:border-primary/50'
                               }`}
                             >
