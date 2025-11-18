@@ -33,6 +33,7 @@ export default function Navigation() {
   const servicesItems = [
     { label: "MVP Development", description: "Build and launch in 2 weeks", id: "about", type: "scroll" as const },
     { label: "Managed Services", description: "Cloud infrastructure & ERP systems", id: "/managed-services", type: "link" as const },
+    { label: "Trading & Portfolio Management", description: "White-label exchanges and risk management", id: "/trading-portfolio", type: "link" as const },
     { label: "Telegram & Web3 Games", description: "Viral gaming platforms", id: "/telegram-games", type: "link" as const },
     { label: "Enterprise Consulting", description: "Strategic technology partnerships", id: "/institute", type: "link" as const },
   ];
