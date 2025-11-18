@@ -18,16 +18,27 @@ Preferred communication style: Simple, everyday language.
     - ISO 27001, ISO 27017, ISO 27018 compliance standards detailed
     - GDPR certification and data protection practices
     - SOC 2 Type II readiness documentation
-    - Geographic compliance coverage (Europe, USA, Middle East)
+    - Geographic compliance coverage (Europe, USA, Middle East, Liechtenstein)
     - Security best practices section (encryption, access control, audits, incident response)
+    - **KYC/AML Compliance Section** (NEW): Dedicated section highlighting financial compliance expertise
+      - KYC (Know Your Customer): Multi-jurisdictional identity verification, PEP screening, automated workflows
+      - AML (Anti-Money Laundering): Transaction monitoring, sanctions screening (OFAC, EU, UN), regulatory reporting
+      - Proof of Funds Verification: Source of funds/wealth verification, bank statement validation, enhanced due diligence
+      - Liechtenstein Operations: Real-world experience managing asset management in Liechtenstein financial center
+      - Cross-border client onboarding across Europe, USA, Middle East, and Asia
   - **Trust Badges Section**: Prominent compliance badges on homepage (positioned after hero section)
     - Visual badges for ISO 27001, ISO 27017, ISO 27018, GDPR, SOC 2
     - Clickable cards linking to compliance page
     - Similar design to FCode Labs competitive positioning
   - **Industry Expertise Expansion**: Added regulated industry capabilities
-    - **Asset Management Systems**: GDPR-compliant portfolio management with MiFID II and AIFMD regulatory reporting
+    - **Asset Management Systems**: Enhanced with Liechtenstein financial center experience
+      - Portfolio management with real-world Liechtenstein operations
+      - Multi-jurisdictional client onboarding with KYC/AML compliance
+      - Proof of funds verification across multiple countries
+      - Country-specific regulatory requirements (Europe, USA, Middle East)
+      - GDPR-compliant portfolio management with MiFID II and AIFMD regulatory reporting
     - **Secure Data Rooms**: Enterprise virtual data rooms for M&A due diligence with encrypted storage and access controls
-    - Both positioned for Europe, USA, and Middle East markets
+    - Both positioned for Europe, USA, Middle East, and Liechtenstein markets
   - **Navigation Redesign**: Implemented dropdown menu structure for improved organization
     - **Services dropdown**: MVP Development, Managed Services, Telegram/Web3 Games, Enterprise Consulting
     - **Company dropdown**: About Us, Portfolio, Compliance & Security
