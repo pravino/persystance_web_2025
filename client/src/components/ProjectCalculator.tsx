@@ -258,39 +258,99 @@ export default function ProjectCalculator() {
           {step === 1 && (
             <div className="space-y-8">
               <div>
-                <h3 className="text-2xl font-bold mb-2">Select the features you need</h3>
+                <h3 className="text-2xl font-bold mb-2">
+                  {config.projectType === 'starter' ? 'What\'s Included in Your Starter MVP' : 'Select the features you need'}
+                </h3>
                 <p className="text-muted-foreground mb-6">
                   {config.projectType === 'starter' 
-                    ? 'Choose up to 5 basic features for your Starter MVP. Keep it simple for 2-week delivery.'
+                    ? 'These 5 core features are included for 2-week delivery. Need more? Choose Standard MVP instead.'
                     : 'Choose all features your MVP requires. Each adds to the final estimate.'
                   }
                 </p>
-                <div className="grid md:grid-cols-2 gap-3">
-                  {availableFeatures.map((feature) => {
-                    const isSelected = config.selectedFeatures.includes(feature.id);
-                    return (
-                      <button
-                        key={feature.id}
-                        onClick={() => toggleFeature(feature.id)}
-                        className={`p-4 rounded-lg border-2 transition-all text-left flex items-start gap-3 ${
-                          isSelected
-                            ? 'border-primary bg-primary/5'
-                            : 'border-border hover:border-primary/50'
-                        }`}
-                      >
-                        <div className={`w-5 h-5 rounded border-2 flex items-center justify-center flex-shrink-0 mt-0.5 ${
-                          isSelected ? 'border-primary bg-primary' : 'border-muted-foreground'
-                        }`}>
-                          {isSelected && <CheckCircle2 className="w-3 h-3 text-primary-foreground" />}
+                
+                {config.projectType === 'starter' ? (
+                  // Starter MVP - Show fixed included features
+                  <div className="space-y-4">
+                    <Card className="p-6 bg-gradient-to-br from-primary/5 to-accent/5 border-primary/20">
+                      <h4 className="font-bold mb-4 flex items-center gap-2">
+                        <Zap className="w-5 h-5 text-primary" />
+                        Included in Starter MVP ($5,000 - $7,000)
+                      </h4>
+                      <div className="space-y-3">
+                        <div className="flex items-start gap-2">
+                          <CheckCircle2 className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                          <div>
+                            <strong>User Authentication</strong>
+                            <p className="text-sm text-muted-foreground">Email/password login & signup</p>
+                          </div>
                         </div>
-                        <div className="flex-1">
-                          <h4 className="font-medium mb-1">{feature.name}</h4>
-                          <p className="text-xs text-muted-foreground">+${feature.cost.toLocaleString()}</p>
+                        <div className="flex items-start gap-2">
+                          <CheckCircle2 className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                          <div>
+                            <strong>Database Design</strong>
+                            <p className="text-sm text-muted-foreground">PostgreSQL setup with 3-5 tables</p>
+                          </div>
                         </div>
-                      </button>
-                    );
-                  })}
-                </div>
+                        <div className="flex items-start gap-2">
+                          <CheckCircle2 className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                          <div>
+                            <strong>RESTful API</strong>
+                            <p className="text-sm text-muted-foreground">CRUD operations & endpoints</p>
+                          </div>
+                        </div>
+                        <div className="flex items-start gap-2">
+                          <CheckCircle2 className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                          <div>
+                            <strong>Mobile Responsive UI</strong>
+                            <p className="text-sm text-muted-foreground">Works on all devices</p>
+                          </div>
+                        </div>
+                        <div className="flex items-start gap-2">
+                          <CheckCircle2 className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                          <div>
+                            <strong>Basic Dashboard</strong>
+                            <p className="text-sm text-muted-foreground">5-8 functional pages</p>
+                          </div>
+                        </div>
+                      </div>
+                    </Card>
+                    
+                    <div className="bg-muted/30 border border-border rounded-lg p-4">
+                      <p className="text-sm">
+                        <strong>Need more features?</strong> Go back and select <strong>Standard MVP</strong> for payments, 
+                        admin dashboard, analytics, and more advanced features.
+                      </p>
+                    </div>
+                  </div>
+                ) : (
+                  // Standard, Full, Enterprise - Show selectable features
+                  <div className="grid md:grid-cols-2 gap-3">
+                    {availableFeatures.map((feature) => {
+                      const isSelected = config.selectedFeatures.includes(feature.id);
+                      return (
+                        <button
+                          key={feature.id}
+                          onClick={() => toggleFeature(feature.id)}
+                          className={`p-4 rounded-lg border-2 transition-all text-left flex items-start gap-3 ${
+                            isSelected
+                              ? 'border-primary bg-primary/5'
+                              : 'border-border hover:border-primary/50'
+                          }`}
+                        >
+                          <div className={`w-5 h-5 rounded border-2 flex items-center justify-center flex-shrink-0 mt-0.5 ${
+                            isSelected ? 'border-primary bg-primary' : 'border-muted-foreground'
+                          }`}>
+                            {isSelected && <CheckCircle2 className="w-3 h-3 text-primary-foreground" />}
+                          </div>
+                          <div className="flex-1">
+                            <h4 className="font-medium mb-1">{feature.name}</h4>
+                            <p className="text-xs text-muted-foreground">+${feature.cost.toLocaleString()}</p>
+                          </div>
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
               </div>
 
               <div className="flex gap-3">
