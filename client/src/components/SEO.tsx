@@ -18,7 +18,7 @@ export default function SEO({
   ogImage,
   ogType = "website",
   twitterCard = "summary_large_image",
-  keywords = "MVP development, rapid prototyping, startup development, 2 week MVP, Telegram games, Web3 games, blockchain gaming",
+  keywords = "MVP development, rapid prototyping, startup development, 2 week MVP, Telegram games, Web3 games, blockchain gaming, GDPR compliance, ISO 27001, secure data rooms, asset management systems",
   hreflang = true,
 }: SEOProps) {
   const siteName = "Persystance Networks";
