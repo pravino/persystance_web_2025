@@ -371,4 +371,46 @@
   .animate-float-delayed {
     animation: float-delayed 25s ease-in-out infinite;
   }
+
+  /* Modern glassmorphism animations */
+  @keyframes shimmer {
+    0% {
+      background-position: -1000px 0;
+    }
+    100% {
+      background-position: 1000px 0;
+    }
+  }
+
+  .animate-shimmer {
+    background-size: 200% auto;
+    animation: shimmer 8s linear infinite;
+  }
+
+  /* Glassmorphism utilities */
+  .glass {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .dark .glass {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  /* Magnetic button effect (for desktop) */
+  @media (hover: hover) {
+    .magnetic-button {
+      transition: transform 0.2s ease;
+    }
+  }
+
+  /* Card hover tilt effect */
+  @keyframes tilt {
+    0%, 100% {
+      transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
+    }
+  }
 }

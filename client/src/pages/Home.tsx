@@ -1,6 +1,7 @@
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import TrustBadges from "@/components/TrustBadges";
+import LiveMetrics from "@/components/LiveMetrics";
 import ClientLogos from "@/components/ClientLogos";
 import AboutUs from "@/components/AboutUs";
 import ValueProposition from "@/components/ValueProposition";
@@ -26,6 +27,7 @@ export default function Home() {
       <main>
         <Hero />
         <TrustBadges />
+        <LiveMetrics />
         <ClientLogos />
         <AboutUs />
         <ValueProposition />
