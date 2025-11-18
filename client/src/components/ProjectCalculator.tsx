@@ -41,7 +41,7 @@ const projectTypes = [
   {
     id: "standard",
     name: "Standard MVP",
-    description: "4 weeks - Baseline + up to 5 add-ons (Web or React Native)",
+    description: "4 weeks - Baseline + up to 6 add-ons including Firebase (Web or React Native)",
     baseMin: 8300,
     baseMax: 12000,
     icon: Code
@@ -57,7 +57,7 @@ const projectTypes = [
   {
     id: "enterprise",
     name: "Enterprise Solution",
-    description: "8+ weeks - Baseline + all 16 add-ons including SSO, Web3, Fireblocks, Full Commerce (Web, Mobile, or Both)",
+    description: "8+ weeks - Baseline + all 17 add-ons including SSO, Web3, Fireblocks, Full Commerce (Web, Mobile, or Both)",
     baseMin: 20000,
     baseMax: 40000,
     icon: Rocket
@@ -74,13 +74,14 @@ const availableFeatures = [
   { id: "realtime", name: "Real-time Features", cost: 2000, scope: "Basic WebSocket updates for 1 feature (e.g., live notifications)", minTier: "standard" },
   { id: "social_login", name: "Social Media Login", cost: 1200, scope: "OAuth integration for Google, Facebook (2 providers max)", minTier: "standard" },
   { id: "location", name: "Location Intelligence Pack", cost: 1600, scope: "Embedded map (Google/Mapbox) with 10 markers, address autocomplete, geocoding, distance matrix (100 daily requests). Client provides API key & billing", minTier: "standard" },
+  { id: "firebase", name: "Firebase Integration", cost: 2000, scope: "Firebase Auth (email + 2 social providers), Firestore database (basic CRUD for 3 collections), Storage (file upload/download). Client provides Firebase project", minTier: "standard" },
   { id: "kyc", name: "KYC/AML Compliance", cost: 3500, scope: "Identity verification via 1 provider (Onfido/Jumio) - document + sanctions check. Client provides vendor API keys", minTier: "full" },
   { id: "stripe_commerce", name: "Stripe Commerce Suite", cost: 3800, scope: "Subscriptions (5 plans), shopping cart (50 SKUs), customer portal, webhooks. Client provides Stripe API keys", minTier: "full" },
   { id: "sso", name: "Enterprise SSO", cost: 2000, scope: "SAML/OAuth SSO via 1 provider (Okta/Auth0). Client provides vendor account", minTier: "enterprise" },
-  { id: "web3_basic", name: "Web3 Basic", cost: 3000, scope: "1 EVM chain, wallet connection (MetaMask/WalletConnect), deploy 1 client-supplied contract (testnet only)", minTier: "enterprise" },
-  { id: "token_dev", name: "Token Development", cost: 2500, scope: "Author 1 ERC-20 OR ERC-721 token from audited template, deploy to testnet. Client handles legal compliance & mainnet fees", minTier: "enterprise" },
-  { id: "smart_contracts", name: "Smart Contract Expansion", cost: 1800, scope: "Design/implement up to 3 simple contracts with unit tests. Excludes security audits (recommend 3rd-party)", minTier: "enterprise" },
-  { id: "fireblocks", name: "Fireblocks Custody", cost: 4500, scope: "Integrate with client Fireblocks tenant, configure 1 vault + policy, sign/transfer flow for 1 asset. Client provides Fireblocks license + API keys", minTier: "enterprise" }
+  { id: "web3_basic", name: "Web3 Basic (Infrastructure)", cost: 3000, scope: "Wallet integration (MetaMask/WalletConnect) for 1 EVM chain, deploy YOUR existing contract to testnet. Does not include writing contracts", minTier: "enterprise" },
+  { id: "token_dev", name: "Token Development", cost: 2500, scope: "Create NEW ERC-20 OR ERC-721 token from audited template, deploy to testnet. We write the token code. Client handles legal compliance & mainnet fees", minTier: "enterprise" },
+  { id: "smart_contracts", name: "Smart Contract Expansion", cost: 1800, scope: "Design & code up to 3 NEW custom contracts with your business logic + unit tests. Excludes security audits (recommend 3rd-party)", minTier: "enterprise" },
+  { id: "fireblocks", name: "Fireblocks Integration", cost: 4500, scope: "Integrate with client Fireblocks tenant, configure 1 vault + policy engine, transaction signing/transfer flow for 1 asset. Client provides Fireblocks license + API credentials", minTier: "enterprise" }
 ];
 
 export default function ProjectCalculator() {
@@ -176,16 +177,16 @@ export default function ProjectCalculator() {
     doc.text("• Support: 30 days bug-fix warranty. Response: 48 hours", 25, 238);
     doc.text("• Hosting: Deployment included. Hosting costs paid by client", 25, 246);
     doc.text("• Scope: Dashboard = 5 screens, CRUD = 1 entity (10 fields), DB = 5 tables", 25, 254);
-    doc.text("• Prerequisites: Client provides API keys (Stripe, Google Maps billing, KYC, SSO)", 25, 262);
+    doc.text("• Prerequisites: Client provides API keys (Stripe, Google Maps, Firebase, KYC, SSO)", 25, 262);
     doc.text("• Blockchain: Client funds gas fees, handles legal compliance for tokens", 25, 270);
     doc.text("• Fireblocks: Requires enterprise Fireblocks license (client-provided)", 25, 278);
-    doc.text("• Maps: Google Maps billing account required for Location Intelligence Pack", 25, 286);
+    doc.text("• Firebase/Maps: Client provides Firebase project & Google Maps billing account", 25, 286);
     
     doc.setFontSize(11);
     doc.text("Why Persystance Networks?", 20, 298);
     doc.setFontSize(9);
     doc.text("✓ 13 Years in Business - Institutional-Grade Solutions", 25, 308);
-    doc.text("✓ Fireblocks Custody + Token Engineering + Full Commerce Suite", 25, 315);
+    doc.text("✓ Fireblocks Integration + Firebase + Token Engineering + Full Commerce", 25, 315);
     
     doc.setFontSize(9);
     doc.text("This is an automated estimate. Book a discovery call for detailed proposal.", 20, 326);
@@ -202,11 +203,11 @@ export default function ProjectCalculator() {
   const getFeatureLimit = (projectType: string): number => {
     const limits: Record<string, number> = {
       starter: 0,
-      standard: 5,
+      standard: 6,
       full: 9,
-      enterprise: 16
+      enterprise: 17
     };
-    return limits[projectType] || 5;
+    return limits[projectType] || 6;
   };
 
   const getTierLevel = (projectType: string): number => {
@@ -448,7 +449,7 @@ export default function ProjectCalculator() {
                       {config.projectType === 'enterprise' && (
                         <div className="bg-purple-500/10 border border-purple-500/20 rounded-lg p-3 mb-4">
                           <p className="text-sm text-purple-700 dark:text-purple-400">
-                            ⚡ <strong>Enterprise tier unlocks:</strong> All 16 features including SSO, Web3, Token Development, Smart Contracts, Fireblocks Custody
+                            ⚡ <strong>Enterprise tier unlocks:</strong> All 17 features including SSO, Web3 Infrastructure, Token Development, Smart Contracts, Fireblocks Integration
                           </p>
                           <p className="text-xs text-purple-600 dark:text-purple-500 mt-2">
                             💎 Advanced Web3 Package (~$11k): All blockchain features for institutional crypto/DeFi platforms
@@ -461,8 +462,8 @@ export default function ProjectCalculator() {
                           <p className="text-sm text-amber-700 dark:text-amber-400">
                             <strong>Feature limit reached.</strong> {
                               config.projectType === 'standard' ? 'Need more? Choose Full Application for up to 9 features including KYC/AML, Stripe Commerce Suite.' :
-                              config.projectType === 'full' ? 'Need more? Choose Enterprise Solution for all 16 features including Web3, Fireblocks, SSO.' :
-                              'Contact us for custom requirements beyond 16 features.'
+                              config.projectType === 'full' ? 'Need more? Choose Enterprise Solution for all 17 features including Web3, Fireblocks, SSO.' :
+                              'Contact us for custom requirements beyond 17 features.'
                             }
                           </p>
                         </div>
@@ -632,7 +633,11 @@ export default function ProjectCalculator() {
                   </div>
                   <div className="flex items-start gap-2">
                     <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
-                    <span><strong>Institutional Web3</strong> - Fireblocks custody, token dev, smart contracts</span>
+                    <span><strong>Firebase Backend</strong> - Auth, Firestore database, file storage out-of-the-box</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
+                    <span><strong>Institutional Web3</strong> - Fireblocks integration, token dev, smart contracts</span>
                   </div>
                   <div className="flex items-start gap-2">
                     <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
@@ -645,7 +650,7 @@ export default function ProjectCalculator() {
                 </div>
                 <p className="text-xs text-muted-foreground">
                   Unlike €4.5k agencies with 200+ employee overhead or $500 offshore freelancers who disappear, 
-                  you get senior-level expertise with institutional-grade solutions (Full Commerce Suite, Location Intelligence, Fireblocks custody, KYC/AML, token engineering) and transparent pricing.
+                  you get senior-level expertise with institutional-grade solutions (Full Commerce Suite, Firebase, Location Intelligence, Fireblocks integration, KYC/AML, token engineering) and transparent pricing.
                 </p>
               </Card>
 
