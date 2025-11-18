@@ -195,7 +195,7 @@ export default function TradingPortfolio() {
     name: "Nexus Trading",
     description: "Institutional trading platform built for asset management operations in Liechtenstein",
     achievements: [
-      "Integrated Fireblocks custody infrastructure for institutional-grade security",
+      "Integrated Fireblocks integration infrastructure for institutional-grade security",
       "Developed high-performance matching engine for efficient order execution",
       "Established B2B connectivity with major exchange networks",
       "Implemented real-time ledger system for transparent position tracking",
@@ -245,7 +245,7 @@ export default function TradingPortfolio() {
               </Badge>
               <Badge variant="secondary" className="text-sm py-2 px-4">
                 <Lock className="w-4 h-4 mr-2" />
-                Fireblocks Custody
+                Fireblocks Integration
               </Badge>
               <Badge variant="secondary" className="text-sm py-2 px-4">
                 <Globe className="w-4 h-4 mr-2" />
