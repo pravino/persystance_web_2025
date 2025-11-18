@@ -1,9 +1,17 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Moon, Sun, Menu, X } from "lucide-react";
+import { Moon, Sun, Menu, X, ChevronDown } from "lucide-react";
 import { useTheme } from "@/hooks/use-theme";
 import { Link, useLocation } from "wouter";
 import logoImg from "@assets/persystance_1759398114872.webp";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@/components/ui/navigation-menu";
 
 export default function Navigation() {
   const { theme, setTheme } = useTheme();
@@ -22,14 +30,17 @@ export default function Navigation() {
     setMobileMenuOpen(false);
   };
 
-  const navItems = [
-    { label: "About", id: "about", type: "scroll" as const },
-    { label: "Process", id: "process", type: "scroll" as const },
-    { label: "Portfolio", id: "portfolio", type: "scroll" as const },
-    { label: "Managed Services", id: "/managed-services", type: "link" as const },
-    { label: "Telegram Games", id: "/telegram-games", type: "link" as const },
-    { label: "Institute", id: "/institute", type: "link" as const },
-    { label: "Contact", id: "contact", type: "scroll" as const },
+  const servicesItems = [
+    { label: "MVP Development", description: "Build and launch in 2 weeks", id: "about", type: "scroll" as const },
+    { label: "Managed Services", description: "Cloud infrastructure & ERP systems", id: "/managed-services", type: "link" as const },
+    { label: "Telegram & Web3 Games", description: "Viral gaming platforms", id: "/telegram-games", type: "link" as const },
+    { label: "Enterprise Consulting", description: "Strategic technology partnerships", id: "/institute", type: "link" as const },
+  ];
+
+  const companyItems = [
+    { label: "About Us", description: "Our story and expertise", id: "about", type: "scroll" as const },
+    { label: "Portfolio", description: "Our work and case studies", id: "portfolio", type: "scroll" as const },
+    { label: "Compliance & Security", description: "ISO, GDPR, and enterprise standards", id: "/compliance", type: "link" as const },
   ];
 
   return (
@@ -49,28 +60,85 @@ export default function Navigation() {
             </span>
           </Link>
           
-          <div className="hidden md:flex items-center gap-8">
-            {navItems.map((item) => 
-              item.type === "link" ? (
-                <Link key={item.id} href={item.id}>
-                  <span
-                    className="text-sm font-medium hover:text-primary transition-colors cursor-pointer"
-                    data-testid={`link-${item.id.replace('/', '')}`}
-                  >
-                    {item.label}
-                  </span>
-                </Link>
-              ) : (
-                <button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.id)}
-                  className="text-sm font-medium hover:text-primary transition-colors"
-                  data-testid={`link-${item.id}`}
-                >
-                  {item.label}
-                </button>
-              )
-            )}
+          <div className="hidden md:flex items-center gap-6">
+            <NavigationMenu>
+              <NavigationMenuList>
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger className="text-sm font-medium">
+                    Services
+                  </NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <ul className="grid w-[400px] gap-3 p-4">
+                      {servicesItems.map((item) => (
+                        <li key={item.id}>
+                          {item.type === "link" ? (
+                            <Link href={item.id}>
+                              <a className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                                <div className="text-sm font-medium leading-none">{item.label}</div>
+                                <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                                  {item.description}
+                                </p>
+                              </a>
+                            </Link>
+                          ) : (
+                            <button
+                              onClick={() => scrollToSection(item.id)}
+                              className="w-full text-left block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                            >
+                              <div className="text-sm font-medium leading-none">{item.label}</div>
+                              <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                                {item.description}
+                              </p>
+                            </button>
+                          )}
+                        </li>
+                      ))}
+                    </ul>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger className="text-sm font-medium">
+                    Company
+                  </NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <ul className="grid w-[400px] gap-3 p-4">
+                      {companyItems.map((item) => (
+                        <li key={item.id}>
+                          {item.type === "link" ? (
+                            <Link href={item.id}>
+                              <a className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                                <div className="text-sm font-medium leading-none">{item.label}</div>
+                                <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                                  {item.description}
+                                </p>
+                              </a>
+                            </Link>
+                          ) : (
+                            <button
+                              onClick={() => scrollToSection(item.id)}
+                              className="w-full text-left block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                            >
+                              <div className="text-sm font-medium leading-none">{item.label}</div>
+                              <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                                {item.description}
+                              </p>
+                            </button>
+                          )}
+                        </li>
+                      ))}
+                    </ul>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+              </NavigationMenuList>
+            </NavigationMenu>
+
+            <button
+              onClick={() => scrollToSection("contact")}
+              className="text-sm font-medium hover:text-primary transition-colors"
+            >
+              Contact
+            </button>
           </div>
           
           <div className="flex items-center gap-4">
@@ -114,34 +182,75 @@ export default function Navigation() {
         {mobileMenuOpen && (
           <div className="md:hidden py-4 border-t border-border">
             <div className="flex flex-col gap-4">
-              {navItems.map((item) => 
-                item.type === "link" ? (
-                  <Link key={item.id} href={item.id}>
-                    <span
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="block text-left px-4 py-2 hover-elevate rounded-md transition-all cursor-pointer"
-                      data-testid={`link-mobile-${item.id.replace('/', '')}`}
-                    >
-                      {item.label}
-                    </span>
-                  </Link>
-                ) : (
-                  <button
-                    key={item.id}
-                    onClick={() => scrollToSection(item.id)}
-                    className="text-left px-4 py-2 hover-elevate rounded-md transition-all"
-                    data-testid={`link-mobile-${item.id}`}
-                  >
-                    {item.label}
-                  </button>
-                )
-              )}
-              <Button
-                className="w-full"
-                onClick={() => scrollToSection("contact")}
-              >
-                Get Started
-              </Button>
+              <div className="px-4">
+                <div className="text-sm font-semibold text-muted-foreground mb-2">Services</div>
+                <div className="flex flex-col gap-2 pl-2">
+                  {servicesItems.map((item) =>
+                    item.type === "link" ? (
+                      <Link key={item.id} href={item.id}>
+                        <span
+                          onClick={() => setMobileMenuOpen(false)}
+                          className="block text-left py-2 hover:text-primary transition-colors cursor-pointer"
+                        >
+                          {item.label}
+                        </span>
+                      </Link>
+                    ) : (
+                      <button
+                        key={item.id}
+                        onClick={() => scrollToSection(item.id)}
+                        className="text-left py-2 hover:text-primary transition-colors"
+                      >
+                        {item.label}
+                      </button>
+                    )
+                  )}
+                </div>
+              </div>
+
+              <div className="px-4">
+                <div className="text-sm font-semibold text-muted-foreground mb-2">Company</div>
+                <div className="flex flex-col gap-2 pl-2">
+                  {companyItems.map((item) =>
+                    item.type === "link" ? (
+                      <Link key={item.id} href={item.id}>
+                        <span
+                          onClick={() => setMobileMenuOpen(false)}
+                          className="block text-left py-2 hover:text-primary transition-colors cursor-pointer"
+                        >
+                          {item.label}
+                        </span>
+                      </Link>
+                    ) : (
+                      <button
+                        key={item.id}
+                        onClick={() => scrollToSection(item.id)}
+                        className="text-left py-2 hover:text-primary transition-colors"
+                      >
+                        {item.label}
+                      </button>
+                    )
+                  )}
+                </div>
+              </div>
+
+              <div className="px-4 pt-2 border-t border-border">
+                <button
+                  onClick={() => scrollToSection("contact")}
+                  className="text-left py-2 hover:text-primary transition-colors font-medium"
+                >
+                  Contact
+                </button>
+              </div>
+
+              <div className="px-4">
+                <Button
+                  className="w-full"
+                  onClick={() => scrollToSection("contact")}
+                >
+                  Get Started
+                </Button>
+              </div>
             </div>
           </div>
         )}
