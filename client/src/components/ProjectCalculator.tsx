@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -15,6 +15,7 @@ import {
   MessageCircle
 } from "lucide-react";
 import jsPDF from "jspdf";
+import * as analytics from "@/lib/analytics";
 
 interface ProjectConfig {
   projectType: string;
@@ -91,6 +92,24 @@ export default function ProjectCalculator() {
     selectedFeatures: []
   });
   const [estimate, setEstimate] = useState<Estimate | null>(null);
+
+  // Track calculator step changes
+  useEffect(() => {
+    const stepNames = ['Select Tier', 'Choose Features', 'View Estimate'];
+    analytics.trackCalculatorStep(step, stepNames[step]);
+  }, [step]);
+
+  // Track abandonment when user leaves
+  useEffect(() => {
+    const handleBeforeUnload = () => {
+      if (step < 2) {
+        analytics.trackCalculatorAbandonment(step, config.projectType, config.selectedFeatures.length);
+      }
+    };
+    
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
+  }, [step, config.projectType, config.selectedFeatures.length]);
 
   const calculateEstimate = (): Estimate => {
     const selectedType = projectTypes.find(t => t.id === config.projectType);
@@ -487,12 +506,24 @@ export default function ProjectCalculator() {
     doc.text("Email: contact@persystance.com | Web: www.persystance.com", 105, yPos + 10, { align: 'center' });
 
     doc.save(`persystance-quote-${Date.now()}.pdf`);
+    
+    // Track PDF download
+    analytics.trackCalculatorPDFDownload(config.projectType, est.minCost, est.maxCost);
   };
 
   const handleCalculate = () => {
     const est = calculateEstimate();
     setEstimate(est);
     setStep(2);
+    
+    // Track estimate calculation
+    analytics.trackCalculatorEstimate(
+      config.projectType,
+      config.selectedFeatures.length,
+      est.minCost,
+      est.maxCost,
+      est.weeksDisplay
+    );
   };
 
   const getFeatureLimit = (projectType: string): number => {
@@ -545,9 +576,15 @@ export default function ProjectCalculator() {
 
   const toggleFeature = (featureId: string) => {
     const limit = getFeatureLimit(config.projectType);
+    const feature = availableFeatures.find(f => f.id === featureId);
     
     setConfig(prev => {
       const isCurrentlySelected = prev.selectedFeatures.includes(featureId);
+      
+      // Track feature toggle
+      if (feature) {
+        analytics.trackCalculatorFeatureToggle(feature.name, isCurrentlySelected ? 'removed' : 'added');
+      }
       
       // If deselecting, always allow
       if (isCurrentlySelected) {
@@ -611,6 +648,9 @@ export default function ProjectCalculator() {
                     <button
                       key={type.id}
                       onClick={() => {
+                        // Track tier selection
+                        analytics.trackCalculatorTierSelection(type.name);
+                        
                         // Validate and clean selected features when tier changes
                         const validatedFeatures = validateFeaturesForTier(type.id, config.selectedFeatures);
                         setConfig({ 

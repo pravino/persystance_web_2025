@@ -71,3 +71,46 @@ export const trackLeadGeneration = (source: string) => {
 export const trackContactAttempt = (method: string) => {
   event('contact_attempt', 'conversion', method);
 };
+
+// Calculator-specific tracking
+export const trackCalculatorTierSelection = (tier: string) => {
+  event('calculator_tier_selected', 'calculator', tier);
+};
+
+export const trackCalculatorFeatureToggle = (featureName: string, action: 'added' | 'removed') => {
+  event('calculator_feature_toggle', 'calculator', `${featureName}_${action}`);
+};
+
+export const trackCalculatorEstimate = (
+  tier: string,
+  featureCount: number,
+  minCost: number,
+  maxCost: number,
+  timeline: string
+) => {
+  event('calculator_estimate_generated', 'calculator', `${tier}_${featureCount}_features`, Math.round((minCost + maxCost) / 2));
+  
+  // Send detailed parameters as a custom event
+  if (typeof window.gtag !== 'undefined') {
+    window.gtag('event', 'calculator_quote', {
+      tier_name: tier,
+      feature_count: featureCount,
+      min_cost: minCost,
+      max_cost: maxCost,
+      avg_cost: Math.round((minCost + maxCost) / 2),
+      timeline: timeline,
+    });
+  }
+};
+
+export const trackCalculatorPDFDownload = (tier: string, minCost: number, maxCost: number) => {
+  event('calculator_pdf_download', 'conversion', tier, Math.round((minCost + maxCost) / 2));
+};
+
+export const trackCalculatorStep = (step: number, stepName: string) => {
+  event('calculator_step_viewed', 'calculator', stepName, step);
+};
+
+export const trackCalculatorAbandonment = (step: number, tier: string, featureCount: number) => {
+  event('calculator_abandoned', 'calculator', `${tier}_step_${step}_${featureCount}_features`);
+};
