@@ -51,27 +51,29 @@ export default function TrustBadges() {
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
           {badges.map((badge, index) => (
             <Link key={index} href="/compliance">
-              <Card className="p-4 text-center hover:shadow-lg transition-all duration-300 hover:scale-105 cursor-pointer group">
-                <div className="flex flex-col items-center gap-2">
-                  <div className="p-3 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors">
-                    <badge.icon className="w-6 h-6 text-primary" />
+              <span className="block">
+                <Card className="p-4 text-center hover:shadow-lg transition-all duration-300 hover:scale-105 cursor-pointer group">
+                  <div className="flex flex-col items-center gap-2">
+                    <div className="p-3 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors">
+                      <badge.icon className="w-6 h-6 text-primary" />
+                    </div>
+                    <div className="text-sm font-semibold">{badge.standard}</div>
+                    <div className="text-xs text-muted-foreground">{badge.description}</div>
                   </div>
-                  <div className="text-sm font-semibold">{badge.standard}</div>
-                  <div className="text-xs text-muted-foreground">{badge.description}</div>
-                </div>
-              </Card>
+                </Card>
+              </span>
             </Link>
           ))}
         </div>
 
         <div className="text-center mt-8">
           <Link href="/compliance">
-            <a className="text-sm text-primary hover:underline inline-flex items-center gap-1">
+            <span className="text-sm text-primary hover:underline inline-flex items-center gap-1 cursor-pointer">
               Learn more about our compliance standards
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
-            </a>
+            </span>
           </Link>
         </div>
       </div>

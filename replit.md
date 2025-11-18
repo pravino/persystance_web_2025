@@ -12,6 +12,34 @@ Preferred communication style: Simple, everyday language.
 
 ## Recent Changes
 
+### November 2025
+- **Enterprise Compliance Features**: Added comprehensive compliance and security capabilities to compete with enterprise-focused agencies
+  - **Compliance & Security Page** (`/compliance`): Dedicated page showcasing compliance standards and regulated industry expertise
+    - ISO 27001, ISO 27017, ISO 27018 compliance standards detailed
+    - GDPR certification and data protection practices
+    - SOC 2 Type II readiness documentation
+    - Geographic compliance coverage (Europe, USA, Middle East)
+    - Security best practices section (encryption, access control, audits, incident response)
+  - **Trust Badges Section**: Prominent compliance badges on homepage (positioned after hero section)
+    - Visual badges for ISO 27001, ISO 27017, ISO 27018, GDPR, SOC 2
+    - Clickable cards linking to compliance page
+    - Similar design to FCode Labs competitive positioning
+  - **Industry Expertise Expansion**: Added regulated industry capabilities
+    - **Asset Management Systems**: GDPR-compliant portfolio management with MiFID II and AIFMD regulatory reporting
+    - **Secure Data Rooms**: Enterprise virtual data rooms for M&A due diligence with encrypted storage and access controls
+    - Both positioned for Europe, USA, and Middle East markets
+  - **Navigation Redesign**: Implemented dropdown menu structure for improved organization
+    - **Services dropdown**: MVP Development, Managed Services, Telegram/Web3 Games, Enterprise Consulting
+    - **Company dropdown**: About Us, Portfolio, Compliance & Security
+    - **Contact**: Direct scroll-to-section link
+    - Desktop uses shadcn NavigationMenu with descriptions
+    - Mobile uses collapsible grouped sections
+  - **SEO Enhancements for Enterprise Markets**:
+    - Updated default keywords to include "GDPR compliance, ISO 27001, secure data rooms, asset management systems"
+    - Added `/compliance` to sitemap.xml (priority 0.9)
+    - Enhanced Schema.org structured data with compliance services and enterprise description
+    - Title and meta description optimized to 56 and 148 characters respectively
+
 ### October 2025
 - **Interactive Capabilities Demos**: 4 production-focused technology demonstrations
   - **Tap-to-Earn Game**: Full-featured Telegram mini-app style clicker game
