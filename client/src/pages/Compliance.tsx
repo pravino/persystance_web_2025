@@ -86,9 +86,9 @@ export default function Compliance() {
     {
       icon: Database,
       title: "Asset Management Systems",
-      description: "INSPIRA Exchange - institutional trading platform with Fireblocks custody and real-world Liechtenstein operations",
+      description: "Nexus Trading - institutional trading platform with Fireblocks custody and real-world Liechtenstein operations",
       expertise: [
-        "Built INSPIRA Exchange institutional trading platform",
+        "Built Nexus Trading institutional trading platform",
         "Fireblocks custody integration for institutional security",
         "Multi-jurisdictional client onboarding with KYC/AML compliance",
         "Proof of funds verification across multiple countries",

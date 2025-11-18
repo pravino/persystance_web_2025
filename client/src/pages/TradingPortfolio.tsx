@@ -192,7 +192,7 @@ export default function TradingPortfolio() {
   ];
 
   const caseStudy = {
-    name: "INSPIRA Exchange",
+    name: "Nexus Trading",
     description: "Institutional trading platform built for asset management operations in Liechtenstein",
     achievements: [
       "Integrated Fireblocks custody infrastructure for institutional-grade security",
@@ -316,7 +316,7 @@ export default function TradingPortfolio() {
           </div>
         </section>
 
-        {/* INSPIRA Case Study */}
+        {/* Nexus Trading Case Study */}
         <section className="py-20 px-6 bg-muted/30">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-12">
