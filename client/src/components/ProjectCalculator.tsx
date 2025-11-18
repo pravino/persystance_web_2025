@@ -25,6 +25,7 @@ interface Estimate {
   minCost: number;
   maxCost: number;
   weeks: number;
+  weeksDisplay: string;
   features: string[];
 }
 
@@ -56,9 +57,9 @@ const projectTypes = [
   {
     id: "enterprise",
     name: "Enterprise Solution",
-    description: "8 weeks - Baseline + all 11 add-ons including SSO & Web3 (Web, Mobile, or Both)",
+    description: "8+ weeks - Baseline + all 14 add-ons including SSO, Web3, Fireblocks (Web, Mobile, or Both)",
     baseMin: 20000,
-    baseMax: 30000,
+    baseMax: 35000,
     icon: Rocket
   }
 ];
@@ -74,7 +75,10 @@ const availableFeatures = [
   { id: "social_login", name: "Social Media Login", cost: 1200, scope: "OAuth integration for Google, Facebook (2 providers max)", minTier: "standard" },
   { id: "kyc", name: "KYC/AML Compliance", cost: 3500, scope: "Identity verification via 1 provider (Onfido/Jumio) - document + sanctions check. Client provides vendor API keys", minTier: "full" },
   { id: "sso", name: "Enterprise SSO", cost: 2000, scope: "SAML/OAuth SSO via 1 provider (Okta/Auth0). Client provides vendor account", minTier: "enterprise" },
-  { id: "web3", name: "Web3 Integration", cost: 3000, scope: "1 EVM chain, wallet connection (MetaMask/WalletConnect), 1 smart contract (testnet only). Client provides contract code for deployment", minTier: "enterprise" }
+  { id: "web3_basic", name: "Web3 Basic", cost: 3000, scope: "1 EVM chain, wallet connection (MetaMask/WalletConnect), deploy 1 client-supplied contract (testnet only)", minTier: "enterprise" },
+  { id: "token_dev", name: "Token Development", cost: 2500, scope: "Author 1 ERC-20 OR ERC-721 token from audited template, deploy to testnet. Client handles legal compliance & mainnet fees", minTier: "enterprise" },
+  { id: "smart_contracts", name: "Smart Contract Expansion", cost: 1800, scope: "Design/implement up to 3 simple contracts with unit tests. Excludes security audits (recommend 3rd-party)", minTier: "enterprise" },
+  { id: "fireblocks", name: "Fireblocks Custody", cost: 4500, scope: "Integrate with client Fireblocks tenant, configure 1 vault + policy, sign/transfer flow for 1 asset. Client provides Fireblocks license + API keys", minTier: "enterprise" }
 ];
 
 export default function ProjectCalculator() {
@@ -88,7 +92,7 @@ export default function ProjectCalculator() {
   const calculateEstimate = (): Estimate => {
     const selectedType = projectTypes.find(t => t.id === config.projectType);
     if (!selectedType) {
-      return { minCost: 8300, maxCost: 12000, weeks: 4, features: [] };
+      return { minCost: 8300, maxCost: 12000, weeks: 4, weeksDisplay: "4 weeks", features: [] };
     }
     
     const featureCost = config.selectedFeatures.reduce((total, featureId) => {
@@ -114,6 +118,7 @@ export default function ProjectCalculator() {
     maxCost = Math.max(minCost + 2000, maxCost);
     
     const weeks = projectTimelines[config.projectType] || 4;
+    const weeksDisplay = config.projectType === 'enterprise' ? `${weeks}+ weeks` : `${weeks} weeks`;
     
     const features = [
       "Source code ownership",
@@ -126,7 +131,7 @@ export default function ProjectCalculator() {
       }).filter(Boolean)
     ];
 
-    return { minCost, maxCost, weeks, features };
+    return { minCost, maxCost, weeks, weeksDisplay, features };
   };
 
   const generatePDF = () => {
@@ -145,15 +150,14 @@ export default function ProjectCalculator() {
     const selectedType = projectTypes.find(t => t.id === config.projectType);
     doc.text(`Type: ${selectedType?.name}`, 25, 60);
     doc.text(`Features: ${config.selectedFeatures.length} custom features`, 25, 68);
-    const projectTimelines: Record<string, number> = { starter: 2, standard: 4, full: 6, enterprise: 8 };
-    doc.text(`Timeline: ${projectTimelines[config.projectType] || 4} weeks`, 25, 76);
+    doc.text(`Timeline: ${est.weeksDisplay}`, 25, 76);
     
     doc.setFontSize(14);
     doc.text("Estimate Summary", 20, 95);
     doc.setFontSize(16);
     doc.text(`Investment Range: $${est.minCost.toLocaleString()} - $${est.maxCost.toLocaleString()}`, 25, 107);
     doc.setFontSize(11);
-    doc.text(`Delivery Timeline: ${est.weeks} weeks`, 25, 117);
+    doc.text(`Delivery Timeline: ${est.weeksDisplay}`, 25, 117);
     
     doc.setFontSize(14);
     doc.text("What's Included", 20, 135);
@@ -171,15 +175,17 @@ export default function ProjectCalculator() {
     doc.text("• Hosting: Deployment included. Hosting costs paid by client", 25, 246);
     doc.text("• Scope: Dashboard = 5 screens, CRUD = 1 entity (10 fields), DB = 5 tables", 25, 254);
     doc.text("• Prerequisites: Client provides API keys for 3rd-party services", 25, 262);
+    doc.text("• Blockchain: Client funds gas fees, handles legal compliance for tokens", 25, 270);
+    doc.text("• Fireblocks: Requires enterprise Fireblocks license (client-provided)", 25, 278);
     
     doc.setFontSize(11);
-    doc.text("Why Persystance Networks?", 20, 275);
+    doc.text("Why Persystance Networks?", 20, 290);
     doc.setFontSize(9);
-    doc.text("✓ 13 Years in Business - Proven Track Record", 25, 285);
-    doc.text("✓ Direct Access to Senior Developer (No Juniors)", 25, 292);
+    doc.text("✓ 13 Years in Business - Institutional-Grade Solutions", 25, 300);
+    doc.text("✓ Fireblocks Custody + Token Engineering Expertise", 25, 307);
     
     doc.setFontSize(9);
-    doc.text("This is an automated estimate. Book a discovery call for detailed proposal.", 20, 303);
+    doc.text("This is an automated estimate. Book a discovery call for detailed proposal.", 20, 318);
 
     doc.save(`persystance-estimate-${Date.now()}.pdf`);
   };
@@ -195,7 +201,7 @@ export default function ProjectCalculator() {
       starter: 0,
       standard: 4,
       full: 7,
-      enterprise: 11
+      enterprise: 14
     };
     return limits[projectType] || 4;
   };
@@ -439,7 +445,10 @@ export default function ProjectCalculator() {
                       {config.projectType === 'enterprise' && (
                         <div className="bg-purple-500/10 border border-purple-500/20 rounded-lg p-3 mb-4">
                           <p className="text-sm text-purple-700 dark:text-purple-400">
-                            ⚡ <strong>Enterprise tier unlocks:</strong> SSO + Web3 Integration (wallet, smart contracts)
+                            ⚡ <strong>Enterprise tier unlocks:</strong> SSO, Web3 Basic, Token Development, Smart Contracts, Fireblocks Custody
+                          </p>
+                          <p className="text-xs text-purple-600 dark:text-purple-500 mt-2">
+                            💎 Advanced Web3 Package (~$11k): All blockchain features for institutional crypto/DeFi platforms
                           </p>
                         </div>
                       )}
@@ -449,8 +458,8 @@ export default function ProjectCalculator() {
                           <p className="text-sm text-amber-700 dark:text-amber-400">
                             <strong>Feature limit reached.</strong> {
                               config.projectType === 'standard' ? 'Need more? Choose Full Application for up to 7 features including KYC/AML.' :
-                              config.projectType === 'full' ? 'Need more? Choose Enterprise Solution for all 11 features including SSO & Web3.' :
-                              'Contact us for custom requirements beyond 11 features.'
+                              config.projectType === 'full' ? 'Need more? Choose Enterprise Solution for all 14 features including Web3, Fireblocks, SSO.' :
+                              'Contact us for custom requirements beyond 14 features.'
                             }
                           </p>
                         </div>
@@ -537,7 +546,7 @@ export default function ProjectCalculator() {
                 <Card className="p-6 bg-gradient-to-br from-accent/10 to-primary/10">
                   <Clock className="w-8 h-8 text-accent mb-3" />
                   <div className="text-sm text-muted-foreground mb-1">Delivery Timeline</div>
-                  <div className="text-3xl font-bold">{estimate.weeks} weeks</div>
+                  <div className="text-3xl font-bold">{estimate.weeksDisplay}</div>
                   <p className="text-xs text-muted-foreground mt-2">From project kickoff to launch</p>
                 </Card>
               </div>
@@ -577,6 +586,10 @@ export default function ProjectCalculator() {
                     <div className="w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0 mt-1.5" />
                     <span><strong>Prerequisites:</strong> Client provides API keys for 3rd-party services (payment processors, KYC providers, SSO vendors, etc.)</span>
                   </div>
+                  <div className="flex items-start gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0 mt-1.5" />
+                    <span><strong>Blockchain/Web3:</strong> Client handles gas fees, mainnet deployment costs, legal compliance for tokens, and 3rd-party security audits. Fireblocks requires enterprise license</span>
+                  </div>
                 </div>
               </Card>
 
@@ -608,7 +621,7 @@ export default function ProjectCalculator() {
                   </div>
                   <div className="flex items-start gap-2">
                     <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
-                    <span><strong>Web3 expertise</strong> - wallet integration & smart contracts</span>
+                    <span><strong>Institutional Web3</strong> - Fireblocks custody, token dev, smart contracts</span>
                   </div>
                   <div className="flex items-start gap-2">
                     <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
@@ -621,7 +634,7 @@ export default function ProjectCalculator() {
                 </div>
                 <p className="text-xs text-muted-foreground">
                   Unlike €4.5k agencies with 200+ employee overhead or $500 offshore freelancers who disappear, 
-                  you get senior-level expertise with pre-built compliance & Web3 solutions and transparent, honest pricing.
+                  you get senior-level expertise with institutional-grade solutions (Fireblocks custody, KYC/AML, token engineering) and transparent pricing.
                 </p>
               </Card>
 

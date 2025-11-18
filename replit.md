@@ -100,7 +100,34 @@ The application maintains a 100% static site architecture with no backend depend
 
 ## Recent Changes (November 18, 2025)
 
-### Premium Feature Expansion (Latest)
+### Advanced Web3 Suite - Institutional Crypto (Latest)
+Expanded Web3 capabilities to target institutional crypto/DeFi clients with Fireblocks custody:
+
+**New Enterprise Web3 Features:**
+- **Web3 Basic** ($3,000, Enterprise-only): 1 EVM chain, wallet connection (MetaMask/WalletConnect), deploy 1 client-supplied contract (testnet only)
+- **Token Development** ($2,500, Enterprise-only): Author 1 ERC-20 OR ERC-721 token from audited template, deploy to testnet. Client handles legal compliance & mainnet fees
+- **Smart Contract Expansion** ($1,800, Enterprise-only): Design/implement up to 3 simple contracts with unit tests. Excludes security audits
+- **Fireblocks Custody** ($4,500, Enterprise-only): Integrate with client Fireblocks tenant, configure 1 vault + policy, sign/transfer flow for 1 asset. Client provides Fireblocks license + API keys
+
+**Tier Updates:**
+- Enterprise: All 14 add-ons (was 11), base price $20k-$35k (was $20k-$30k)
+- Advanced Web3 Package: ~$11,800 total for all blockchain features
+- 8+ week timeline for full Enterprise suite
+
+**Blockchain Prerequisites Added:**
+- Client handles gas fees, mainnet deployment costs
+- Client responsible for legal compliance on token development
+- Third-party security audits recommended (not included)
+- Fireblocks requires enterprise license (client-provided)
+- All prerequisites shown in scope, T&C, and PDF quotes
+
+**Competitive Positioning:**
+- Fireblocks custody positions for institutional clients (exchanges, custody providers, DeFi platforms)
+- Very few agencies offer Fireblocks integration (major differentiator)
+- Token engineering expertise (ERC-20/ERC-721 from audited templates)
+- Targets high-value crypto/fintech clients ($50k+ project budgets)
+
+### Premium Feature Expansion
 Added enterprise-grade features to differentiate from competitors and attract fintech/Web3 clients:
 
 **New Premium Add-ons:**
