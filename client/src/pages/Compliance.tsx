@@ -3,7 +3,7 @@ import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Shield, Lock, Globe, CheckCircle2, FileCheck, Server, Eye, Database } from "lucide-react";
+import { Shield, Lock, Globe, CheckCircle2, FileCheck, Server, Eye, Database, UserCheck, Scale, FileText, MapPin } from "lucide-react";
 import { useAnalytics } from "@/hooks/use-analytics";
 
 export default function Compliance() {
@@ -86,16 +86,19 @@ export default function Compliance() {
     {
       icon: Database,
       title: "Asset Management Systems",
-      description: "Secure, compliant systems for financial asset management",
+      description: "Secure, compliant systems for financial asset management with real-world Liechtenstein operations",
       expertise: [
-        "Portfolio management platforms",
-        "Real-time asset tracking",
+        "Portfolio management platforms (Liechtenstein financial center experience)",
+        "Multi-jurisdictional client onboarding with KYC/AML compliance",
+        "Proof of funds verification across multiple countries",
+        "Country-specific regulatory requirements (Europe, USA, Middle East)",
+        "Real-time asset tracking and reporting",
         "Regulatory reporting (MiFID II, AIFMD)",
         "Audit trail and compliance logging",
         "Secure API integrations",
         "Multi-currency and multi-asset support"
       ],
-      regions: ["Europe", "USA", "Middle East"]
+      regions: ["Europe", "USA", "Middle East", "Liechtenstein"]
     },
     {
       icon: Eye,
@@ -155,6 +158,61 @@ export default function Compliance() {
     {
       title: "Vendor Management",
       description: "Third-party vendor security assessments and compliance verification"
+    }
+  ];
+
+  const kycAmlExpertise = [
+    {
+      icon: UserCheck,
+      title: "KYC (Know Your Customer)",
+      description: "Multi-jurisdictional client verification and identity management",
+      capabilities: [
+        "Identity verification across multiple countries",
+        "Country-specific documentation requirements",
+        "Automated KYC workflows and approvals",
+        "Real-time identity verification APIs",
+        "Ongoing customer due diligence monitoring",
+        "Politically Exposed Persons (PEP) screening"
+      ]
+    },
+    {
+      icon: Scale,
+      title: "AML (Anti-Money Laundering)",
+      description: "Comprehensive AML compliance for financial operations",
+      capabilities: [
+        "Transaction monitoring and suspicious activity detection",
+        "AML risk assessment frameworks",
+        "Sanctions screening (OFAC, EU, UN)",
+        "Regulatory reporting and filing",
+        "Automated alerts and case management",
+        "Compliance training and documentation"
+      ]
+    },
+    {
+      icon: FileText,
+      title: "Proof of Funds Verification",
+      description: "Rigorous source of funds and wealth verification",
+      capabilities: [
+        "Source of funds documentation",
+        "Source of wealth verification",
+        "Bank statement validation",
+        "Cross-border fund transfer compliance",
+        "Enhanced due diligence for high-risk clients",
+        "Audit trail for all verifications"
+      ]
+    },
+    {
+      icon: MapPin,
+      title: "Liechtenstein Operations",
+      description: "Real-world experience managing asset management in a premier European financial center",
+      capabilities: [
+        "Liechtenstein financial regulatory compliance",
+        "Cross-border client onboarding (Europe, USA, Middle East, Asia)",
+        "Multi-jurisdictional account opening workflows",
+        "Country-specific regulatory requirements implementation",
+        "Financial center best practices",
+        "Swiss/Liechtenstein banking standards"
+      ]
     }
   ];
 
@@ -244,8 +302,47 @@ export default function Compliance() {
           </div>
         </section>
 
-        {/* Industry Expertise */}
+        {/* KYC/AML Expertise */}
         <section className="py-20 px-6 bg-muted/30">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                KYC/AML & Multi-Jurisdictional Compliance
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+                Real-world experience managing asset management operations in Liechtenstein with cross-border client 
+                onboarding across Europe, USA, Middle East, and Asia. Full KYC/AML compliance implementation.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-6">
+              {kycAmlExpertise.map((item, index) => (
+                <Card key={index} className="p-6 hover:shadow-lg transition-shadow">
+                  <div className="flex items-start gap-4 mb-4">
+                    <div className="p-3 rounded-lg bg-primary/10">
+                      <item.icon className="w-6 h-6 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-lg mb-2">{item.title}</h3>
+                      <p className="text-sm text-muted-foreground">{item.description}</p>
+                    </div>
+                  </div>
+                  <ul className="space-y-2">
+                    {item.capabilities.map((capability, idx) => (
+                      <li key={idx} className="flex items-start gap-2 text-sm">
+                        <CheckCircle2 className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
+                        <span>{capability}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Industry Expertise */}
+        <section className="py-20 px-6">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
