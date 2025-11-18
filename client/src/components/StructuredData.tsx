@@ -24,7 +24,7 @@ export default function StructuredData({
     "name": "Persystance Networks",
     "url": "https://persystance.com",
     "logo": "https://persystance.com/logo-square.png",
-    "description": "Rapid MVP development company specializing in 2-week MVP builds and 30-day launches. Expert in Web, Mobile, SaaS, Blockchain, AI, and Telegram/Web3 game development.",
+    "description": "Rapid MVP development company specializing in 2-week MVP builds and 30-day launches. Expert in Web, Mobile, SaaS, Blockchain, AI, Telegram/Web3 games, and compliant enterprise systems (GDPR, ISO 27001, SOC 2) for asset management and secure data rooms.",
     "foundingDate": "2012",
     "contactPoint": {
       "@type": "ContactPoint",
@@ -78,6 +78,22 @@ export default function StructuredData({
             "@type": "Service",
             "name": "Web3 Game Development",
             "description": "Blockchain gaming, tap-to-earn games, NFT integration"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Asset Management Systems",
+            "description": "GDPR-compliant portfolio management with regulatory reporting for Europe, USA, and Middle East"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Secure Data Rooms",
+            "description": "Enterprise-grade virtual data rooms for M&A due diligence with ISO compliance"
           }
         }
       ]
