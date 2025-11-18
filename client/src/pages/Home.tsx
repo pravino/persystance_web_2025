@@ -10,6 +10,7 @@ import TechnologyStack from "@/components/TechnologyStack";
 import Portfolio from "@/components/Portfolio";
 import IndustryExpertise from "@/components/IndustryExpertise";
 import InteractiveDemos from "@/components/InteractiveDemos";
+import ProjectCalculator from "@/components/ProjectCalculator";
 import CaseStudies from "@/components/CaseStudies";
 import Testimonials from "@/components/Testimonials";
 import FAQ from "@/components/FAQ";
@@ -39,6 +40,11 @@ export default function Home() {
         <CaseStudies />
         <IndustryExpertise />
         <InteractiveDemos />
+        <section className="py-20 px-6 bg-gradient-to-br from-background via-primary/5 to-background">
+          <div className="max-w-7xl mx-auto">
+            <ProjectCalculator />
+          </div>
+        </section>
         <Testimonials />
         <FAQ />
         <ContactForm />
