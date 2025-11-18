@@ -40,7 +40,7 @@ const projectTypes = [
   {
     id: "standard",
     name: "Standard MVP",
-    description: "4 weeks - Baseline + up to 3 add-ons (Web or React Native)",
+    description: "4 weeks - Baseline + up to 4 add-ons (Web or React Native)",
     baseMin: 8300,
     baseMax: 12000,
     icon: Code
@@ -48,7 +48,7 @@ const projectTypes = [
   {
     id: "full",
     name: "Full Web Application",
-    description: "6 weeks - Baseline + up to 6 add-ons",
+    description: "6 weeks - Baseline + up to 7 add-ons including KYC/AML (Web)",
     baseMin: 12000,
     baseMax: 18000,
     icon: Store
@@ -56,7 +56,7 @@ const projectTypes = [
   {
     id: "enterprise",
     name: "Enterprise Solution",
-    description: "8 weeks - Baseline + all 8 available add-ons (Web, Mobile, or Both)",
+    description: "8 weeks - Baseline + all 11 add-ons including SSO & Web3 (Web, Mobile, or Both)",
     baseMin: 20000,
     baseMax: 30000,
     icon: Rocket
@@ -64,18 +64,17 @@ const projectTypes = [
 ];
 
 const availableFeatures = [
-  { id: "auth", name: "User Authentication", cost: 800, scope: "Email/password login only" },
-  { id: "dashboard", name: "Admin Dashboard", cost: 1200, scope: "Basic admin panel with user management & content CRUD" },
-  { id: "api", name: "RESTful API", cost: 1000, scope: "Standard CRUD endpoints" },
-  { id: "database", name: "Database Design", cost: 1000, scope: "Up to 5 simple tables" },
-  { id: "payments", name: "Payment Integration", cost: 1500, scope: "Stripe one-time checkout only (no subscriptions)" },
-  { id: "realtime", name: "Real-time Features", cost: 2000, scope: "Basic WebSocket updates for 1 feature (e.g., live notifications)" },
-  { id: "notifications", name: "Email/SMS Notifications", cost: 800, scope: "Transactional emails via SendGrid/Twilio (up to 3 templates)" },
-  { id: "analytics", name: "Analytics Dashboard", cost: 1500, scope: "Basic charts (5 metrics: users, revenue, activity, growth, conversion)" },
-  { id: "mobile", name: "Mobile Responsive", cost: 600, scope: "Responsive breakpoints" },
-  { id: "search", name: "Advanced Search", cost: 1200, scope: "Text search with filters (up to 5 fields)" },
-  { id: "chat", name: "Live Chat Support", cost: 1800, scope: "Basic message list with send/receive (no typing indicators)" },
-  { id: "reports", name: "PDF Report Generation", cost: 1000, scope: "Simple PDF with tables & text (up to 3 report types)" }
+  { id: "payments", name: "Payment Integration", cost: 1500, scope: "Stripe one-time checkout only (no subscriptions)", minTier: "standard" },
+  { id: "analytics", name: "Analytics Dashboard", cost: 1500, scope: "Basic charts (5 metrics: users, revenue, activity, growth, conversion)", minTier: "standard" },
+  { id: "notifications", name: "Email/SMS Notifications", cost: 800, scope: "Transactional emails via SendGrid/Twilio (up to 3 templates)", minTier: "standard" },
+  { id: "search", name: "Advanced Search", cost: 1200, scope: "Text search with filters (up to 5 fields)", minTier: "standard" },
+  { id: "chat", name: "Live Chat Support", cost: 1800, scope: "Basic message list with send/receive (no typing indicators)", minTier: "standard" },
+  { id: "reports", name: "PDF Report Generation", cost: 1000, scope: "Simple PDF with tables & text (up to 3 report types)", minTier: "standard" },
+  { id: "realtime", name: "Real-time Features", cost: 2000, scope: "Basic WebSocket updates for 1 feature (e.g., live notifications)", minTier: "standard" },
+  { id: "social_login", name: "Social Media Login", cost: 1200, scope: "OAuth integration for Google, Facebook (2 providers max)", minTier: "standard" },
+  { id: "kyc", name: "KYC/AML Compliance", cost: 3500, scope: "Identity verification via 1 provider (Onfido/Jumio) - document + sanctions check. Client provides vendor API keys", minTier: "full" },
+  { id: "sso", name: "Enterprise SSO", cost: 2000, scope: "SAML/OAuth SSO via 1 provider (Okta/Auth0). Client provides vendor account", minTier: "enterprise" },
+  { id: "web3", name: "Web3 Integration", cost: 3000, scope: "1 EVM chain, wallet connection (MetaMask/WalletConnect), 1 smart contract (testnet only). Client provides contract code for deployment", minTier: "enterprise" }
 ];
 
 export default function ProjectCalculator() {
@@ -171,15 +170,16 @@ export default function ProjectCalculator() {
     doc.text("• Support: 30 days bug-fix warranty. Response: 48 hours", 25, 238);
     doc.text("• Hosting: Deployment included. Hosting costs paid by client", 25, 246);
     doc.text("• Scope: Dashboard = 5 screens, CRUD = 1 entity (10 fields), DB = 5 tables", 25, 254);
+    doc.text("• Prerequisites: Client provides API keys for 3rd-party services", 25, 262);
     
     doc.setFontSize(11);
-    doc.text("Why Persystance Networks?", 20, 267);
+    doc.text("Why Persystance Networks?", 20, 275);
     doc.setFontSize(9);
-    doc.text("✓ 13 Years in Business - Proven Track Record", 25, 277);
-    doc.text("✓ Direct Access to Senior Developer (No Juniors)", 25, 284);
+    doc.text("✓ 13 Years in Business - Proven Track Record", 25, 285);
+    doc.text("✓ Direct Access to Senior Developer (No Juniors)", 25, 292);
     
     doc.setFontSize(9);
-    doc.text("This is an automated estimate. Book a discovery call for detailed proposal.", 20, 295);
+    doc.text("This is an automated estimate. Book a discovery call for detailed proposal.", 20, 303);
 
     doc.save(`persystance-estimate-${Date.now()}.pdf`);
   };
@@ -193,11 +193,49 @@ export default function ProjectCalculator() {
   const getFeatureLimit = (projectType: string): number => {
     const limits: Record<string, number> = {
       starter: 0,
-      standard: 3,
-      full: 6,
-      enterprise: 10
+      standard: 4,
+      full: 7,
+      enterprise: 11
     };
-    return limits[projectType] || 3;
+    return limits[projectType] || 4;
+  };
+
+  const getTierLevel = (projectType: string): number => {
+    const levels: Record<string, number> = {
+      starter: 0,
+      standard: 1,
+      full: 2,
+      enterprise: 3
+    };
+    return levels[projectType] || 0;
+  };
+
+  const isFeatureAvailable = (feature: any): boolean => {
+    if (!feature.minTier) return true;
+    const currentLevel = getTierLevel(config.projectType);
+    const requiredLevel = getTierLevel(feature.minTier);
+    return currentLevel >= requiredLevel;
+  };
+
+  const validateFeaturesForTier = (projectType: string, selectedFeatures: string[]): string[] => {
+    // Starter tier can't have any add-ons
+    if (projectType === 'starter') {
+      return [];
+    }
+    
+    // Filter out features that aren't available in the new tier
+    const availableInTier = selectedFeatures.filter(featureId => {
+      const feature = availableFeatures.find(f => f.id === featureId);
+      if (!feature) return false;
+      if (!feature.minTier) return true;
+      const currentLevel = getTierLevel(projectType);
+      const requiredLevel = getTierLevel(feature.minTier);
+      return currentLevel >= requiredLevel;
+    });
+    
+    // Enforce tier limit (drop excess features if over limit)
+    const limit = getFeatureLimit(projectType);
+    return availableInTier.slice(0, limit);
   };
 
   const toggleFeature = (featureId: string) => {
@@ -268,7 +306,12 @@ export default function ProjectCalculator() {
                     <button
                       key={type.id}
                       onClick={() => {
-                        setConfig({ ...config, projectType: type.id });
+                        // Validate and clean selected features when tier changes
+                        const validatedFeatures = validateFeaturesForTier(type.id, config.selectedFeatures);
+                        setConfig({ 
+                          projectType: type.id,
+                          selectedFeatures: validatedFeatures
+                        });
                         setStep(1);
                       }}
                       className={`p-6 rounded-lg border-2 transition-all text-left ${
@@ -385,20 +428,36 @@ export default function ProjectCalculator() {
                         </div>
                       </div>
                       
+                      {config.projectType === 'full' && (
+                        <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-3 mb-4">
+                          <p className="text-sm text-blue-700 dark:text-blue-400">
+                            ✨ <strong>Full tier unlocks:</strong> KYC/AML Compliance for fintech/regulated industries
+                          </p>
+                        </div>
+                      )}
+                      
+                      {config.projectType === 'enterprise' && (
+                        <div className="bg-purple-500/10 border border-purple-500/20 rounded-lg p-3 mb-4">
+                          <p className="text-sm text-purple-700 dark:text-purple-400">
+                            ⚡ <strong>Enterprise tier unlocks:</strong> SSO + Web3 Integration (wallet, smart contracts)
+                          </p>
+                        </div>
+                      )}
+                      
                       {config.selectedFeatures.length >= getFeatureLimit(config.projectType) && (
                         <div className="bg-amber-500/10 border border-amber-500/20 rounded-lg p-3 mb-4">
                           <p className="text-sm text-amber-700 dark:text-amber-400">
                             <strong>Feature limit reached.</strong> {
-                              config.projectType === 'standard' ? 'Need more? Choose Full Application for up to 6 features.' :
-                              config.projectType === 'full' ? 'Need more? Choose Enterprise Solution for up to 10 features.' :
-                              'Contact us for custom requirements beyond 10 features.'
+                              config.projectType === 'standard' ? 'Need more? Choose Full Application for up to 7 features including KYC/AML.' :
+                              config.projectType === 'full' ? 'Need more? Choose Enterprise Solution for all 11 features including SSO & Web3.' :
+                              'Contact us for custom requirements beyond 11 features.'
                             }
                           </p>
                         </div>
                       )}
                       
                       <div className="grid md:grid-cols-2 gap-3">
-                        {availableFeatures.filter(f => !['auth', 'database', 'api', 'mobile'].includes(f.id)).map((feature) => {
+                        {availableFeatures.filter(f => isFeatureAvailable(f)).map((feature) => {
                           const isSelected = config.selectedFeatures.includes(feature.id);
                           const isLimitReached = config.selectedFeatures.length >= getFeatureLimit(config.projectType) && !isSelected;
                           
@@ -421,7 +480,19 @@ export default function ProjectCalculator() {
                                 {isSelected && <CheckCircle2 className="w-3 h-3 text-primary-foreground" />}
                               </div>
                               <div className="flex-1">
-                                <h4 className="font-medium mb-1">{feature.name}</h4>
+                                <div className="flex items-center gap-2 mb-1">
+                                  <h4 className="font-medium">{feature.name}</h4>
+                                  {feature.minTier === 'enterprise' && (
+                                    <span className="text-[10px] px-1.5 py-0.5 bg-purple-500/20 text-purple-700 dark:text-purple-400 rounded font-semibold">
+                                      ENTERPRISE
+                                    </span>
+                                  )}
+                                  {feature.minTier === 'full' && (
+                                    <span className="text-[10px] px-1.5 py-0.5 bg-blue-500/20 text-blue-700 dark:text-blue-400 rounded font-semibold">
+                                      FULL+
+                                    </span>
+                                  )}
+                                </div>
                                 <p className="text-xs text-muted-foreground mb-1">+${feature.cost.toLocaleString()}</p>
                                 <p className="text-xs text-muted-foreground italic">{feature.scope}</p>
                               </div>
@@ -502,6 +573,10 @@ export default function ProjectCalculator() {
                     <div className="w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0 mt-1.5" />
                     <span><strong>Baseline Scope:</strong> Dashboard = 5 pre-defined screens. CRUD = simple operations for 1 entity (up to 10 fields). Database = up to 5 simple tables</span>
                   </div>
+                  <div className="flex items-start gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0 mt-1.5" />
+                    <span><strong>Prerequisites:</strong> Client provides API keys for 3rd-party services (payment processors, KYC providers, SSO vendors, etc.)</span>
+                  </div>
                 </div>
               </Card>
 
@@ -525,11 +600,19 @@ export default function ProjectCalculator() {
                   </div>
                   <div className="flex items-start gap-2">
                     <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
-                    <span><strong>Accountability</strong> - 13 years in business</span>
+                    <span>Production code vs Fiverr <strong>$500 prototypes</strong></span>
                   </div>
                   <div className="flex items-start gap-2">
                     <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
-                    <span>Production code vs Fiverr <strong>$500 prototypes</strong></span>
+                    <span><strong>Pre-built KYC/AML</strong> solutions for fintech compliance</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
+                    <span><strong>Web3 expertise</strong> - wallet integration & smart contracts</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
+                    <span><strong>Enterprise SSO</strong> ready for regulated industries</span>
                   </div>
                   <div className="flex items-start gap-2">
                     <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
@@ -538,7 +621,7 @@ export default function ProjectCalculator() {
                 </div>
                 <p className="text-xs text-muted-foreground">
                   Unlike €4.5k agencies with 200+ employee overhead or $500 offshore freelancers who disappear, 
-                  you get senior-level expertise with transparent, honest pricing.
+                  you get senior-level expertise with pre-built compliance & Web3 solutions and transparent, honest pricing.
                 </p>
               </Card>
 

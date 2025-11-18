@@ -100,7 +100,28 @@ The application maintains a 100% static site architecture with no backend depend
 
 ## Recent Changes (November 18, 2025)
 
-### Scope Protection Updates (Latest)
+### Premium Feature Expansion (Latest)
+Added enterprise-grade features to differentiate from competitors and attract fintech/Web3 clients:
+
+**New Premium Add-ons:**
+- **Social Media Login** ($1,200, Standard+): OAuth for Google, Facebook (2 providers max)
+- **KYC/AML Compliance** ($3,500, Full/Enterprise): Identity verification via 1 provider (Onfido/Jumio) - document + sanctions check
+- **Enterprise SSO** ($2,000, Enterprise-only): SAML/OAuth SSO via 1 provider (Okta/Auth0)
+- **Web3 Integration** ($3,000, Enterprise-only): 1 EVM chain, wallet connection (MetaMask/WalletConnect), 1 smart contract (testnet only)
+
+**Tier Updates:**
+- Removed "Mobile Responsive" from selectable add-ons (already baseline)
+- Updated limits: Standard (4 add-ons), Full (7 add-ons including KYC/AML), Enterprise (all 11 add-ons including SSO & Web3)
+- Added tier gating: Enterprise-only features show "ENTERPRISE" badge, Full+ features show "FULL+" badge
+- Features auto-hide based on selected tier for clean UX
+
+**Competitive Positioning:**
+- Highlights pre-built KYC/AML solutions (vs agencies without compliance expertise)
+- Showcases Web3 capability (wallet integration, smart contracts)
+- Emphasizes Enterprise SSO readiness for regulated industries
+- Differentiates from both "contact us" agencies and low-cost freelancers
+
+### Scope Protection Updates
 Added comprehensive scope definitions to prevent client exploitation:
 
 **Terms & Conditions Added:**
