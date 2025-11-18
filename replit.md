@@ -111,8 +111,8 @@ Expanded Web3 capabilities to target institutional crypto/DeFi clients with Fire
 
 **Tier Updates:**
 - Enterprise: All 14 add-ons (was 11), base price $20k-$35k (was $20k-$30k)
+- Timeline: "8+ weeks" displayed consistently (UI + PDF)
 - Advanced Web3 Package: ~$11,800 total for all blockchain features
-- 8+ week timeline for full Enterprise suite
 
 **Blockchain Prerequisites Added:**
 - Client handles gas fees, mainnet deployment costs
