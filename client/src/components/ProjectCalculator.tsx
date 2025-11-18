@@ -191,6 +191,14 @@ export default function ProjectCalculator() {
     const est = estimate || calculateEstimate();
     const doc = new jsPDF();
     const selectedType = projectTypes.find(t => t.id === config.projectType);
+    
+    if (!selectedType) return;
+
+    // Calculate pricing breakdown
+    const addOnCost = config.selectedFeatures.reduce((total, featureId) => {
+      const feature = availableFeatures.find(f => f.id === featureId);
+      return total + (feature?.cost || 0);
+    }, 0);
 
     // Load and add logo
     try {
@@ -227,75 +235,150 @@ export default function ProjectCalculator() {
     doc.text(`Quote #: PST-${Date.now().toString().slice(-8)}`, 145, 45);
     doc.setTextColor(0, 0, 0);
 
-    // Project Type Box
-    doc.setFillColor(245, 247, 250);
-    doc.rect(15, 52, 180, 18, 'F');
-    doc.setFontSize(11);
-    doc.setFont('helvetica', 'bold');
-    doc.text("PROJECT TYPE:", 20, 60);
-    doc.setFont('helvetica', 'normal');
-    doc.text(selectedType?.name || 'Standard MVP', 55, 60);
-    doc.setFontSize(9);
-    doc.text(`${config.selectedFeatures.length} Custom Features Selected`, 20, 66);
-
-    // Pricing Section - Large and prominent
-    let yPos = 78;
+    // "PRICE QUOTATION" Title
+    let yPos = 58;
     doc.setFillColor(66, 135, 245);
-    doc.rect(15, yPos, 180, 28, 'F');
+    doc.rect(15, yPos, 180, 12, 'F');
     doc.setTextColor(255, 255, 255);
-    doc.setFontSize(12);
-    doc.setFont('helvetica', 'bold');
-    doc.text("TOTAL ESTIMATED INVESTMENT", 105, yPos + 8, { align: 'center' });
-    doc.setFontSize(24);
-    doc.text(`$${est.minCost.toLocaleString()} - $${est.maxCost.toLocaleString()}`, 105, yPos + 20, { align: 'center' });
-    doc.setFontSize(9);
-    doc.setFont('helvetica', 'normal');
-    doc.text(`Delivery Timeline: ${est.weeksDisplay}`, 105, yPos + 26, { align: 'center' });
-    doc.setTextColor(0, 0, 0);
-
-    // Features Section
-    yPos = 115;
     doc.setFontSize(14);
     doc.setFont('helvetica', 'bold');
-    doc.text("Features & Services Included", 15, yPos);
+    doc.text("PRICE QUOTATION", 105, yPos + 8, { align: 'center' });
+    doc.setTextColor(0, 0, 0);
+
+    // Pricing Table Header
+    yPos = 78;
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'bold');
+    doc.text("Description", 20, yPos);
+    doc.text("Price", 165, yPos, { align: 'right' });
+    
+    // Table line
+    doc.setLineWidth(0.3);
+    doc.setDrawColor(200, 200, 200);
+    doc.line(15, yPos + 2, 195, yPos + 2);
+    
+    yPos += 10;
+    
+    // Base Tier Pricing
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'bold');
+    doc.text(`Base: ${selectedType.name}`, 20, yPos);
+    doc.text(`$${selectedType.baseMin.toLocaleString()} - $${selectedType.baseMax.toLocaleString()}`, 165, yPos, { align: 'right' });
+    
+    yPos += 8;
+    
+    // Add-on Features Section
+    if (config.selectedFeatures.length > 0) {
+      doc.setFont('helvetica', 'bold');
+      doc.text("ADD-ON FEATURES:", 20, yPos);
+      yPos += 6;
+      
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(9);
+      
+      config.selectedFeatures.forEach(featureId => {
+        const feature = availableFeatures.find(f => f.id === featureId);
+        if (feature) {
+          doc.text(`• ${feature.name}`, 25, yPos);
+          doc.text(`$${feature.cost.toLocaleString()}`, 165, yPos, { align: 'right' });
+          yPos += 5;
+        }
+      });
+      
+      // Add-ons subtotal line
+      yPos += 2;
+      doc.setLineWidth(0.2);
+      doc.line(150, yPos, 195, yPos);
+      yPos += 6;
+      
+      doc.setFontSize(10);
+      doc.setFont('helvetica', 'bold');
+      doc.text("Add-ons Subtotal:", 120, yPos);
+      doc.text(`$${addOnCost.toLocaleString()}`, 165, yPos, { align: 'right' });
+      yPos += 8;
+    } else {
+      yPos += 2;
+    }
+    
+    // Total Investment Section - Prominent
+    yPos += 4;
+    doc.setFillColor(245, 247, 250);
+    doc.rect(15, yPos - 4, 180, 18, 'F');
+    
+    doc.setFontSize(12);
+    doc.setFont('helvetica', 'bold');
+    doc.text("TOTAL INVESTMENT:", 20, yPos + 5);
+    doc.setFontSize(14);
+    doc.text(`$${est.minCost.toLocaleString()} - $${est.maxCost.toLocaleString()}`, 165, yPos + 5, { align: 'right' });
+    
+    doc.setFontSize(9);
+    doc.setFont('helvetica', 'normal');
+    doc.text(`Delivery Timeline: ${est.weeksDisplay}`, 20, yPos + 11);
+    
+    yPos += 22;
+    
+    // Included Baseline Features
+    doc.setFontSize(12);
+    doc.setFont('helvetica', 'bold');
+    doc.text("Included Baseline Features:", 15, yPos);
     
     yPos += 8;
     doc.setFontSize(9);
     doc.setFont('helvetica', 'normal');
     
-    // Draw features in a nice table format
-    const featuresPerColumn = 14;
-    const columnWidth = 88;
-    let currentColumn = 0;
-    let featureYPos = yPos;
+    const baselineFeatures = [
+      "Source code ownership",
+      "Documentation & handover",
+      "30-day post-launch support",
+      "Direct access to senior developer"
+    ];
     
-    est.features.forEach((feature, index) => {
-      if (index > 0 && index % featuresPerColumn === 0) {
-        currentColumn++;
-        featureYPos = yPos;
-      }
-      
-      const xPos = 18 + (currentColumn * columnWidth);
-      
-      // Bullet point
-      doc.setFillColor(66, 135, 245);
-      doc.circle(xPos, featureYPos + 1, 0.8, 'F');
-      
-      // Feature text (wrap if too long)
-      const maxWidth = columnWidth - 8;
-      const lines = doc.splitTextToSize(feature, maxWidth);
-      doc.text(lines[0], xPos + 3, featureYPos + 2);
-      if (lines.length > 1) {
-        doc.setFontSize(8);
-        doc.text(lines.slice(1).join(' '), xPos + 3, featureYPos + 5);
-        featureYPos += 8;
-      } else {
-        featureYPos += 5;
-      }
-      doc.setFontSize(9);
+    baselineFeatures.forEach(feature => {
+      doc.setFillColor(34, 197, 94);
+      doc.circle(18, yPos + 1, 0.8, 'F');
+      doc.text(feature, 22, yPos + 2);
+      yPos += 5;
     });
+    
+    // Feature Scope Details (if add-ons selected)
+    if (config.selectedFeatures.length > 0) {
+      yPos += 5;
+      doc.setFontSize(12);
+      doc.setFont('helvetica', 'bold');
+      doc.text("Feature Scope & Deliverables:", 15, yPos);
+      
+      yPos += 8;
+      doc.setFontSize(8);
+      doc.setFont('helvetica', 'normal');
+      
+      config.selectedFeatures.forEach(featureId => {
+        const feature = availableFeatures.find(f => f.id === featureId);
+        if (feature) {
+          // Check if we need a new page (leave room for feature + scope)
+          const scopeLines = doc.splitTextToSize(feature.scope, 170);
+          const neededSpace = 3 + (scopeLines.length * 3) + 5;
+          
+          if (yPos + neededSpace > 270) {
+            doc.addPage();
+            yPos = 20;
+            doc.setFontSize(12);
+            doc.setFont('helvetica', 'bold');
+            doc.text("Feature Scope & Deliverables (continued):", 15, yPos);
+            yPos += 10;
+            doc.setFontSize(8);
+            doc.setFont('helvetica', 'normal');
+          }
+          
+          doc.setFont('helvetica', 'bold');
+          doc.text(`• ${feature.name}:`, 18, yPos);
+          doc.setFont('helvetica', 'normal');
+          doc.text(scopeLines, 22, yPos + 3);
+          yPos += 3 + (scopeLines.length * 3);
+        }
+      });
+    }
 
-    // Terms & Conditions (new page if needed)
+    // Terms & Conditions (new page)
     doc.addPage();
     yPos = 20;
     
@@ -363,7 +446,7 @@ export default function ProjectCalculator() {
     doc.text("This is an automated estimate. Book a free discovery call for a detailed proposal.", 105, yPos + 5, { align: 'center' });
     doc.text("Email: contact@persystance.com | Web: www.persystance.com", 105, yPos + 10, { align: 'center' });
 
-    doc.save(`persystance-estimate-${Date.now()}.pdf`);
+    doc.save(`persystance-quote-${Date.now()}.pdf`);
   };
 
   const handleCalculate = () => {
