@@ -41,7 +41,7 @@ const projectTypes = [
   {
     id: "standard",
     name: "Standard MVP",
-    description: "4 weeks - Baseline + up to 4 add-ons (Web or React Native)",
+    description: "4 weeks - Baseline + up to 5 add-ons (Web or React Native)",
     baseMin: 8300,
     baseMax: 12000,
     icon: Code
@@ -49,7 +49,7 @@ const projectTypes = [
   {
     id: "full",
     name: "Full Web Application",
-    description: "6 weeks - Baseline + up to 7 add-ons including KYC/AML (Web)",
+    description: "6 weeks - Baseline + up to 9 add-ons including KYC/AML, Stripe Commerce (Web)",
     baseMin: 12000,
     baseMax: 18000,
     icon: Store
@@ -57,9 +57,9 @@ const projectTypes = [
   {
     id: "enterprise",
     name: "Enterprise Solution",
-    description: "8+ weeks - Baseline + all 14 add-ons including SSO, Web3, Fireblocks (Web, Mobile, or Both)",
+    description: "8+ weeks - Baseline + all 16 add-ons including SSO, Web3, Fireblocks, Full Commerce (Web, Mobile, or Both)",
     baseMin: 20000,
-    baseMax: 35000,
+    baseMax: 40000,
     icon: Rocket
   }
 ];
@@ -73,7 +73,9 @@ const availableFeatures = [
   { id: "reports", name: "PDF Report Generation", cost: 1000, scope: "Simple PDF with tables & text (up to 3 report types)", minTier: "standard" },
   { id: "realtime", name: "Real-time Features", cost: 2000, scope: "Basic WebSocket updates for 1 feature (e.g., live notifications)", minTier: "standard" },
   { id: "social_login", name: "Social Media Login", cost: 1200, scope: "OAuth integration for Google, Facebook (2 providers max)", minTier: "standard" },
+  { id: "location", name: "Location Intelligence Pack", cost: 1600, scope: "Embedded map (Google/Mapbox) with 10 markers, address autocomplete, geocoding, distance matrix (100 daily requests). Client provides API key & billing", minTier: "standard" },
   { id: "kyc", name: "KYC/AML Compliance", cost: 3500, scope: "Identity verification via 1 provider (Onfido/Jumio) - document + sanctions check. Client provides vendor API keys", minTier: "full" },
+  { id: "stripe_commerce", name: "Stripe Commerce Suite", cost: 3800, scope: "Subscriptions (5 plans), shopping cart (50 SKUs), customer portal, webhooks. Client provides Stripe API keys", minTier: "full" },
   { id: "sso", name: "Enterprise SSO", cost: 2000, scope: "SAML/OAuth SSO via 1 provider (Okta/Auth0). Client provides vendor account", minTier: "enterprise" },
   { id: "web3_basic", name: "Web3 Basic", cost: 3000, scope: "1 EVM chain, wallet connection (MetaMask/WalletConnect), deploy 1 client-supplied contract (testnet only)", minTier: "enterprise" },
   { id: "token_dev", name: "Token Development", cost: 2500, scope: "Author 1 ERC-20 OR ERC-721 token from audited template, deploy to testnet. Client handles legal compliance & mainnet fees", minTier: "enterprise" },
@@ -174,18 +176,19 @@ export default function ProjectCalculator() {
     doc.text("• Support: 30 days bug-fix warranty. Response: 48 hours", 25, 238);
     doc.text("• Hosting: Deployment included. Hosting costs paid by client", 25, 246);
     doc.text("• Scope: Dashboard = 5 screens, CRUD = 1 entity (10 fields), DB = 5 tables", 25, 254);
-    doc.text("• Prerequisites: Client provides API keys for 3rd-party services", 25, 262);
+    doc.text("• Prerequisites: Client provides API keys (Stripe, Google Maps billing, KYC, SSO)", 25, 262);
     doc.text("• Blockchain: Client funds gas fees, handles legal compliance for tokens", 25, 270);
     doc.text("• Fireblocks: Requires enterprise Fireblocks license (client-provided)", 25, 278);
+    doc.text("• Maps: Google Maps billing account required for Location Intelligence Pack", 25, 286);
     
     doc.setFontSize(11);
-    doc.text("Why Persystance Networks?", 20, 290);
+    doc.text("Why Persystance Networks?", 20, 298);
     doc.setFontSize(9);
-    doc.text("✓ 13 Years in Business - Institutional-Grade Solutions", 25, 300);
-    doc.text("✓ Fireblocks Custody + Token Engineering Expertise", 25, 307);
+    doc.text("✓ 13 Years in Business - Institutional-Grade Solutions", 25, 308);
+    doc.text("✓ Fireblocks Custody + Token Engineering + Full Commerce Suite", 25, 315);
     
     doc.setFontSize(9);
-    doc.text("This is an automated estimate. Book a discovery call for detailed proposal.", 20, 318);
+    doc.text("This is an automated estimate. Book a discovery call for detailed proposal.", 20, 326);
 
     doc.save(`persystance-estimate-${Date.now()}.pdf`);
   };
@@ -199,11 +202,11 @@ export default function ProjectCalculator() {
   const getFeatureLimit = (projectType: string): number => {
     const limits: Record<string, number> = {
       starter: 0,
-      standard: 4,
-      full: 7,
-      enterprise: 14
+      standard: 5,
+      full: 9,
+      enterprise: 16
     };
-    return limits[projectType] || 4;
+    return limits[projectType] || 5;
   };
 
   const getTierLevel = (projectType: string): number => {
@@ -437,7 +440,7 @@ export default function ProjectCalculator() {
                       {config.projectType === 'full' && (
                         <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-3 mb-4">
                           <p className="text-sm text-blue-700 dark:text-blue-400">
-                            ✨ <strong>Full tier unlocks:</strong> KYC/AML Compliance for fintech/regulated industries
+                            ✨ <strong>Full tier unlocks:</strong> KYC/AML Compliance, Stripe Commerce Suite (subscriptions + shopping cart)
                           </p>
                         </div>
                       )}
@@ -445,7 +448,7 @@ export default function ProjectCalculator() {
                       {config.projectType === 'enterprise' && (
                         <div className="bg-purple-500/10 border border-purple-500/20 rounded-lg p-3 mb-4">
                           <p className="text-sm text-purple-700 dark:text-purple-400">
-                            ⚡ <strong>Enterprise tier unlocks:</strong> SSO, Web3 Basic, Token Development, Smart Contracts, Fireblocks Custody
+                            ⚡ <strong>Enterprise tier unlocks:</strong> All 16 features including SSO, Web3, Token Development, Smart Contracts, Fireblocks Custody
                           </p>
                           <p className="text-xs text-purple-600 dark:text-purple-500 mt-2">
                             💎 Advanced Web3 Package (~$11k): All blockchain features for institutional crypto/DeFi platforms
@@ -457,9 +460,9 @@ export default function ProjectCalculator() {
                         <div className="bg-amber-500/10 border border-amber-500/20 rounded-lg p-3 mb-4">
                           <p className="text-sm text-amber-700 dark:text-amber-400">
                             <strong>Feature limit reached.</strong> {
-                              config.projectType === 'standard' ? 'Need more? Choose Full Application for up to 7 features including KYC/AML.' :
-                              config.projectType === 'full' ? 'Need more? Choose Enterprise Solution for all 14 features including Web3, Fireblocks, SSO.' :
-                              'Contact us for custom requirements beyond 14 features.'
+                              config.projectType === 'standard' ? 'Need more? Choose Full Application for up to 9 features including KYC/AML, Stripe Commerce Suite.' :
+                              config.projectType === 'full' ? 'Need more? Choose Enterprise Solution for all 16 features including Web3, Fireblocks, SSO.' :
+                              'Contact us for custom requirements beyond 16 features.'
                             }
                           </p>
                         </div>
@@ -584,7 +587,7 @@ export default function ProjectCalculator() {
                   </div>
                   <div className="flex items-start gap-2">
                     <div className="w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0 mt-1.5" />
-                    <span><strong>Prerequisites:</strong> Client provides API keys for 3rd-party services (payment processors, KYC providers, SSO vendors, etc.)</span>
+                    <span><strong>Prerequisites:</strong> Client provides API keys for 3rd-party services (Stripe, Google Maps billing, KYC providers, SSO vendors, etc.)</span>
                   </div>
                   <div className="flex items-start gap-2">
                     <div className="w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0 mt-1.5" />
@@ -621,6 +624,14 @@ export default function ProjectCalculator() {
                   </div>
                   <div className="flex items-start gap-2">
                     <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
+                    <span><strong>Full Commerce Suite</strong> - Stripe subscriptions, shopping cart, webhooks</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
+                    <span><strong>Location Intelligence</strong> - Google Maps integration, geocoding, distance matrix</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
                     <span><strong>Institutional Web3</strong> - Fireblocks custody, token dev, smart contracts</span>
                   </div>
                   <div className="flex items-start gap-2">
@@ -634,7 +645,7 @@ export default function ProjectCalculator() {
                 </div>
                 <p className="text-xs text-muted-foreground">
                   Unlike €4.5k agencies with 200+ employee overhead or $500 offshore freelancers who disappear, 
-                  you get senior-level expertise with institutional-grade solutions (Fireblocks custody, KYC/AML, token engineering) and transparent pricing.
+                  you get senior-level expertise with institutional-grade solutions (Full Commerce Suite, Location Intelligence, Fireblocks custody, KYC/AML, token engineering) and transparent pricing.
                 </p>
               </Card>
 

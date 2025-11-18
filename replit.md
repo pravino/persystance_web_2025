@@ -2,7 +2,7 @@
 
 ## Overview
 
-Persystance Networks provides rapid MVP development services, aiming for production-ready MVPs in 2 weeks and launch within 30 days. The platform functions as a marketing website to generate leads for startups and entrepreneurs, showcasing value propositions, technology expertise, and portfolio examples. It integrates WhatsApp for contact and includes a specialized landing page for Telegram/Web3 game development, enterprise compliance features, and a section for institutional trading and portfolio management services. The platform is undergoing a major upgrade to a future-forward interactive design with glassmorphism UI, live demos, and a comprehensive trading platform simulator, all built on a 100% static site architecture.
+Persystance Networks specializes in rapid MVP development, aiming for production-ready MVPs within two weeks and launch within 30 days. The platform serves as a marketing tool to generate leads for startups, showcasing value propositions, technology expertise, and a portfolio. It features WhatsApp integration for contact, a dedicated landing page for Telegram/Web3 game development, enterprise compliance features, and sections for institutional trading and portfolio management. The platform is currently being upgraded to a future-forward, interactive design with a glassmorphism UI, live demos, and a comprehensive trading platform simulator, all based on a 100% static site architecture. The business operates with a transparent pricing strategy, providing instant quotes via a calculator and emphasizing 13 years of experience, direct senior developer access, and production-grade code.
 
 ## User Preferences
 
@@ -10,44 +10,27 @@ Preferred communication style: Simple, everyday language.
 
 ## System Architecture
 
-### Frontend Architecture
+### Frontend
 
-**Framework**: React 18+ with TypeScript and Vite.
-**Routing**: Wouter.
-**UI Component Library**: Shadcn/ui (Radix UI primitives) with "New York" style.
-**Styling**: Tailwind CSS with custom design tokens, dual-theme system (dark mode primary, light mode secondary), electric blue and teal accents.
-**State Management**: React Query (TanStack Query).
-**Theme System**: Custom React Context API with localStorage.
-**Design System Enhancements**: Glassmorphism, animated gradients, shimmer effects, premium card hover effects, subtle grid backgrounds, and parallax scroll effects.
-**Interactive Features**:
-- **Live Nexus Trading Simulator**: Client-side demo with real-time order book, price movements, trading interface, portfolio dashboard, and recent trades feed using mock data.
-- **Smart Project Calculator**: 3-step wizard for project type, feature selection with individual costs, and timeline selection. Displays price ranges, generates PDF quotes, and offers "Download PDF Quote" and "Book Free Discovery Call" CTAs.
-- **Live Metrics Component**: Animated count-up statistics with glassmorphism cards and Intersection Observer for scroll-triggered animations.
+The frontend is built with React 18+, TypeScript, and Vite. It uses Wouter for routing and Shadcn/ui (Radix UI primitives) with the "New York" style for UI components. Styling is managed with Tailwind CSS, incorporating a dual-theme system (dark mode primary) and electric blue/teal accents. State management is handled by React Query, and a custom React Context API manages the theme with localStorage.
 
-### Backend Architecture
+Design system enhancements include glassmorphism, animated gradients, shimmer effects, premium card hover effects, subtle grid backgrounds, and parallax scroll effects. Key interactive features are a Live Nexus Trading Simulator (client-side, mock data), a 3-step Smart Project Calculator for quotes, and a Live Metrics Component with animated statistics.
 
-**Server Framework**: Express.js with TypeScript on Node.js.
-**API Design**: RESTful API pattern with `/api` prefix.
-**Data Storage**: In-memory storage abstraction (`MemStorage`).
-**Session Management**: Configured for PostgreSQL session storage using `connect-pg-simple` (when implemented).
+### Backend
 
-### Database Design
+The backend utilizes Express.js with TypeScript on Node.js, following a RESTful API pattern. Data storage is abstracted via `MemStorage` (in-memory), with PostgreSQL session storage planned via `connect-pg-simple`.
 
-**ORM**: Drizzle ORM configured for PostgreSQL with Neon serverless adapter.
-**Schema**: `contact_inquiries` table for lead capture.
-**Validation**: Zod schemas derived from Drizzle definitions.
-**Migration Strategy**: Drizzle Kit with a schema-first approach.
+### Database
+
+The database design employs Drizzle ORM for PostgreSQL with the Neon serverless adapter. It includes a `contact_inquiries` table for lead capture and uses Zod schemas derived from Drizzle definitions for validation. Drizzle Kit is used for migrations with a schema-first approach.
 
 ### Design System
 
-**Typography**: Inter font family for text, Space Grotesk for accents.
-**Color System**: HSL-based custom properties with light/dark palettes and an elevation system.
-**Component Patterns**: Composition with variant-based styling using `class-variance-authority`.
-**Responsive Design**: Mobile-first approach with Tailwind breakpoints.
+Typography uses the Inter font family for text and Space Grotesk for accents. The color system is HSL-based with custom properties for light/dark palettes and an elevation system. Components are designed with composition and variant-based styling using `class-variance-authority`. A mobile-first approach is implemented with Tailwind breakpoints for responsive design.
 
 ### Architecture & Routing
 
-The application maintains a 100% static site architecture with no backend dependencies. The `/nexus-trading` route showcases the live trading demo.
+The application maintains a 100% static site architecture with no direct backend dependencies for core content. The `/nexus-trading` route showcases the live trading demo.
 
 ## External Dependencies
 
@@ -70,8 +53,6 @@ The application maintains a 100% static site architecture with no backend depend
 
 ### Development Tools
 - **Vite**: Build tool and dev server.
-- **@replit/vite-plugin-runtime-error-modal**: Development error overlay.
-- **@replit/vite-plugin-cartographer**: Code navigation tool.
 - **TypeScript**: Type safety.
 
 ### Routing & State
@@ -97,146 +78,9 @@ The application maintains a 100% static site architecture with no backend depend
 - **react-intersection-observer**: Scroll-based animations and lazy loading.
 - **lottie-react**: Lottie animation player for React.
 - **react-syntax-highlighter**: Syntax highlighting for code examples.
-
-## Recent Changes (November 18, 2025)
-
-### Advanced Web3 Suite - Institutional Crypto (Latest)
-Expanded Web3 capabilities to target institutional crypto/DeFi clients with Fireblocks custody:
-
-**New Enterprise Web3 Features:**
-- **Web3 Basic** ($3,000, Enterprise-only): 1 EVM chain, wallet connection (MetaMask/WalletConnect), deploy 1 client-supplied contract (testnet only)
-- **Token Development** ($2,500, Enterprise-only): Author 1 ERC-20 OR ERC-721 token from audited template, deploy to testnet. Client handles legal compliance & mainnet fees
-- **Smart Contract Expansion** ($1,800, Enterprise-only): Design/implement up to 3 simple contracts with unit tests. Excludes security audits
-- **Fireblocks Custody** ($4,500, Enterprise-only): Integrate with client Fireblocks tenant, configure 1 vault + policy, sign/transfer flow for 1 asset. Client provides Fireblocks license + API keys
-
-**Tier Updates:**
-- Enterprise: All 14 add-ons (was 11), base price $20k-$35k (was $20k-$30k)
-- Timeline: "8+ weeks" displayed consistently (UI + PDF)
-- Advanced Web3 Package: ~$11,800 total for all blockchain features
-
-**Blockchain Prerequisites Added:**
-- Client handles gas fees, mainnet deployment costs
-- Client responsible for legal compliance on token development
-- Third-party security audits recommended (not included)
-- Fireblocks requires enterprise license (client-provided)
-- All prerequisites shown in scope, T&C, and PDF quotes
-
-**Competitive Positioning:**
-- Fireblocks custody positions for institutional clients (exchanges, custody providers, DeFi platforms)
-- Very few agencies offer Fireblocks integration (major differentiator)
-- Token engineering expertise (ERC-20/ERC-721 from audited templates)
-- Targets high-value crypto/fintech clients ($50k+ project budgets)
-
-### Premium Feature Expansion
-Added enterprise-grade features to differentiate from competitors and attract fintech/Web3 clients:
-
-**New Premium Add-ons:**
-- **Social Media Login** ($1,200, Standard+): OAuth for Google, Facebook (2 providers max)
-- **KYC/AML Compliance** ($3,500, Full/Enterprise): Identity verification via 1 provider (Onfido/Jumio) - document + sanctions check
-- **Enterprise SSO** ($2,000, Enterprise-only): SAML/OAuth SSO via 1 provider (Okta/Auth0)
-- **Web3 Integration** ($3,000, Enterprise-only): 1 EVM chain, wallet connection (MetaMask/WalletConnect), 1 smart contract (testnet only)
-
-**Tier Updates:**
-- Removed "Mobile Responsive" from selectable add-ons (already baseline)
-- Updated limits: Standard (4 add-ons), Full (7 add-ons including KYC/AML), Enterprise (all 11 add-ons including SSO & Web3)
-- Added tier gating: Enterprise-only features show "ENTERPRISE" badge, Full+ features show "FULL+" badge
-- Features auto-hide based on selected tier for clean UX
-
-**Competitive Positioning:**
-- Highlights pre-built KYC/AML solutions (vs agencies without compliance expertise)
-- Showcases Web3 capability (wallet integration, smart contracts)
-- Emphasizes Enterprise SSO readiness for regulated industries
-- Differentiates from both "contact us" agencies and low-cost freelancers
-
-### Scope Protection Updates
-Added comprehensive scope definitions to prevent client exploitation:
-
-**Terms & Conditions Added:**
-- Revision policy: 2 rounds included per feature, additional $150/hour
-- Support policy: 30 days bug-fix warranty, 48-hour response time
-- Hosting: Deployment included, hosting costs (server/domain/SSL) paid by client
-- Baseline scope: Dashboard = 5 screens, CRUD = 1 entity (10 fields), Database = 5 simple tables
-
-**Add-on Scope Definitions:**
-Each of 8 add-on features now has explicit scope shown during selection AND in results/PDF:
-- Payment Integration: "Stripe one-time checkout only (no subscriptions)"
-- Analytics Dashboard: "Basic charts (5 metrics: users, revenue, activity, growth, conversion)"
-- Live Chat Support: "Basic message list with send/receive (no typing indicators)"
-- Notifications: "Transactional emails via SendGrid/Twilio (up to 3 templates)"
-- Real-time Features: "Basic WebSocket updates for 1 feature (e.g., live notifications)"
-- Advanced Search: "Text search with filters (up to 5 fields)"
-- PDF Reports: "Simple PDF with tables & text (up to 3 report types)"
-- Admin Dashboard: "Basic admin panel with user management & content CRUD"
-
-**Baseline Features Clarified:**
-- User Authentication: Email/password login only
-- Database Design: Up to 5 simple tables
-- RESTful API: CRUD for 1 entity (10 fields max)
-- Mobile Responsive UI: All breakpoints
-- Basic Dashboard: 5 screens (Home, List, Detail, Settings, Profile)
-
-## Recent Changes (November 18, 2025)
-
-### Pricing & Positioning Overhaul
-**Business Reality**: Sri Lankan development company founded 2012 (13 years in business) with 2-person team. Monthly overhead: 2.5M LKR (~$8,300 USD). All MVPs built on modern cloud infrastructure (not mentioned in marketing).
-
-### New Transparent Pricing Strategy
-- **Starter MVP**: $5,000 - $7,000 (2 weeks, up to 5 basic features, quick market validation - Web only)
-- **Standard MVP**: Starts at $8,300 (4-6 weeks, 7-10 features, production-ready - Web or React Native mobile)
-- **Full Web Application**: Starts at $12,000 (6-8 weeks, comprehensive features & integrations - Web)
-- **Enterprise Solution**: Starts at $20,000 (8+ weeks, advanced features, scalability - Web, Mobile, or Both)
-
-**Pricing Logic**: Starter MVP has $5k floor for competitive entry point. Standard+ projects maintain $8,300 minimum (covers 2.5M LKR overhead). Each project type has fixed timeline (Starter=2wk, Standard=4wk, Full=6wk, Enterprise=8wk). Final pricing = base price + selected features.
-
-### Calculator Redesign
-Complete 2-step wizard with fixed timelines:
-1. **Step 1**: Project type selection with fixed timelines:
-   - Starter MVP: 2 weeks, $5k-7k (shows exactly what's included - no feature selection)
-   - Standard MVP: 4 weeks, $8.3k-12k (feature checkboxes available)
-   - Full Application: 6 weeks, $12k-18k (feature checkboxes available)
-   - Enterprise: 8 weeks, $20k-30k (feature checkboxes available)
-2. **Step 2**: Feature selection (Standard+ only) - users select exactly what they need (Auth $800, Payments $1,500, Dashboard $1,200, etc.)
-3. **Results**: Price range display ($X - $Y), not single number for transparency
-4. **Pricing Floor**: Starter has $5k floor, all other quotes maintain minimum $8,300 threshold (covers 2.5M LKR overhead)
-5. **Trust Elements**: "Why Choose Quality Over Cheap" section comparing FCode Labs (€4.5k) and $500 Fiverr developers
-6. **PDF Quote**: Professional download with included services, pricing breakdown, company credentials
-
-### Credibility Updates
-All site-wide mentions updated to:
-- Hero: "13 Years in Business"
-- About Us stats: "13 Years In Business", "200+ MVPs Launched"
-- About Us copy: "Founded in 2012 with over a decade of proven expertise"
-- Values section: "13 years in business - direct access to senior developer, no juniors"
-
-### Nexus Trading Repositioning
-- Badge changed from "Live Demo" to "UI/UX Showcase Demo • Web Platform"
-- Added platform clarification: Web-based demo, mobile apps use React Native (iOS/Android)
-- Added disclaimer: "This is a UI demonstration with simulated data. It showcases interface design capabilities, not a $100k trading platform offering."
-- Clarifies demo purpose while maintaining interactive functionality
-
-### Competitive Positioning
-**vs FCode Labs** (€4.5k MVP, 200+ employees, 7 years in business):
-- Transparent calculator with instant pricing (vs "contact us")
-- 13 years in business (vs 7-year company)
-- Direct senior developer access (vs large team delegation)
-- Live interactive demos proving capabilities
-
-**vs Low-Cost Offshore** (Fiverr/Upwork $500-2k):
-- 13 years proven track record and accountability
-- Production-grade code, not prototypes
-- 30-day post-launch support included
-- Direct communication, no timezone/language barriers
-
-### Included in All Projects
-- Full source code ownership
-- Comprehensive documentation & handover  
-- 30-day post-launch support
-- Direct access to senior developer
-- Production-grade architecture (not prototypes)
-- Modern tech stack:
-  - **Web**: React, TypeScript, cloud infrastructure
-  - **Mobile**: React Native (iOS/Android)
-  - **Backend**: Node.js, PostgreSQL, REST/GraphQL APIs
-
-### Key Differentiator
-Only agency offering instant transparent pricing calculator with honest ranges vs "contact us for quote" - builds trust and accelerates lead conversion while maintaining sustainable pricing above $8,300 overhead threshold.
+- **Stripe**: For e-commerce and subscription features.
+- **Google Maps/Mapbox**: For location intelligence features.
+- **Onfido/Jumio**: For KYC/AML compliance.
+- **Okta/Auth0**: For Enterprise SSO.
+- **Fireblocks**: For institutional crypto custody integration.
+- **SendGrid/Twilio**: For transactional emails/notifications.
