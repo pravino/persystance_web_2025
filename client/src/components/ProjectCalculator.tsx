@@ -41,7 +41,7 @@ const projectTypes = [
   {
     id: "standard",
     name: "Standard MVP",
-    description: "4-6 weeks - Production-ready with 7-10 features",
+    description: "4-6 weeks - Production-ready with 7-10 features (Web or React Native)",
     baseMin: 8300,
     baseMax: 12000,
     icon: Code
@@ -57,7 +57,7 @@ const projectTypes = [
   {
     id: "enterprise",
     name: "Enterprise Solution",
-    description: "8+ weeks - Advanced, scalable systems",
+    description: "8+ weeks - Advanced systems (Web, Mobile, or Both)",
     baseMin: 20000,
     baseMax: 30000,
     icon: Rocket

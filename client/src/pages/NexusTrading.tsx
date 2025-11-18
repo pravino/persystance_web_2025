@@ -143,20 +143,23 @@ export default function NexusTrading() {
           <div className="max-w-7xl mx-auto text-center">
             <Badge className="mb-6" variant="outline">
               <Activity className="w-3 h-3 mr-1" />
-              UI/UX Showcase Demo
+              UI/UX Showcase Demo • Web Platform
             </Badge>
             <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
               Nexus Trading Platform
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-4">
-              This interactive demo showcases our UI/UX capabilities for building institutional trading platforms.
-              Real-time order book, live price updates, and professional trading interface - fully functional without backend.
+              This interactive web demo showcases our UI/UX capabilities for building institutional trading platforms.
+              Real-time order book, live price updates, and professional trading interface - fully functional client-side.
             </p>
             <div className="bg-primary/5 border border-primary/20 rounded-lg p-4 max-w-2xl mx-auto">
-              <p className="text-sm text-muted-foreground">
+              <p className="text-sm text-muted-foreground mb-2">
                 <Lock className="w-4 h-4 inline mr-1" />
-                <strong>Note:</strong> This is a UI demonstration with simulated data. It showcases interface design capabilities, 
-                not a $100k trading platform offering. Actual trading platforms are custom-built based on specific requirements.
+                <strong>Platform Note:</strong> This is a web-based UI demonstration with simulated data. It showcases interface design capabilities 
+                for institutional platforms. For mobile apps, we use React Native (iOS/Android).
+              </p>
+              <p className="text-xs text-muted-foreground">
+                Actual trading platforms are custom-built based on specific requirements and include backend infrastructure, security, compliance, and more.
               </p>
             </div>
           </div>

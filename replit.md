@@ -104,10 +104,10 @@ The application maintains a 100% static site architecture with no backend depend
 **Business Reality**: Solo Sri Lankan developer with 23 years personal experience (since 2002), operating a 13-year company (founded 2012) with 2-person team. Monthly overhead: 2.5M LKR (~$8,300 USD). All MVPs built on modern cloud infrastructure (not mentioned in marketing).
 
 ### New Transparent Pricing Strategy
-- **Starter MVP**: $5,000 - $7,000 (2 weeks, up to 5 basic features, quick market validation)
-- **Standard MVP**: Starts at $8,300 (4-6 weeks, 7-10 features, production-ready)
-- **Full Web Application**: Starts at $12,000 (6-8 weeks, comprehensive features & integrations)
-- **Enterprise Solution**: Starts at $20,000 (8+ weeks, advanced features, scalability)
+- **Starter MVP**: $5,000 - $7,000 (2 weeks, up to 5 basic features, quick market validation - Web only)
+- **Standard MVP**: Starts at $8,300 (4-6 weeks, 7-10 features, production-ready - Web or React Native mobile)
+- **Full Web Application**: Starts at $12,000 (6-8 weeks, comprehensive features & integrations - Web)
+- **Enterprise Solution**: Starts at $20,000 (8+ weeks, advanced features, scalability - Web, Mobile, or Both)
 
 **Pricing Logic**: Starter MVP has $5k floor for competitive entry point. Standard+ projects maintain $8,300 minimum (covers 2.5M LKR overhead). Final pricing = base price + selected features, with 5%/8% savings for longer timelines.
 
@@ -129,7 +129,8 @@ All site-wide mentions updated to:
 - Values section: "23 years of personal experience, 13 years in business - direct access to senior developer, no juniors"
 
 ### Nexus Trading Repositioning
-- Badge changed from "Live Demo" to "UI/UX Showcase Demo"
+- Badge changed from "Live Demo" to "UI/UX Showcase Demo • Web Platform"
+- Added platform clarification: Web-based demo, mobile apps use React Native (iOS/Android)
 - Added disclaimer: "This is a UI demonstration with simulated data. It showcases interface design capabilities, not a $100k trading platform offering."
 - Clarifies demo purpose while maintaining interactive functionality
 
@@ -152,7 +153,10 @@ All site-wide mentions updated to:
 - 30-day post-launch support
 - Direct access to 23-year veteran developer
 - Production-grade architecture (not prototypes)
-- Modern tech stack (React, TypeScript, cloud infrastructure)
+- Modern tech stack:
+  - **Web**: React, TypeScript, cloud infrastructure
+  - **Mobile**: React Native (iOS/Android)
+  - **Backend**: Node.js, PostgreSQL, REST/GraphQL APIs
 
 ### Key Differentiator
 Only agency offering instant transparent pricing calculator with honest ranges vs "contact us for quote" - builds trust and accelerates lead conversion while maintaining sustainable pricing above $8,300 overhead threshold.
