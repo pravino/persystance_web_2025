@@ -11,29 +11,32 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-primary/[0.03] via-background to-accent/50 overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-background via-primary/[0.02] to-background">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-accent/10 via-transparent to-transparent" />
       <div className="absolute inset-0">
-        <div className="absolute top-0 -left-40 w-[600px] h-[600px] bg-primary/20 rounded-full blur-3xl animate-float" />
-        <div className="absolute bottom-0 -right-40 w-[700px] h-[700px] bg-primary/15 rounded-full blur-3xl animate-float-delayed" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-accent/30 rounded-full blur-3xl animate-float opacity-50" />
+        <div className="absolute top-0 -left-40 w-[600px] h-[600px] bg-gradient-to-br from-primary/20 to-primary/5 rounded-full blur-3xl animate-float" />
+        <div className="absolute bottom-0 -right-40 w-[700px] h-[700px] bg-gradient-to-tl from-accent/20 to-accent/5 rounded-full blur-3xl animate-float-delayed" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-to-r from-primary/15 via-accent/15 to-primary/15 rounded-full blur-3xl animate-float opacity-40" />
       </div>
+      <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px]" />
       <div className="container mx-auto px-4 py-32 relative z-10">
         <div className="grid lg:grid-cols-2 gap-20 items-center max-w-7xl mx-auto">
           <div className="space-y-8">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-muted/40">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass">
               <Zap className="w-4 h-4 text-primary" />
               <span className="text-sm font-medium text-foreground">
                 13+ Years of Excellence
               </span>
             </div>
             
-            <h1 className="text-5xl lg:text-7xl font-semibold leading-[1.1] tracking-tight text-foreground">
+            <h1 className="text-5xl lg:text-7xl font-bold leading-[1.1] tracking-tight">
               Turn Your Idea into a Working Product in{" "}
-              <span className="text-primary">
+              <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-shimmer" style={{backgroundSize: '200% auto'}}>
                 2 Weeks
               </span>
               , Fully Ready in{" "}
-              <span className="text-primary">
+              <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-shimmer" style={{backgroundSize: '200% auto'}}>
                 30 Days
               </span>
             </h1>
@@ -46,7 +49,7 @@ export default function Hero() {
             <div className="flex flex-wrap gap-4">
               <Button 
                 size="lg" 
-                className="text-base px-8"
+                className="text-base px-8 shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 transition-all"
                 onClick={scrollToContact}
                 data-testid="button-get-quote"
               >
@@ -56,7 +59,7 @@ export default function Hero() {
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="text-base px-8"
+                className="text-base px-8 glass hover:bg-primary/5 transition-all"
                 onClick={scrollToProcess}
                 data-testid="button-view-process"
               >
@@ -90,7 +93,7 @@ export default function Hero() {
           </div>
           
           <div className="relative lg:pl-8">
-            <div className="space-y-4">
+            <div className="space-y-4 glass rounded-2xl p-8">
               <TimelineStep 
                 phase="Discovery"
                 days="Days 1-3"
