@@ -31,33 +31,33 @@ interface Estimate {
 
 const projectTypes = [
   {
-    id: "mvp",
-    name: "Rapid MVP",
-    description: "Launch-ready product to test your idea",
-    baseMin: 8000,
-    baseMax: 12000,
+    id: "starter",
+    name: "Starter MVP",
+    description: "2 weeks - Up to 5 basic features for quick validation",
+    baseMin: 5000,
+    baseMax: 7000,
     icon: Zap
   },
   {
-    id: "webapp",
-    name: "Full Web Application",
-    description: "Production-grade web application",
-    baseMin: 12000,
-    baseMax: 18000,
+    id: "standard",
+    name: "Standard MVP",
+    description: "4-6 weeks - Production-ready with 7-10 features",
+    baseMin: 8300,
+    baseMax: 12000,
     icon: Code
   },
   {
-    id: "ecommerce",
-    name: "E-Commerce Platform",
-    description: "Complete online store with payments",
-    baseMin: 15000,
-    baseMax: 22000,
+    id: "full",
+    name: "Full Web Application",
+    description: "6-8 weeks - Comprehensive features & integrations",
+    baseMin: 12000,
+    baseMax: 18000,
     icon: Store
   },
   {
     id: "enterprise",
     name: "Enterprise Solution",
-    description: "Scalable systems with advanced features",
+    description: "8+ weeks - Advanced, scalable systems",
     baseMin: 20000,
     baseMax: 30000,
     icon: Rocket
@@ -82,7 +82,7 @@ const availableFeatures = [
 export default function ProjectCalculator() {
   const [step, setStep] = useState(0);
   const [config, setConfig] = useState<ProjectConfig>({
-    projectType: "mvp",
+    projectType: "starter",
     selectedFeatures: [],
     timeline: 2
   });
@@ -101,12 +101,12 @@ export default function ProjectCalculator() {
     
     const timelineMultiplier = config.timeline === 2 ? 1 : config.timeline === 4 ? 0.95 : 0.92;
     
-    // Calculate with multiplier, then enforce minimum floor of $8,300 (covers 2.5M LKR overhead)
-    const MINIMUM_PROJECT_COST = 8300;
+    // Starter MVP has lower floor ($5k), others maintain $8.3k floor (covers 2.5M LKR overhead)
+    const MINIMUM_PROJECT_COST = config.projectType === 'starter' ? 5000 : 8300;
     let minCost = Math.round((selectedType.baseMin + featureCost) * timelineMultiplier);
     let maxCost = Math.round((selectedType.baseMax + featureCost) * timelineMultiplier);
     
-    // Enforce absolute floor and ensure reasonable spread
+    // Enforce floor and ensure reasonable spread
     minCost = Math.max(MINIMUM_PROJECT_COST, minCost);
     maxCost = Math.max(minCost + 2000, maxCost);
     
@@ -260,7 +260,10 @@ export default function ProjectCalculator() {
               <div>
                 <h3 className="text-2xl font-bold mb-2">Select the features you need</h3>
                 <p className="text-muted-foreground mb-6">
-                  Choose all features your MVP requires. Each adds to the final estimate.
+                  {config.projectType === 'starter' 
+                    ? 'Choose up to 5 basic features for your Starter MVP. Keep it simple for 2-week delivery.'
+                    : 'Choose all features your MVP requires. Each adds to the final estimate.'
+                  }
                 </p>
                 <div className="grid md:grid-cols-2 gap-3">
                   {availableFeatures.map((feature) => {

@@ -104,12 +104,12 @@ The application maintains a 100% static site architecture with no backend depend
 **Business Reality**: Solo Sri Lankan developer with 23 years personal experience (since 2002), operating a 13-year company (founded 2012) with 2-person team. Monthly overhead: 2.5M LKR (~$8,300 USD). All MVPs built on modern cloud infrastructure (not mentioned in marketing).
 
 ### New Transparent Pricing Strategy
-- **Rapid MVP**: Starts at $8,300 (2-4 weeks, core features, market validation)
-- **Full Web Application**: Starts at $12,000 (4-6 weeks, comprehensive features, production-ready)
-- **E-Commerce Platform**: Starts at $15,000 (4-8 weeks, payment integration, inventory)
-- **Enterprise Solution**: Starts at $20,000 (6-12 weeks, advanced features, scalability)
+- **Starter MVP**: $5,000 - $7,000 (2 weeks, up to 5 basic features, quick market validation)
+- **Standard MVP**: Starts at $8,300 (4-6 weeks, 7-10 features, production-ready)
+- **Full Web Application**: Starts at $12,000 (6-8 weeks, comprehensive features & integrations)
+- **Enterprise Solution**: Starts at $20,000 (8+ weeks, advanced features, scalability)
 
-**Pricing Logic**: All quotes maintain minimum $8,300 threshold (covers 2.5M LKR overhead). Final pricing = base price + selected features, with 5%/8% savings for longer timelines.
+**Pricing Logic**: Starter MVP has $5k floor for competitive entry point. Standard+ projects maintain $8,300 minimum (covers 2.5M LKR overhead). Final pricing = base price + selected features, with 5%/8% savings for longer timelines.
 
 ### Calculator Redesign
 Complete 3-step wizard replacing old slider-based system:
