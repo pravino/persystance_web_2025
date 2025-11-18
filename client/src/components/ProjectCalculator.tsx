@@ -187,60 +187,181 @@ export default function ProjectCalculator() {
     return { minCost, maxCost, weeks, weeksDisplay, features };
   };
 
-  const generatePDF = () => {
+  const generatePDF = async () => {
     const est = estimate || calculateEstimate();
     const doc = new jsPDF();
-
-    doc.setFontSize(20);
-    doc.text("Project Estimate - Persystance Networks", 20, 20);
-    
-    doc.setFontSize(12);
-    doc.text(`Date: ${new Date().toLocaleDateString()}`, 20, 35);
-    
-    doc.setFontSize(14);
-    doc.text("Project Configuration", 20, 50);
-    doc.setFontSize(11);
     const selectedType = projectTypes.find(t => t.id === config.projectType);
-    doc.text(`Type: ${selectedType?.name}`, 25, 60);
-    doc.text(`Features: ${config.selectedFeatures.length} custom features`, 25, 68);
-    doc.text(`Timeline: ${est.weeksDisplay}`, 25, 76);
-    
-    doc.setFontSize(14);
-    doc.text("Estimate Summary", 20, 95);
-    doc.setFontSize(16);
-    doc.text(`Investment Range: $${est.minCost.toLocaleString()} - $${est.maxCost.toLocaleString()}`, 25, 107);
-    doc.setFontSize(11);
-    doc.text(`Delivery Timeline: ${est.weeksDisplay}`, 25, 117);
-    
-    doc.setFontSize(14);
-    doc.text("What's Included", 20, 135);
+
+    // Load and add logo
+    try {
+      const img = new Image();
+      img.src = '/logo-square.png';
+      await new Promise((resolve) => {
+        img.onload = () => {
+          doc.addImage(img, 'PNG', 15, 10, 25, 25);
+          resolve(null);
+        };
+        img.onerror = () => resolve(null);
+      });
+    } catch (error) {
+      console.log('Logo not loaded, continuing without it');
+    }
+
+    // Header
+    doc.setFontSize(22);
+    doc.setFont('helvetica', 'bold');
+    doc.text("PERSYSTANCE NETWORKS", 45, 20);
     doc.setFontSize(10);
-    const maxFeaturesPerPage = 18;
-    est.features.slice(0, maxFeaturesPerPage).forEach((feature, index) => {
-      doc.text(`• ${feature}`, 25, 145 + (index * 7));
+    doc.setFont('helvetica', 'normal');
+    doc.text("MVP Development Specialists | 13 Years in Business", 45, 27);
+    
+    // Horizontal line under header
+    doc.setLineWidth(0.5);
+    doc.setDrawColor(66, 135, 245);
+    doc.line(15, 38, 195, 38);
+
+    // Date and Quote Number
+    doc.setFontSize(9);
+    doc.setTextColor(100, 100, 100);
+    doc.text(`Date: ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}`, 15, 45);
+    doc.text(`Quote #: PST-${Date.now().toString().slice(-8)}`, 145, 45);
+    doc.setTextColor(0, 0, 0);
+
+    // Project Type Box
+    doc.setFillColor(245, 247, 250);
+    doc.rect(15, 52, 180, 18, 'F');
+    doc.setFontSize(11);
+    doc.setFont('helvetica', 'bold');
+    doc.text("PROJECT TYPE:", 20, 60);
+    doc.setFont('helvetica', 'normal');
+    doc.text(selectedType?.name || 'Standard MVP', 55, 60);
+    doc.setFontSize(9);
+    doc.text(`${config.selectedFeatures.length} Custom Features Selected`, 20, 66);
+
+    // Pricing Section - Large and prominent
+    let yPos = 78;
+    doc.setFillColor(66, 135, 245);
+    doc.rect(15, yPos, 180, 28, 'F');
+    doc.setTextColor(255, 255, 255);
+    doc.setFontSize(12);
+    doc.setFont('helvetica', 'bold');
+    doc.text("TOTAL ESTIMATED INVESTMENT", 105, yPos + 8, { align: 'center' });
+    doc.setFontSize(24);
+    doc.text(`$${est.minCost.toLocaleString()} - $${est.maxCost.toLocaleString()}`, 105, yPos + 20, { align: 'center' });
+    doc.setFontSize(9);
+    doc.setFont('helvetica', 'normal');
+    doc.text(`Delivery Timeline: ${est.weeksDisplay}`, 105, yPos + 26, { align: 'center' });
+    doc.setTextColor(0, 0, 0);
+
+    // Features Section
+    yPos = 115;
+    doc.setFontSize(14);
+    doc.setFont('helvetica', 'bold');
+    doc.text("Features & Services Included", 15, yPos);
+    
+    yPos += 8;
+    doc.setFontSize(9);
+    doc.setFont('helvetica', 'normal');
+    
+    // Draw features in a nice table format
+    const featuresPerColumn = 14;
+    const columnWidth = 88;
+    let currentColumn = 0;
+    let featureYPos = yPos;
+    
+    est.features.forEach((feature, index) => {
+      if (index > 0 && index % featuresPerColumn === 0) {
+        currentColumn++;
+        featureYPos = yPos;
+      }
+      
+      const xPos = 18 + (currentColumn * columnWidth);
+      
+      // Bullet point
+      doc.setFillColor(66, 135, 245);
+      doc.circle(xPos, featureYPos + 1, 0.8, 'F');
+      
+      // Feature text (wrap if too long)
+      const maxWidth = columnWidth - 8;
+      const lines = doc.splitTextToSize(feature, maxWidth);
+      doc.text(lines[0], xPos + 3, featureYPos + 2);
+      if (lines.length > 1) {
+        doc.setFontSize(8);
+        doc.text(lines.slice(1).join(' '), xPos + 3, featureYPos + 5);
+        featureYPos += 8;
+      } else {
+        featureYPos += 5;
+      }
+      doc.setFontSize(9);
     });
+
+    // Terms & Conditions (new page if needed)
+    doc.addPage();
+    yPos = 20;
     
-    doc.setFontSize(11);
-    doc.text("Important Terms & Conditions", 20, 220);
-    doc.setFontSize(9);
-    doc.text("• Revisions: 2 rounds included per feature. Additional: $150/hour", 25, 230);
-    doc.text("• Support: 30 days bug-fix warranty. Response: 48 hours", 25, 238);
-    doc.text("• Hosting: Deployment included. Hosting costs paid by client", 25, 246);
-    doc.text("• Scope: Dashboard = 5 screens, CRUD = 1 entity (10 fields), DB = 5 tables", 25, 254);
-    doc.text("• Prerequisites: Client provides API keys (Stripe, Google Maps, Firebase, KYC, SSO)", 25, 262);
-    doc.text("• Blockchain: Client funds gas fees, handles legal compliance for tokens", 25, 270);
-    doc.text("• Fireblocks: Requires enterprise Fireblocks license (client-provided)", 25, 278);
-    doc.text("• Firebase/Maps: Client provides Firebase project & Google Maps billing account", 25, 286);
-    doc.text("• Timeline: Scales with complexity. Complex features (KYC/AML, Web3, Fireblocks) extend delivery", 25, 294);
+    doc.setFontSize(14);
+    doc.setFont('helvetica', 'bold');
+    doc.text("Terms & Conditions", 15, yPos);
     
-    doc.setFontSize(11);
-    doc.text("Why Persystance Networks?", 20, 306);
+    yPos += 10;
     doc.setFontSize(9);
-    doc.text("✓ 13 Years in Business - Institutional-Grade Solutions", 25, 316);
-    doc.text("✓ Fireblocks Integration + Firebase + Token Engineering + Full Commerce", 25, 323);
+    doc.setFont('helvetica', 'normal');
     
+    const terms = [
+      { title: "Revisions", text: "2 rounds included per feature. Additional revisions: $150/hour" },
+      { title: "Support", text: "30 days bug-fix warranty (no new features). Response time: 48 hours" },
+      { title: "Hosting", text: "Deployment included. Hosting costs (server, domain, SSL) paid by client" },
+      { title: "Baseline Scope", text: "Dashboard = 5 screens, CRUD = 1 entity (10 fields), Database = 5 tables" },
+      { title: "Prerequisites", text: "Client provides API keys (Stripe, Google Maps, Firebase, KYC, SSO vendors)" },
+      { title: "Blockchain/Web3", text: "Client funds gas fees, handles legal compliance, 3rd-party security audits" },
+      { title: "Fireblocks", text: "Requires enterprise Fireblocks license (client-provided)" },
+      { title: "Timeline", text: "Scales with complexity. Complex features (KYC, Web3, Fireblocks) extend delivery" }
+    ];
+    
+    terms.forEach((term) => {
+      doc.setFont('helvetica', 'bold');
+      doc.text(`• ${term.title}:`, 18, yPos);
+      doc.setFont('helvetica', 'normal');
+      const lines = doc.splitTextToSize(term.text, 160);
+      doc.text(lines, 25, yPos + 4);
+      yPos += 4 + (lines.length * 4);
+    });
+
+    // Why Choose Us section
+    yPos += 8;
+    doc.setFontSize(12);
+    doc.setFont('helvetica', 'bold');
+    doc.text("Why Persystance Networks?", 15, yPos);
+    
+    yPos += 8;
     doc.setFontSize(9);
-    doc.text("This is an automated estimate. Book a discovery call for detailed proposal.", 20, 334);
+    doc.setFont('helvetica', 'normal');
+    
+    const benefits = [
+      "13+ Years in Business - Institutional-Grade Solutions",
+      "Direct Senior Developer Access - No Delegation",
+      "Transparent Pricing - No Hidden Costs or 'Contact Us' Games",
+      "Production-Ready Code - Not Prototypes",
+      "Specialized in Firebase, Web3, KYC/AML, Stripe Commerce, SSO"
+    ];
+    
+    benefits.forEach((benefit) => {
+      doc.setFillColor(34, 197, 94);
+      doc.circle(18, yPos + 1, 0.8, 'F');
+      doc.text(benefit, 22, yPos + 2);
+      yPos += 6;
+    });
+
+    // Footer
+    yPos = 280;
+    doc.setLineWidth(0.3);
+    doc.setDrawColor(200, 200, 200);
+    doc.line(15, yPos, 195, yPos);
+    
+    doc.setFontSize(8);
+    doc.setTextColor(100, 100, 100);
+    doc.text("This is an automated estimate. Book a free discovery call for a detailed proposal.", 105, yPos + 5, { align: 'center' });
+    doc.text("Email: contact@persystance.com | Web: www.persystance.com", 105, yPos + 10, { align: 'center' });
 
     doc.save(`persystance-estimate-${Date.now()}.pdf`);
   };
@@ -707,10 +828,6 @@ export default function ProjectCalculator() {
                     <span><strong>30-day support</strong> vs abandoned projects</span>
                   </div>
                 </div>
-                <p className="text-xs text-muted-foreground">
-                  Unlike €4.5k agencies with 200+ employee overhead or $500 offshore freelancers who disappear, 
-                  you get senior-level expertise with institutional-grade solutions (Full Commerce Suite, Firebase, Location Intelligence, Fireblocks integration, KYC/AML, token engineering) and transparent pricing.
-                </p>
               </Card>
 
               <div className="bg-primary/5 border border-primary/20 rounded-lg p-4">
