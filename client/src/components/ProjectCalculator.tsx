@@ -264,12 +264,12 @@ export default function ProjectCalculator() {
             <div className="space-y-8">
               <div>
                 <h3 className="text-2xl font-bold mb-2">
-                  {config.projectType === 'starter' ? 'What\'s Included in Your Starter MVP' : 'Select the features you need'}
+                  {config.projectType === 'starter' ? 'What\'s Included in Your Starter MVP' : 'Select Additional Features'}
                 </h3>
                 <p className="text-muted-foreground mb-6">
                   {config.projectType === 'starter' 
                     ? 'These 5 core features are included for 2-week delivery. Need more? Choose Standard MVP instead.'
-                    : 'Choose all features your MVP requires. Each adds to the final estimate.'
+                    : 'All Starter MVP features are included. Select additional features to enhance your project.'
                   }
                 </p>
                 
@@ -328,32 +328,53 @@ export default function ProjectCalculator() {
                     </div>
                   </div>
                 ) : (
-                  // Standard, Full, Enterprise - Show selectable features
-                  <div className="grid md:grid-cols-2 gap-3">
-                    {availableFeatures.map((feature) => {
-                      const isSelected = config.selectedFeatures.includes(feature.id);
-                      return (
-                        <button
-                          key={feature.id}
-                          onClick={() => toggleFeature(feature.id)}
-                          className={`p-4 rounded-lg border-2 transition-all text-left flex items-start gap-3 ${
-                            isSelected
-                              ? 'border-primary bg-primary/5'
-                              : 'border-border hover:border-primary/50'
-                          }`}
-                        >
-                          <div className={`w-5 h-5 rounded border-2 flex items-center justify-center flex-shrink-0 mt-0.5 ${
-                            isSelected ? 'border-primary bg-primary' : 'border-muted-foreground'
-                          }`}>
-                            {isSelected && <CheckCircle2 className="w-3 h-3 text-primary-foreground" />}
-                          </div>
-                          <div className="flex-1">
-                            <h4 className="font-medium mb-1">{feature.name}</h4>
-                            <p className="text-xs text-muted-foreground">+${feature.cost.toLocaleString()}</p>
-                          </div>
-                        </button>
-                      );
-                    })}
+                  // Standard, Full, Enterprise - Show included + selectable features
+                  <div className="space-y-6">
+                    {/* Show included Starter MVP features */}
+                    <Card className="p-6 bg-gradient-to-br from-green-500/5 to-green-500/10 border-green-500/20">
+                      <h4 className="font-bold mb-4 flex items-center gap-2 text-green-700 dark:text-green-400">
+                        <CheckCircle2 className="w-5 h-5" />
+                        ✓ Includes All Starter MVP Features (No Extra Cost)
+                      </h4>
+                      <div className="grid md:grid-cols-2 gap-3 text-sm text-muted-foreground">
+                        <div>• User Authentication</div>
+                        <div>• Database Design</div>
+                        <div>• RESTful API</div>
+                        <div>• Mobile Responsive UI</div>
+                        <div>• Basic Dashboard</div>
+                      </div>
+                    </Card>
+
+                    {/* Show additional features to select */}
+                    <div>
+                      <h4 className="font-semibold mb-3">Add Additional Features:</h4>
+                      <div className="grid md:grid-cols-2 gap-3">
+                        {availableFeatures.filter(f => !['auth', 'database', 'api', 'mobile'].includes(f.id)).map((feature) => {
+                          const isSelected = config.selectedFeatures.includes(feature.id);
+                          return (
+                            <button
+                              key={feature.id}
+                              onClick={() => toggleFeature(feature.id)}
+                              className={`p-4 rounded-lg border-2 transition-all text-left flex items-start gap-3 ${
+                                isSelected
+                                  ? 'border-primary bg-primary/5'
+                                  : 'border-border hover:border-primary/50'
+                              }`}
+                            >
+                              <div className={`w-5 h-5 rounded border-2 flex items-center justify-center flex-shrink-0 mt-0.5 ${
+                                isSelected ? 'border-primary bg-primary' : 'border-muted-foreground'
+                              }`}>
+                                {isSelected && <CheckCircle2 className="w-3 h-3 text-primary-foreground" />}
+                              </div>
+                              <div className="flex-1">
+                                <h4 className="font-medium mb-1">{feature.name}</h4>
+                                <p className="text-xs text-muted-foreground">+${feature.cost.toLocaleString()}</p>
+                              </div>
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
                   </div>
                 )}
               </div>
