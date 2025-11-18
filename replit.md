@@ -2,210 +2,86 @@
 
 ## Overview
 
-Persystance Networks (founded 2012, 13+ years experience) is a marketing website and lead generation platform for a rapid MVP development service. The platform showcases the company's ability to build production-ready MVPs in 2 weeks and launch them within 30 days, targeting startups and entrepreneurs looking for fast, cost-effective development solutions.
-
-The application is built as a marketing site with multiple sections highlighting value propositions, technology expertise, portfolio examples, client testimonials, and WhatsApp contact integration. The site now includes a specialized Telegram/Web3 game development landing page.
+Persystance Networks offers rapid MVP development services, aiming to build production-ready MVPs in 2 weeks and launch within 30 days. The platform serves as a marketing website to generate leads, targeting startups and entrepreneurs seeking fast, cost-effective development. It showcases value propositions, technology expertise, portfolio examples, client testimonials, and integrates WhatsApp for contact. Key additions include a specialized Telegram/Web3 game development landing page and comprehensive enterprise compliance features, alongside a new section for institutional trading and portfolio management services.
 
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
 
-## Recent Changes
-
-### November 2025
-- **Enterprise Compliance Features**: Added comprehensive compliance and security capabilities to compete with enterprise-focused agencies
-  - **Compliance & Security Page** (`/compliance`): Dedicated page showcasing compliance standards and regulated industry expertise
-    - ISO 27001, ISO 27017, ISO 27018 compliance standards detailed
-    - GDPR certification and data protection practices
-    - SOC 2 Type II readiness documentation
-    - Geographic compliance coverage (Europe, USA, Middle East, Liechtenstein)
-    - Security best practices section (encryption, access control, audits, incident response)
-    - **KYC/AML Compliance Section** (NEW): Dedicated section highlighting financial compliance expertise
-      - KYC (Know Your Customer): Multi-jurisdictional identity verification, PEP screening, automated workflows
-      - AML (Anti-Money Laundering): Transaction monitoring, sanctions screening (OFAC, EU, UN), regulatory reporting
-      - Proof of Funds Verification: Source of funds/wealth verification, bank statement validation, enhanced due diligence
-      - Liechtenstein Operations: Real-world experience managing asset management in Liechtenstein financial center
-      - Cross-border client onboarding across Europe, USA, Middle East, and Asia
-  - **Trust Badges Section**: Prominent compliance badges on homepage (positioned after hero section)
-    - Visual badges for ISO 27001, ISO 27017, ISO 27018, GDPR, SOC 2
-    - Clickable cards linking to compliance page
-    - Similar design to FCode Labs competitive positioning
-  - **Industry Expertise Expansion**: Added regulated industry capabilities
-    - **Asset Management Systems**: Enhanced with Liechtenstein financial center experience
-      - Portfolio management with real-world Liechtenstein operations
-      - Multi-jurisdictional client onboarding with KYC/AML compliance
-      - Proof of funds verification across multiple countries
-      - Country-specific regulatory requirements (Europe, USA, Middle East)
-      - GDPR-compliant portfolio management with MiFID II and AIFMD regulatory reporting
-    - **Secure Data Rooms**: Enterprise virtual data rooms for M&A due diligence with encrypted storage and access controls
-    - Both positioned for Europe, USA, Middle East, and Liechtenstein markets
-  - **Navigation Redesign**: Implemented dropdown menu structure for improved organization
-    - **Services dropdown**: MVP Development, Managed Services, Telegram/Web3 Games, Enterprise Consulting
-    - **Company dropdown**: About Us, Portfolio, Compliance & Security
-    - **Contact**: Direct scroll-to-section link
-    - Desktop uses shadcn NavigationMenu with descriptions
-    - Mobile uses collapsible grouped sections
-  - **SEO Enhancements for Enterprise Markets**:
-    - Updated default keywords to include "GDPR compliance, ISO 27001, secure data rooms, asset management systems"
-    - Added `/compliance` to sitemap.xml (priority 0.9)
-    - Enhanced Schema.org structured data with compliance services and enterprise description
-    - Title and meta description optimized to 56 and 148 characters respectively
-
-### October 2025
-- **Interactive Capabilities Demos**: 4 production-focused technology demonstrations
-  - **Tap-to-Earn Game**: Full-featured Telegram mini-app style clicker game
-    - Click mechanics with satisfying animations and particle effects
-    - Energy system (depletes on click, refills over time with visual bar)
-    - Upgrade shop (auto-miners, click multipliers, energy capacity)
-    - Web3 wallet integration (connect MetaMask, sign progress, display wallet)
-    - localStorage persistence (saves tokens, upgrades, energy state)
-    - Proves expertise in Telegram games, game economy, and Web3 integration
-  - **Web3 Wallet Connect**: MetaMask integration demo for blockchain expertise
-  - **Web3 Taxi App**: Decentralized ride-hailing application
-    - Available driver list with ratings, vehicle info, distance, ETA
-    - Ride booking flow with crypto payment (MATIC tokens)
-    - Simulated ride states: Searching → Driver Assigned → Picking Up → In Transit → Completed
-    - Wallet balance display and smart contract escrow simulation
-    - Trip progress tracking with countdown timers
-    - Proves expertise in Web3 applications, DeFi, and decentralized marketplaces
-  - **Web3 Hotel Management**: Decentralized hospitality booking platform
-    - Room inventory with 4 types (Standard, Deluxe, Suite, Penthouse) and real-time availability
-    - Multi-tab interface: Dashboard, Calendar, Housekeeping
-    - Live stats dashboard (available rooms, occupancy rate, revenue in MATIC)
-    - Booking flow: click room → enter guest details → connect wallet → confirm with crypto payment
-    - NFT room key generation (blockchain-verified access credentials)
-    - Cleaning status tracking (clean, needs_cleaning, cleaning_in_progress) with visual indicators
-    - Monthly calendar view showing daily availability counts
-    - Housekeeping dashboard with manual controls:
-      * "Start Cleaning" button transitions rooms to cleaning_in_progress
-      * "Mark Ready" button completes cleaning and returns checkout rooms to available status
-      * Stats cards showing rooms needing cleaning and checkout count
-    - Automated room status cycle: Available → Booked → Occupied → Checkout → (needs cleaning) → (cleaning in progress) → (clean) → Available
-    - Recent bookings list with NFT key tracking
-    - Proves expertise in hospitality tech, property management systems, decentralized booking platforms, and NFT utility
-  - All demos showcase real-world applications, not standalone effects
-  - Responsive 2-column grid layout
-  - Interactive demo section positioned between Portfolio and Testimonials
-  - 100% client-side (no Node.js or APIs needed for production deployment)
-- **Institute Consulting Page**: Enterprise-tier services at `/institute`
-  - Strategic technology consulting for enterprises
-  - Web3, AI, and spatial computing expertise highlighted
-  - Enterprise solutions and strategic partnerships
-  - SEO-optimized separate landing page for qualified leads
-- **Enhanced Portfolio & Tech Stack**: Improved visual interactivity
-  - Portfolio cards with image zoom on hover
-  - Technology Stack with hover animations
-  - Smooth transitions and interactive states throughout
-- **SEO Implementation**: Comprehensive SEO optimization for Google visibility
-  - Dynamic meta tags with react-helmet-async for all pages
-  - Open Graph tags for Facebook/LinkedIn social sharing with luxury tech OG image
-  - Twitter Card tags for Twitter/X sharing
-  - Schema.org structured data (Organization, Service, AggregateRating)
-  - Sitemap.xml and robots.txt for search engine crawling
-  - Canonical URLs for each page
-  - All images audited with proper alt text
-- Added dedicated `/telegram-games` landing page showcasing Telegram/Web3 game development services
-- Added "Trading & Exchanges" to Industry Expertise section (mid-market value matching engines, DEX platforms, bot attack prevention)
-- Added "Web3 Games" to Industry Expertise section (Telegram mini apps, tap-to-earn games, blockchain gaming, NFT integration)
-- Replaced contact form with WhatsApp Business integration (94778005567)
-- Updated navigation with smart routing for cross-page section navigation
-- Updated social links: LinkedIn company page, removed Twitter/GitHub
-- Simplified hero headline for non-tech audience (removed "MVP" jargon)
-
 ## System Architecture
 
 ### Frontend Architecture
 
-**Framework**: React 18+ with TypeScript using Vite as the build tool and development server.
-
-**Routing**: Wouter - a minimal client-side router. The application is primarily a single-page app with a home route and a 404 fallback.
-
-**UI Component Library**: Shadcn/ui (Radix UI primitives) with the "New York" style variant, providing accessible, composable components with consistent styling.
-
-**Styling**: Tailwind CSS with custom design tokens implementing a dual-theme system (dark mode primary, light mode secondary). Custom CSS variables control colors, spacing, and elevation effects. The design follows specific brand guidelines with electric blue primary (#210 100% 55%) and teal accent colors.
-
-**State Management**: React Query (TanStack Query) for server state management and data fetching, configured with conservative defaults (no refetching, infinite stale time).
-
-**Theme System**: Custom theme provider using React Context API and localStorage for theme persistence, supporting dark/light mode toggle.
+**Framework**: React 18+ with TypeScript, using Vite for development and build.
+**Routing**: Wouter, a minimal client-side router for a single-page application.
+**UI Component Library**: Shadcn/ui (Radix UI primitives) with "New York" style.
+**Styling**: Tailwind CSS with custom design tokens, implementing a dual-theme system (dark mode primary, light mode secondary), following specific brand guidelines with electric blue and teal accents.
+**State Management**: React Query (TanStack Query) for server state management and data fetching.
+**Theme System**: Custom React Context API provider with localStorage for theme persistence.
 
 ### Backend Architecture
 
-**Server Framework**: Express.js with TypeScript running on Node.js.
-
-**API Design**: RESTful API pattern with all routes prefixed with `/api`. Currently minimal backend implementation with placeholder route registration.
-
-**Data Storage**: The application uses an in-memory storage abstraction (`MemStorage` class) implementing an `IStorage` interface. This allows for easy migration to persistent storage solutions.
-
-**Session Management**: Configured to use `connect-pg-simple` for PostgreSQL session storage (when implemented).
-
-**Development Setup**: Vite middleware integration for HMR (Hot Module Replacement) in development, with production static file serving.
+**Server Framework**: Express.js with TypeScript on Node.js.
+**API Design**: RESTful API pattern with `/api` prefix.
+**Data Storage**: In-memory storage abstraction (`MemStorage`) for flexibility in migration.
+**Session Management**: Configured for PostgreSQL session storage using `connect-pg-simple` (when implemented).
 
 ### Database Design
 
 **ORM**: Drizzle ORM configured for PostgreSQL with Neon serverless adapter.
-
-**Schema**: Currently defines a `contact_inquiries` table for lead capture with fields:
-- `id` (UUID primary key, auto-generated)
-- `name`, `email`, `company` (text fields)
-- `project_type` (text field for categorizing inquiry type)
-- `message` (text field for inquiry details)
-
-**Validation**: Zod schemas derived from Drizzle table definitions for runtime type safety and validation.
-
-**Migration Strategy**: Drizzle Kit configured with schema-first approach, migrations output to `/migrations` directory.
+**Schema**: Defines a `contact_inquiries` table for lead capture.
+**Validation**: Zod schemas derived from Drizzle definitions for type safety.
+**Migration Strategy**: Drizzle Kit with a schema-first approach.
 
 ### Design System
 
-**Typography**: Inter font family for headings and body text (400-800 weights), Space Grotesk for accent elements and statistics.
-
-**Color System**: HSL-based custom properties with separate light/dark mode palettes. Implements elevation system using opacity-based overlays (`--elevate-1`, `--elevate-2`) for hover/active states.
-
-**Component Patterns**: Heavy use of composition with variant-based styling (class-variance-authority). Components support dark mode through CSS custom properties and the `.dark` class selector.
-
-**Responsive Design**: Mobile-first approach with Tailwind breakpoints. Custom mobile detection hook (`useIsMobile`) for conditional rendering.
+**Typography**: Inter font family for text, Space Grotesk for accents.
+**Color System**: HSL-based custom properties with distinct light/dark palettes and an elevation system.
+**Component Patterns**: Composition with variant-based styling using `class-variance-authority`.
+**Responsive Design**: Mobile-first approach with Tailwind breakpoints and a custom mobile detection hook.
 
 ## External Dependencies
 
 ### UI & Component Libraries
-- **Radix UI**: Comprehensive set of unstyled, accessible UI primitives (accordion, dialog, dropdown, popover, etc.)
-- **Shadcn/ui**: Pre-built components using Radix UI with Tailwind styling
-- **Lucide React**: Icon library for consistent iconography
-- **Embla Carousel**: Carousel/slider functionality
-- **cmdk**: Command palette component
+- **Radix UI**: Unstyled, accessible UI primitives.
+- **Shadcn/ui**: Pre-built components leveraging Radix UI and Tailwind.
+- **Lucide React**: Icon library.
+- **Embla Carousel**: Carousel functionality.
+- **cmdk**: Command palette component.
 
 ### Data & Forms
-- **React Hook Form**: Form state management and validation
-- **Zod**: Schema validation and type inference
-- **@hookform/resolvers**: Integration between React Hook Form and Zod
+- **React Hook Form**: Form state management and validation.
+- **Zod**: Schema validation and type inference.
+- **@hookform/resolvers**: Integration for React Hook Form and Zod.
 
 ### Database & ORM
-- **Drizzle ORM**: TypeScript ORM for PostgreSQL
-- **@neondatabase/serverless**: Neon serverless PostgreSQL driver
-- **Drizzle Zod**: Automatic Zod schema generation from Drizzle tables
+- **Drizzle ORM**: TypeScript ORM for PostgreSQL.
+- **@neondatabase/serverless**: Neon serverless PostgreSQL driver.
+- **Drizzle Zod**: Automatic Zod schema generation.
 
 ### Development Tools
-- **Vite**: Build tool and dev server with React plugin
-- **@replit/vite-plugin-runtime-error-modal**: Development error overlay for Replit
-- **@replit/vite-plugin-cartographer**: Code navigation tool for Replit
-- **TypeScript**: Type safety across the entire codebase
+- **Vite**: Build tool and dev server.
+- **@replit/vite-plugin-runtime-error-modal**: Development error overlay.
+- **@replit/vite-plugin-cartographer**: Code navigation tool.
+- **TypeScript**: Type safety.
 
 ### Routing & State
-- **Wouter**: Lightweight routing library (~1.2KB)
-- **@tanstack/react-query**: Server state management and caching
+- **Wouter**: Lightweight routing library.
+- **@tanstack/react-query**: Server state management and caching.
 
 ### Styling
-- **Tailwind CSS**: Utility-first CSS framework
-- **PostCSS**: CSS processing with Autoprefixer
-- **class-variance-authority**: Type-safe variant-based styling
-- **clsx & tailwind-merge**: Conditional className utilities
+- **Tailwind CSS**: Utility-first CSS framework.
+- **PostCSS**: CSS processing.
+- **class-variance-authority**: Type-safe variant-based styling.
+- **clsx & tailwind-merge**: Conditional className utilities.
 
 ### Date & Time
-- **date-fns**: Date manipulation and formatting library
+- **date-fns**: Date manipulation and formatting.
 
 ### Graphics & Visualization
-- **Three.js**: 3D graphics library for spatial computing demos
-- **ethers.js**: Web3 library for blockchain wallet integration
-- **recharts**: Composable charting library for data visualization
+- **Three.js**: 3D graphics library.
+- **ethers.js**: Web3 library for blockchain interaction.
+- **recharts**: Composable charting library.
 
 ### Assets
-The application uses stock images stored in `/attached_assets/stock_images/` for portfolio items and testimonials, referenced through Vite's asset import system.
+Stock images for portfolio and testimonials are stored in `/attached_assets/stock_images/`.
