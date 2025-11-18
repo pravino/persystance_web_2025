@@ -19,7 +19,6 @@ import jsPDF from "jspdf";
 interface ProjectConfig {
   projectType: string;
   selectedFeatures: string[];
-  timeline: number;
 }
 
 interface Estimate {
@@ -83,15 +82,14 @@ export default function ProjectCalculator() {
   const [step, setStep] = useState(0);
   const [config, setConfig] = useState<ProjectConfig>({
     projectType: "starter",
-    selectedFeatures: [],
-    timeline: 2
+    selectedFeatures: []
   });
   const [estimate, setEstimate] = useState<Estimate | null>(null);
 
   const calculateEstimate = (): Estimate => {
     const selectedType = projectTypes.find(t => t.id === config.projectType);
     if (!selectedType) {
-      return { minCost: 8300, maxCost: 12000, weeks: 2, features: [] };
+      return { minCost: 8300, maxCost: 12000, weeks: 4, features: [] };
     }
     
     const featureCost = config.selectedFeatures.reduce((total, featureId) => {
@@ -99,18 +97,24 @@ export default function ProjectCalculator() {
       return total + (feature?.cost || 0);
     }, 0);
     
-    const timelineMultiplier = config.timeline === 2 ? 1 : config.timeline === 4 ? 0.95 : 0.92;
+    // Fixed timelines per project type
+    const projectTimelines: Record<string, number> = {
+      starter: 2,
+      standard: 4,
+      full: 6,
+      enterprise: 8
+    };
     
     // Starter MVP has lower floor ($5k), others maintain $8.3k floor (covers 2.5M LKR overhead)
     const MINIMUM_PROJECT_COST = config.projectType === 'starter' ? 5000 : 8300;
-    let minCost = Math.round((selectedType.baseMin + featureCost) * timelineMultiplier);
-    let maxCost = Math.round((selectedType.baseMax + featureCost) * timelineMultiplier);
+    let minCost = Math.round(selectedType.baseMin + featureCost);
+    let maxCost = Math.round(selectedType.baseMax + featureCost);
     
     // Enforce floor and ensure reasonable spread
     minCost = Math.max(MINIMUM_PROJECT_COST, minCost);
     maxCost = Math.max(minCost + 2000, maxCost);
     
-    const weeks = config.timeline;
+    const weeks = projectTimelines[config.projectType] || 4;
     
     const features = [
       "Source code ownership",
@@ -142,7 +146,8 @@ export default function ProjectCalculator() {
     const selectedType = projectTypes.find(t => t.id === config.projectType);
     doc.text(`Type: ${selectedType?.name}`, 25, 60);
     doc.text(`Features: ${config.selectedFeatures.length} custom features`, 25, 68);
-    doc.text(`Timeline: ${config.timeline} weeks`, 25, 76);
+    const projectTimelines: Record<string, number> = { starter: 2, standard: 4, full: 6, enterprise: 8 };
+    doc.text(`Timeline: ${projectTimelines[config.projectType] || 4} weeks`, 25, 76);
     
     doc.setFontSize(14);
     doc.text("Estimate Summary", 20, 95);
@@ -178,7 +183,7 @@ export default function ProjectCalculator() {
   const handleCalculate = () => {
     const est = calculateEstimate();
     setEstimate(est);
-    setStep(3);
+    setStep(2);
   };
 
   const toggleFeature = (featureId: string) => {
@@ -355,57 +360,16 @@ export default function ProjectCalculator() {
 
               <div className="flex gap-3">
                 <Button variant="outline" onClick={() => setStep(0)}>Back</Button>
-                <Button onClick={() => setStep(2)} className="flex-1">
-                  Continue to Timeline
-                </Button>
-              </div>
-            </div>
-          )}
-
-          {/* Step 2: Timeline */}
-          {step === 2 && (
-            <div className="space-y-8">
-              <div>
-                <h3 className="text-2xl font-bold mb-2">When do you need it?</h3>
-                <p className="text-muted-foreground mb-6">
-                  Longer timelines allow for better planning and slight cost savings.
-                </p>
-                <div className="grid grid-cols-3 gap-4">
-                  {[
-                    { weeks: 2, name: "Express", desc: "2 weeks", badge: "Fastest", discount: "Standard Price" },
-                    { weeks: 4, name: "Standard", desc: "4 weeks", badge: "Popular", discount: "5% Savings" },
-                    { weeks: 8, name: "Flexible", desc: "8 weeks", badge: "Best Value", discount: "8% Savings" }
-                  ].map((option) => (
-                    <button
-                      key={option.weeks}
-                      onClick={() => setConfig({ ...config, timeline: option.weeks })}
-                      className={`p-4 rounded-lg border-2 transition-all ${
-                        config.timeline === option.weeks
-                          ? 'border-primary bg-primary/5'
-                          : 'border-border hover:border-primary/50'
-                      }`}
-                    >
-                      <Badge variant="secondary" className="mb-2">{option.badge}</Badge>
-                      <h4 className="font-bold mb-1">{option.name}</h4>
-                      <p className="text-xs text-muted-foreground mb-2">{option.desc}</p>
-                      <p className="text-xs text-primary font-medium">{option.discount}</p>
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              <div className="flex gap-3">
-                <Button variant="outline" onClick={() => setStep(1)}>Back</Button>
                 <Button onClick={handleCalculate} className="flex-1">
                   <Calculator className="w-4 h-4 mr-2" />
-                  Calculate My Estimate
+                  Calculate Estimate
                 </Button>
               </div>
             </div>
           )}
 
-          {/* Step 3: Results */}
-          {step === 3 && estimate && (
+          {/* Step 2: Results */}
+          {step === 2 && estimate && (
             <div className="space-y-6">
               <div className="text-center mb-8">
                 <CheckCircle2 className="w-16 h-16 text-green-500 mx-auto mb-4" />

@@ -109,17 +109,20 @@ The application maintains a 100% static site architecture with no backend depend
 - **Full Web Application**: Starts at $12,000 (6-8 weeks, comprehensive features & integrations - Web)
 - **Enterprise Solution**: Starts at $20,000 (8+ weeks, advanced features, scalability - Web, Mobile, or Both)
 
-**Pricing Logic**: Starter MVP has $5k floor for competitive entry point. Standard+ projects maintain $8,300 minimum (covers 2.5M LKR overhead). Final pricing = base price + selected features, with 5%/8% savings for longer timelines.
+**Pricing Logic**: Starter MVP has $5k floor for competitive entry point. Standard+ projects maintain $8,300 minimum (covers 2.5M LKR overhead). Each project type has fixed timeline (Starter=2wk, Standard=4wk, Full=6wk, Enterprise=8wk). Final pricing = base price + selected features.
 
 ### Calculator Redesign
-Complete 3-step wizard replacing old slider-based system:
-1. **Step 1**: Project type selection (4 types with honest price ranges)
-2. **Step 2**: Feature checkboxes - users select exactly what they need (Auth $800, Payments $1,500, Dashboard $1,200, etc.) with individual costs
-3. **Step 3**: Timeline selection (2 weeks Express, 4 weeks Standard with 5% savings, 8 weeks Flexible with 8% savings)
-4. **Results**: Price range display ($X - $Y), not single number for transparency
-5. **Pricing Floor**: All quotes maintain minimum $8,300 threshold (covers 2.5M LKR overhead)
-6. **Trust Elements**: "Why Choose Quality Over Cheap" section comparing FCode Labs (€4.5k) and $500 Fiverr developers
-7. **PDF Quote**: Professional download with included services, pricing breakdown, company credentials
+Complete 2-step wizard with fixed timelines:
+1. **Step 1**: Project type selection with fixed timelines:
+   - Starter MVP: 2 weeks, $5k-7k (shows exactly what's included - no feature selection)
+   - Standard MVP: 4 weeks, $8.3k-12k (feature checkboxes available)
+   - Full Application: 6 weeks, $12k-18k (feature checkboxes available)
+   - Enterprise: 8 weeks, $20k-30k (feature checkboxes available)
+2. **Step 2**: Feature selection (Standard+ only) - users select exactly what they need (Auth $800, Payments $1,500, Dashboard $1,200, etc.)
+3. **Results**: Price range display ($X - $Y), not single number for transparency
+4. **Pricing Floor**: Starter has $5k floor, all other quotes maintain minimum $8,300 threshold (covers 2.5M LKR overhead)
+5. **Trust Elements**: "Why Choose Quality Over Cheap" section comparing FCode Labs (€4.5k) and $500 Fiverr developers
+6. **PDF Quote**: Professional download with included services, pricing breakdown, company credentials
 
 ### Credibility Updates
 All site-wide mentions updated to:
