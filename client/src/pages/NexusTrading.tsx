@@ -225,18 +225,18 @@ export default function NexusTrading() {
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                   <Card className="p-4 bg-gradient-to-br from-primary/5 to-accent/5">
                     <div className="flex items-center gap-2 mb-2">
-                      <DollarSign className="w-4 h-4 text-primary" />
+                      <DollarSign className="w-4 h-4 text-primary flex-shrink-0" />
                       <span className="text-xs text-muted-foreground">Total Value</span>
                     </div>
-                    <div className="text-2xl font-bold">${portfolio.totalValue.toLocaleString()}</div>
+                    <div className="text-xl md:text-2xl font-bold break-all">${portfolio.totalValue.toLocaleString()}</div>
                   </Card>
                   
                   <Card className="p-4 bg-gradient-to-br from-green-500/5 to-green-500/10">
                     <div className="flex items-center gap-2 mb-2">
-                      <TrendingUp className="w-4 h-4 text-green-500" />
+                      <TrendingUp className="w-4 h-4 text-green-500 flex-shrink-0" />
                       <span className="text-xs text-muted-foreground">P&L</span>
                     </div>
-                    <div className="text-2xl font-bold text-green-500">
+                    <div className="text-xl md:text-2xl font-bold text-green-500 break-all">
                       +${portfolio.profitLoss.toLocaleString()}
                     </div>
                     <div className="text-xs text-green-500/70">+{portfolio.profitLossPercent}%</div>
@@ -244,13 +244,13 @@ export default function NexusTrading() {
 
                   <Card className="p-4">
                     <div className="text-xs text-muted-foreground mb-2">BTC Holdings</div>
-                    <div className="text-2xl font-bold">{portfolio.btc.toFixed(4)}</div>
-                    <div className="text-xs text-muted-foreground">${(portfolio.btc * currentPrice).toLocaleString()}</div>
+                    <div className="text-xl md:text-2xl font-bold break-all">{portfolio.btc.toFixed(4)}</div>
+                    <div className="text-xs text-muted-foreground break-all">${(portfolio.btc * currentPrice).toLocaleString()}</div>
                   </Card>
 
                   <Card className="p-4">
                     <div className="text-xs text-muted-foreground mb-2">USD Balance</div>
-                    <div className="text-2xl font-bold">${portfolio.usd.toLocaleString()}</div>
+                    <div className="text-xl md:text-2xl font-bold break-all">${portfolio.usd.toLocaleString()}</div>
                   </Card>
                 </div>
 
