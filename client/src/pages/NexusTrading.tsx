@@ -165,10 +165,16 @@ export default function NexusTrading() {
             <div className="grid lg:grid-cols-3 gap-6">
               {/* Left Column - Order Book */}
               <div className="lg:col-span-1">
-                <Card className="p-6 bg-background/50 backdrop-blur-sm">
-                  <h3 className="text-lg font-semibold mb-4">Order Book</h3>
+                <Card className="p-6 bg-background/50 backdrop-blur-sm border-border/50">
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-lg font-semibold">Order Book</h3>
+                    <Badge variant="outline" className="text-xs">
+                      <Activity className="w-3 h-3 mr-1" />
+                      Live
+                    </Badge>
+                  </div>
                   <div className="space-y-1">
-                    <div className="grid grid-cols-3 text-xs text-muted-foreground mb-2">
+                    <div className="grid grid-cols-3 text-xs font-medium text-muted-foreground mb-3 pb-2 border-b border-border/50">
                       <div>Price (USD)</div>
                       <div className="text-right">Amount (BTC)</div>
                       <div className="text-right">Total</div>
@@ -185,14 +191,17 @@ export default function NexusTrading() {
                       ))}
                     </div>
 
-                    {/* Current Price */}
-                    <div className="py-3 my-2 border-y border-border">
-                      <div className="text-2xl font-bold flex items-center justify-center gap-2">
-                        <span>{currentPrice.toLocaleString()}</span>
-                        <span className={`text-sm flex items-center ${priceChange >= 0 ? 'text-green-500' : 'text-destructive'}`}>
+                    {/* Current Price - Enhanced */}
+                    <div className="py-4 my-2 border-y-2 border-primary/20 bg-gradient-to-r from-primary/5 via-accent/5 to-primary/5 rounded">
+                      <div className="text-center">
+                        <div className="text-xs text-muted-foreground mb-1">Current Price</div>
+                        <div className="text-3xl font-bold flex items-center justify-center gap-2">
+                          <span>${currentPrice.toLocaleString()}</span>
+                        </div>
+                        <div className={`text-sm font-semibold flex items-center justify-center gap-1 mt-1 ${priceChange >= 0 ? 'text-green-500' : 'text-destructive'}`}>
                           {priceChange >= 0 ? <TrendingUp className="w-4 h-4" /> : <TrendingDown className="w-4 h-4" />}
-                          {Math.abs(priceChange).toFixed(2)}%
-                        </span>
+                          {priceChange >= 0 ? '+' : ''}{priceChange.toFixed(2)}%
+                        </div>
                       </div>
                     </div>
 
@@ -245,98 +254,133 @@ export default function NexusTrading() {
                   </Card>
                 </div>
 
-                {/* Trading Panel */}
-                <Card className="p-6">
+                {/* Trading Panel - Enhanced */}
+                <Card className="p-6 border-border/50">
                   <Tabs defaultValue="buy">
                     <TabsList className="grid w-full grid-cols-2 mb-6">
-                      <TabsTrigger value="buy">Buy BTC</TabsTrigger>
-                      <TabsTrigger value="sell">Sell BTC</TabsTrigger>
+                      <TabsTrigger value="buy" className="data-[state=active]:bg-green-500/10 data-[state=active]:text-green-600">
+                        Buy BTC
+                      </TabsTrigger>
+                      <TabsTrigger value="sell" className="data-[state=active]:bg-destructive/10 data-[state=active]:text-destructive">
+                        Sell BTC
+                      </TabsTrigger>
                     </TabsList>
 
                     <TabsContent value="buy" className="space-y-4">
                       <div>
-                        <label className="text-sm text-muted-foreground">Amount (BTC)</label>
+                        <label className="text-sm font-medium text-muted-foreground block mb-2">Amount (BTC)</label>
                         <input 
                           type="number" 
-                          className="w-full mt-1 px-4 py-2 rounded-lg border border-border bg-background"
-                          placeholder="0.00"
+                          className="w-full px-4 py-3 rounded-lg border-2 border-border bg-background focus:border-primary focus:outline-none transition-colors text-lg font-mono"
+                          placeholder="0.0000"
                           step="0.0001"
                         />
                       </div>
                       <div>
-                        <label className="text-sm text-muted-foreground">Price (USD)</label>
+                        <label className="text-sm font-medium text-muted-foreground block mb-2">Price (USD)</label>
                         <input 
                           type="number" 
-                          className="w-full mt-1 px-4 py-2 rounded-lg border border-border bg-background"
+                          className="w-full px-4 py-3 rounded-lg border-2 border-border bg-muted/30 text-lg font-mono"
                           value={currentPrice}
                           readOnly
                         />
                       </div>
-                      <Button className="w-full" size="lg">
+                      <div className="p-3 rounded-lg bg-muted/30 border border-border/50">
+                        <div className="flex justify-between text-sm mb-1">
+                          <span className="text-muted-foreground">Estimated Total:</span>
+                          <span className="font-semibold">-</span>
+                        </div>
+                        <div className="flex justify-between text-xs text-muted-foreground">
+                          <span>Available Balance:</span>
+                          <span className="font-mono">${portfolio.usd.toLocaleString()}</span>
+                        </div>
+                      </div>
+                      <Button className="w-full shadow-lg hover:shadow-xl transition-shadow" size="lg">
                         <Zap className="w-4 h-4 mr-2" />
                         Place Buy Order
                       </Button>
-                      <p className="text-xs text-muted-foreground text-center">
+                      <p className="text-xs text-center p-2 rounded bg-primary/5 border border-primary/20">
+                        <Lock className="w-3 h-3 inline mr-1" />
                         Demo mode - orders are simulated
                       </p>
                     </TabsContent>
 
                     <TabsContent value="sell" className="space-y-4">
                       <div>
-                        <label className="text-sm text-muted-foreground">Amount (BTC)</label>
+                        <label className="text-sm font-medium text-muted-foreground block mb-2">Amount (BTC)</label>
                         <input 
                           type="number" 
-                          className="w-full mt-1 px-4 py-2 rounded-lg border border-border bg-background"
-                          placeholder="0.00"
+                          className="w-full px-4 py-3 rounded-lg border-2 border-border bg-background focus:border-destructive focus:outline-none transition-colors text-lg font-mono"
+                          placeholder="0.0000"
                           step="0.0001"
                           max={portfolio.btc}
                         />
                       </div>
                       <div>
-                        <label className="text-sm text-muted-foreground">Price (USD)</label>
+                        <label className="text-sm font-medium text-muted-foreground block mb-2">Price (USD)</label>
                         <input 
                           type="number" 
-                          className="w-full mt-1 px-4 py-2 rounded-lg border border-border bg-background"
+                          className="w-full px-4 py-3 rounded-lg border-2 border-border bg-muted/30 text-lg font-mono"
                           value={currentPrice}
                           readOnly
                         />
                       </div>
-                      <Button className="w-full" size="lg" variant="destructive">
+                      <div className="p-3 rounded-lg bg-muted/30 border border-border/50">
+                        <div className="flex justify-between text-sm mb-1">
+                          <span className="text-muted-foreground">Estimated Total:</span>
+                          <span className="font-semibold">-</span>
+                        </div>
+                        <div className="flex justify-between text-xs text-muted-foreground">
+                          <span>Available BTC:</span>
+                          <span className="font-mono">{portfolio.btc.toFixed(4)}</span>
+                        </div>
+                      </div>
+                      <Button className="w-full shadow-lg hover:shadow-xl transition-shadow" size="lg" variant="destructive">
                         <Zap className="w-4 h-4 mr-2" />
                         Place Sell Order
                       </Button>
-                      <p className="text-xs text-muted-foreground text-center">
+                      <p className="text-xs text-center p-2 rounded bg-primary/5 border border-primary/20">
+                        <Lock className="w-3 h-3 inline mr-1" />
                         Demo mode - orders are simulated
                       </p>
                     </TabsContent>
                   </Tabs>
                 </Card>
 
-                {/* Recent Trades */}
-                <Card className="p-6">
-                  <h3 className="text-lg font-semibold mb-4">Recent Trades</h3>
+                {/* Recent Trades - Enhanced */}
+                <Card className="p-6 border-border/50">
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-lg font-semibold">Recent Trades</h3>
+                    <Badge variant="secondary" className="text-xs">
+                      {recentTrades.length} trades
+                    </Badge>
+                  </div>
                   <div className="space-y-1">
-                    <div className="grid grid-cols-4 text-xs text-muted-foreground mb-2">
+                    <div className="grid grid-cols-4 text-xs font-medium text-muted-foreground mb-3 pb-2 border-b border-border/50">
                       <div>Price</div>
                       <div>Amount</div>
                       <div>Total</div>
                       <div className="text-right">Time</div>
                     </div>
-                    {recentTrades.slice(0, 10).map(trade => (
-                      <div 
-                        key={trade.id}
-                        className={`grid grid-cols-4 text-sm p-2 rounded hover:bg-muted/50 transition-colors ${
-                          trade.type === 'buy' ? 'text-green-500/80' : 'text-destructive/80'
-                        }`}
-                      >
-                        <div>{trade.price.toFixed(2)}</div>
-                        <div>{trade.amount.toFixed(4)}</div>
-                        <div>${(trade.price * trade.amount).toFixed(2)}</div>
-                        <div className="text-right text-xs">
-                          {trade.time.toLocaleTimeString()}
+                    <div className="max-h-80 overflow-y-auto space-y-0.5">
+                      {recentTrades.slice(0, 15).map(trade => (
+                        <div 
+                          key={trade.id}
+                          className={`grid grid-cols-4 text-sm p-2 rounded hover:bg-muted/30 transition-all font-mono ${
+                            trade.type === 'buy' 
+                              ? 'text-green-600 dark:text-green-400 hover:bg-green-500/5' 
+                              : 'text-red-600 dark:text-red-400 hover:bg-destructive/5'
+                          }`}
+                        >
+                          <div className="font-semibold">${trade.price.toFixed(2)}</div>
+                          <div>{trade.amount.toFixed(4)}</div>
+                          <div className="font-medium">${(trade.price * trade.amount).toFixed(2)}</div>
+                          <div className="text-right text-xs text-muted-foreground">
+                            {trade.time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' })}
+                          </div>
                         </div>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
                   </div>
                 </Card>
               </div>
