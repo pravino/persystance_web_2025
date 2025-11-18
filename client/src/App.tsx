@@ -12,6 +12,7 @@ import Institute from "@/pages/Institute";
 import ManagedServices from "@/pages/ManagedServices";
 import Compliance from "@/pages/Compliance";
 import TradingPortfolio from "@/pages/TradingPortfolio";
+import NexusTrading from "@/pages/NexusTrading";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -26,6 +27,7 @@ function Router() {
       <Route path="/managed-services" component={ManagedServices} />
       <Route path="/compliance" component={Compliance} />
       <Route path="/trading-portfolio" component={TradingPortfolio} />
+      <Route path="/nexus-trading" component={NexusTrading} />
       <Route component={NotFound} />
     </Switch>
   );
