@@ -62,6 +62,12 @@ export default function Navigation() {
           </Link>
           
           <div className="hidden md:flex items-center gap-6">
+            <Link href="/ready-made-products">
+              <button className="text-sm font-medium hover:text-primary transition-colors">
+                Ready-Made Products
+              </button>
+            </Link>
+
             <NavigationMenu>
               <NavigationMenuList>
                 <NavigationMenuItem>
@@ -183,7 +189,18 @@ export default function Navigation() {
         {mobileMenuOpen && (
           <div className="md:hidden py-4 border-t border-border">
             <div className="flex flex-col gap-4">
-              <div className="px-4">
+              <div className="px-4 pt-2">
+                <Link href="/ready-made-products">
+                  <div
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="block text-left py-2 hover:text-primary transition-colors cursor-pointer font-medium"
+                  >
+                    Ready-Made Products
+                  </div>
+                </Link>
+              </div>
+
+              <div className="px-4 border-t border-border pt-4">
                 <div className="text-sm font-semibold text-muted-foreground mb-2">Services</div>
                 <div className="flex flex-col gap-2 pl-2">
                   {servicesItems.map((item) =>

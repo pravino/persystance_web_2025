@@ -137,3 +137,21 @@ export const trackGenerateLead = (
     });
   }
 };
+
+// Ready-Made Products tracking
+export const trackProductView = (productName: string, productId: string, category: string) => {
+  event('product_view', 'ready_made_products', `${productName}_${productId}`);
+  
+  if (typeof window.gtag !== 'undefined') {
+    window.gtag('event', 'view_item', {
+      item_id: productId,
+      item_name: productName,
+      item_category: category
+    });
+  }
+};
+
+export const trackProductInterest = (productName: string, tier: string, price: number) => {
+  event('product_interest_submitted', 'conversion', `${productName}_${tier}`, price);
+  trackLeadGeneration(`ready_made_${productName.toLowerCase().replace(/\s+/g, '_')}_${tier.toLowerCase()}`);
+};

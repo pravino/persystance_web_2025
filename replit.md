@@ -30,7 +30,11 @@ Typography uses the Inter font family for text and Space Grotesk for accents. Th
 
 ### Architecture & Routing
 
-The application maintains a 100% static site architecture with no direct backend dependencies for core content. The `/nexus-trading` route showcases the live trading demo.
+The application maintains a 100% static site architecture with no direct backend dependencies for core content. Key routes include:
+- `/` - Homepage with calculator and services overview
+- `/nexus-trading` - Live trading demo
+- `/ready-made-products` - Product catalog showcasing 6 ready-made software solutions
+- `/products/:id` - Individual product landing pages with detailed specs and pricing
 
 ## External Dependencies
 
@@ -85,6 +89,46 @@ The application maintains a 100% static site architecture with no direct backend
 - **Okta/Auth0**: For Enterprise SSO.
 - **Fireblocks**: For institutional crypto custody integration.
 - **SendGrid/Twilio**: For transactional emails/notifications.
+
+## Recent Changes (November 19, 2025)
+
+### Ready-Made Products Marketplace (Latest)
+Launched new revenue stream with pre-built, production-ready software products:
+
+**Product Catalog:**
+New `/ready-made-products` route with 6 ready-made solutions:
+1. **Taxi/Ride-Hailing App** ($8k MVP / $18k Full) - React Native, complete Uber clone
+2. **KYC/AML Module** ($5k MVP / $12k Full) - Plug-and-play verification with facial recognition
+3. **Crypto Exchange** ($25k MVP / $60k Full) - Full trading platform with order matching
+4. **Commodity Exchange** ($20k MVP / $45k Full) - B2B marketplace for physical commodities
+5. **Property Management** ($12k MVP / $28k Full) - Multi-portal system for landowners/investors/scouts
+6. **Appointment System** ($6k MVP / $15k Full) - Universal booking for service businesses
+
+**Technical Implementation:**
+- Product data structure (`client/src/data/products.ts`) with complete specs, features, pricing tiers
+- Dynamic routing with individual product landing pages (`/products/:id`)
+- ProductInterestForm component for lead capture with GA4 tracking
+- Integrated with existing analytics infrastructure (trackProductView, trackProductInterest)
+- SEO optimization with canonical URLs and product-specific meta tags
+
+**Business Model:**
+- Two-tier pricing (MVP vs Full) for each product
+- Complete source code ownership
+- White-label ready
+- Deployment in 2-30 days (vs 8-12 weeks custom)
+- Target market expansion: quick-launch entrepreneurs + regional startups
+
+**Marketing Integration:**
+- Homepage CTA section promoting ready-made products
+- Navigation menu item for visibility
+- GA4 tracking for product views and interest submissions
+- Lead generation optimization via generate_lead events
+
+**Strategic Positioning:**
+- Complements custom MVP service (some clients want faster launch)
+- Lower barrier to entry ($5k-$60k vs $12k-$40k custom)
+- Recurring revenue through support/updates
+- Portfolio expansion into vertical-specific markets
 
 ## Recent Changes (November 18, 2025)
 

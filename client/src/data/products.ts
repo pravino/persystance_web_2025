@@ -1,0 +1,488 @@
+import { Car, Shield, Bitcoin, TrendingUp, Building2, Calendar } from "lucide-react";
+
+export interface ProductTier {
+  name: "MVP" | "Full";
+  price: number;
+  features: string[];
+  deploymentDays: number;
+}
+
+export interface Product {
+  id: string;
+  name: string;
+  tagline: string;
+  description: string;
+  icon: any;
+  category: string;
+  tiers: ProductTier[];
+  techStack: string[];
+  whatsIncluded: string[];
+  idealFor: string[];
+  faq: Array<{ question: string; answer: string }>;
+}
+
+export const products: Product[] = [
+  {
+    id: "taxi-app",
+    name: "Taxi/Ride-Hailing App",
+    tagline: "Your Own Uber - Launch in Days",
+    description: "Complete ride-hailing solution with real-time tracking, payments, and driver management. Built with React Native for iOS & Android.",
+    icon: Car,
+    category: "Transportation",
+    tiers: [
+      {
+        name: "MVP",
+        price: 8000,
+        deploymentDays: 3,
+        features: [
+          "Rider & Driver Mobile Apps (iOS + Android)",
+          "Real-time GPS Tracking & Route Optimization",
+          "In-app Payments (Stripe/Card)",
+          "Basic Admin Dashboard",
+          "Push Notifications",
+          "Ride Request & Acceptance Flow",
+          "Trip History & Receipts",
+          "5-star Rating System"
+        ]
+      },
+      {
+        name: "Full",
+        price: 18000,
+        deploymentDays: 7,
+        features: [
+          "Everything in MVP, plus:",
+          "Multi-payment Options (Cash, Wallet, Card)",
+          "Surge Pricing Engine",
+          "Driver Earnings & Payout System",
+          "Advanced Analytics Dashboard",
+          "Promo Codes & Referral System",
+          "Multi-language Support (3 languages)",
+          "SMS Notifications (Twilio)",
+          "Ride Scheduling (book in advance)",
+          "Customer Support Chat"
+        ]
+      }
+    ],
+    techStack: ["React Native", "Node.js", "PostgreSQL", "Google Maps API", "Stripe", "Firebase", "Socket.io"],
+    whatsIncluded: [
+      "Complete source code with documentation",
+      "iOS & Android apps ready for App Store submission",
+      "Admin web dashboard",
+      "Database setup & initial deployment",
+      "3 months of bug fixes",
+      "White-label ready (your branding)"
+    ],
+    idealFor: [
+      "Entrepreneurs launching local taxi services",
+      "Existing taxi companies going digital",
+      "Regional ride-sharing startups",
+      "Airport shuttle services"
+    ],
+    faq: [
+      {
+        question: "Can I customize the branding?",
+        answer: "Yes! The app is fully white-label. You can customize colors, logo, app name, and branding elements."
+      },
+      {
+        question: "Do I need my own servers?",
+        answer: "We recommend cloud hosting (AWS/Google Cloud). We'll help with initial deployment setup."
+      },
+      {
+        question: "Is the code mine after purchase?",
+        answer: "Yes, you get complete source code ownership with no recurring license fees."
+      },
+      {
+        question: "Can I add more features later?",
+        answer: "Absolutely. We offer custom development services at $100/hour for additional features."
+      }
+    ]
+  },
+  {
+    id: "kyc-module",
+    name: "KYC/AML Verification Module",
+    tagline: "Enterprise-Grade Identity Verification",
+    description: "Plug-and-play KYC/AML compliance module with document verification, facial recognition, and AML screening. Integrates with any platform.",
+    icon: Shield,
+    category: "Compliance",
+    tiers: [
+      {
+        name: "MVP",
+        price: 5000,
+        deploymentDays: 2,
+        features: [
+          "ID Document Upload & Verification",
+          "Liveness Detection (Selfie Check)",
+          "Basic AML Screening (name matching)",
+          "Verification Status Dashboard",
+          "REST API Integration",
+          "Email Notifications",
+          "Support for 3 Document Types (Passport, ID, Driver's License)"
+        ]
+      },
+      {
+        name: "Full",
+        price: 12000,
+        deploymentDays: 5,
+        features: [
+          "Everything in MVP, plus:",
+          "Advanced AML Screening (PEP, Sanctions Lists)",
+          "OCR Data Extraction from Documents",
+          "Multi-country Document Support (50+ countries)",
+          "Risk Scoring Engine",
+          "Audit Trail & Compliance Reports",
+          "Webhook Integration",
+          "Admin Review Interface",
+          "Onfido/Jumio Integration (optional)"
+        ]
+      }
+    ],
+    techStack: ["React", "Node.js", "PostgreSQL", "AWS S3", "Face Recognition API", "AML Database APIs"],
+    whatsIncluded: [
+      "Complete verification module with API",
+      "Admin dashboard for manual reviews",
+      "Integration guide & API documentation",
+      "Database schema & deployment scripts",
+      "6 months of security updates",
+      "GDPR compliance considerations"
+    ],
+    idealFor: [
+      "Fintech platforms requiring compliance",
+      "Crypto exchanges needing KYC",
+      "Lending platforms",
+      "Gaming/betting platforms",
+      "Any regulated financial service"
+    ],
+    faq: [
+      {
+        question: "Which KYC providers do you integrate with?",
+        answer: "MVP uses custom verification. Full version supports Onfido, Jumio, or custom solutions."
+      },
+      {
+        question: "Is this GDPR compliant?",
+        answer: "Yes, includes data retention policies and user consent flows. Final compliance is client responsibility."
+      },
+      {
+        question: "Can I use my own AML provider?",
+        answer: "Yes, the module is designed to integrate with any AML API (ComplyAdvantage, Refinitiv, etc.)."
+      }
+    ]
+  },
+  {
+    id: "crypto-exchange",
+    name: "Crypto Exchange Platform",
+    tagline: "Launch Your Cryptocurrency Exchange",
+    description: "Full-featured crypto trading platform with order matching, wallet management, and admin controls. Built for security and scalability.",
+    icon: Bitcoin,
+    category: "Finance",
+    tiers: [
+      {
+        name: "MVP",
+        price: 25000,
+        deploymentDays: 14,
+        features: [
+          "User Registration & KYC Integration",
+          "5 Trading Pairs (BTC, ETH, USDT + 2 custom)",
+          "Spot Trading (Market & Limit Orders)",
+          "Order Matching Engine",
+          "Hot & Cold Wallet Management",
+          "Deposit & Withdrawal System",
+          "Trading Dashboard with Charts",
+          "Admin Panel (user management, transactions)",
+          "2FA Authentication",
+          "Basic Trading Fees Configuration"
+        ]
+      },
+      {
+        name: "Full",
+        price: 60000,
+        deploymentDays: 30,
+        features: [
+          "Everything in MVP, plus:",
+          "20+ Trading Pairs",
+          "Advanced Order Types (Stop-Loss, OCO, Trailing Stop)",
+          "Margin Trading (up to 5x leverage)",
+          "Liquidity Provider Integration",
+          "Trading Bots & API Access",
+          "P2P Trading Module",
+          "Staking & Yield Programs",
+          "Multi-language Support (5 languages)",
+          "Advanced Analytics & Reporting",
+          "Cold Storage Integration (Hardware Wallets)",
+          "AML Transaction Monitoring"
+        ]
+      }
+    ],
+    techStack: ["React", "Node.js", "PostgreSQL", "Redis", "WebSocket", "Blockchain APIs", "TradingView Charts"],
+    whatsIncluded: [
+      "Complete exchange platform source code",
+      "Trading engine with order matching",
+      "Wallet integration (hot + cold storage guide)",
+      "Admin dashboard with full controls",
+      "API documentation for traders",
+      "Security audit recommendations",
+      "12 months of critical security updates"
+    ],
+    idealFor: [
+      "Entrepreneurs launching regional exchanges",
+      "Token issuers creating liquidity",
+      "Institutional crypto trading desks",
+      "Blockchain projects building DEX-CEX hybrid"
+    ],
+    faq: [
+      {
+        question: "Do you provide blockchain infrastructure?",
+        answer: "No, you'll need to integrate with blockchain nodes (we provide guides for popular chains)."
+      },
+      {
+        question: "Is this regulatory compliant?",
+        answer: "We build the technology. Regulatory compliance (licenses, KYC/AML) is client responsibility."
+      },
+      {
+        question: "Can I add more cryptocurrencies?",
+        answer: "Yes, the platform supports adding new trading pairs via admin panel configuration."
+      },
+      {
+        question: "What about security?",
+        answer: "Includes encryption, 2FA, cold storage support. We recommend professional security audit before launch."
+      }
+    ]
+  },
+  {
+    id: "commodity-exchange",
+    name: "Commodity Trading Exchange",
+    tagline: "Digital Marketplace for Physical Commodities",
+    description: "B2B commodity trading platform for agricultural products, metals, energy. Features contracts, settlements, and logistics tracking.",
+    icon: TrendingUp,
+    category: "Finance",
+    tiers: [
+      {
+        name: "MVP",
+        price: 20000,
+        deploymentDays: 12,
+        features: [
+          "Buyer & Seller Registration",
+          "Product Listing (5 commodity categories)",
+          "Spot Price Trading",
+          "Contract Management System",
+          "Payment Escrow Integration",
+          "Basic Logistics Tracking",
+          "Document Upload (invoices, certificates)",
+          "Admin Dashboard",
+          "Email Notifications"
+        ]
+      },
+      {
+        name: "Full",
+        price: 45000,
+        deploymentDays: 25,
+        features: [
+          "Everything in MVP, plus:",
+          "Futures Contracts Trading",
+          "20+ Commodity Categories",
+          "Real-time Market Data Integration",
+          "Quality Inspection Workflows",
+          "Multi-currency Support",
+          "Advanced Logistics (shipment tracking, warehouse integration)",
+          "Credit Line Management",
+          "Automated Settlement System",
+          "Analytics & Market Reports",
+          "Mobile Apps for Traders"
+        ]
+      }
+    ],
+    techStack: ["React", "Node.js", "PostgreSQL", "Redis", "Stripe", "Document Storage (S3)", "Maps API"],
+    whatsIncluded: [
+      "Complete trading platform source code",
+      "Buyer, seller, and admin portals",
+      "Contract & settlement engine",
+      "Database with commodity templates",
+      "Integration guide for market data APIs",
+      "6 months of support",
+      "White-label ready"
+    ],
+    idealFor: [
+      "Agricultural commodity traders",
+      "Metal & mining marketplaces",
+      "Energy trading platforms",
+      "B2B industrial supply chains",
+      "Governments digitizing commodity markets"
+    ],
+    faq: [
+      {
+        question: "Can this handle international trades?",
+        answer: "Yes, supports multi-currency and international shipping workflows in the Full version."
+      },
+      {
+        question: "Do you provide market data feeds?",
+        answer: "No, but we integrate with your preferred market data provider (Bloomberg, Reuters, etc.)."
+      },
+      {
+        question: "Is escrow included?",
+        answer: "We provide escrow workflow. You'll need to integrate with a licensed escrow service provider."
+      }
+    ]
+  },
+  {
+    id: "property-management",
+    name: "Property Management System",
+    tagline: "For Landowners, Investors & Scouts",
+    description: "All-in-one platform for property listings, investment tracking, scout management, and tenant communication.",
+    icon: Building2,
+    category: "Real Estate",
+    tiers: [
+      {
+        name: "MVP",
+        price: 12000,
+        deploymentDays: 7,
+        features: [
+          "Property Listing & Management",
+          "Landowner Portal (add properties, track earnings)",
+          "Investor Portal (browse, invest, track ROI)",
+          "Scout Portal (submit leads, earn commissions)",
+          "Tenant Management (basic)",
+          "Payment Tracking",
+          "Document Storage",
+          "Email Notifications",
+          "Admin Dashboard"
+        ]
+      },
+      {
+        name: "Full",
+        price: 28000,
+        deploymentDays: 18,
+        features: [
+          "Everything in MVP, plus:",
+          "Advanced Investment Analytics",
+          "Automated Rent Collection (Stripe)",
+          "Maintenance Request System",
+          "Lease Agreement Management",
+          "Financial Reports & Tax Documents",
+          "Scout Commission Automation",
+          "Multi-property Portfolio View",
+          "Mobile Apps for All User Types",
+          "WhatsApp/SMS Notifications",
+          "Integration with Property Marketplaces"
+        ]
+      }
+    ],
+    techStack: ["React", "React Native", "Node.js", "PostgreSQL", "Stripe", "AWS S3", "Maps API", "PDF Generation"],
+    whatsIncluded: [
+      "Complete multi-portal system",
+      "Web dashboards for all user roles",
+      "Mobile apps (Full version)",
+      "Database with property templates",
+      "Payment integration setup",
+      "6 months of support",
+      "Custom branding"
+    ],
+    idealFor: [
+      "Real estate investment platforms",
+      "Property management companies",
+      "Landowner cooperatives",
+      "Real estate scout networks",
+      "Rental management businesses"
+    ],
+    faq: [
+      {
+        question: "Can scouts get paid automatically?",
+        answer: "Yes, the Full version includes automated commission calculations and payout workflows."
+      },
+      {
+        question: "Does it handle rent collection?",
+        answer: "MVP tracks payments manually. Full version automates rent collection via Stripe."
+      },
+      {
+        question: "Can investors see real-time ROI?",
+        answer: "Yes, investor dashboard shows live performance metrics and earnings projections."
+      }
+    ]
+  },
+  {
+    id: "appointment-system",
+    name: "Multi-Industry Appointment System",
+    tagline: "Bookings for Car Detailing, AC Repair & More",
+    description: "Universal booking system for service businesses. Works for car detailing, AC repair, salons, spas, clinics - any appointment-based business.",
+    icon: Calendar,
+    category: "Service",
+    tiers: [
+      {
+        name: "MVP",
+        price: 6000,
+        deploymentDays: 4,
+        features: [
+          "Online Booking Widget (embed on website)",
+          "Service Menu Management",
+          "Calendar & Availability Scheduling",
+          "Customer Registration",
+          "Email & SMS Confirmations",
+          "Payment Collection (Stripe)",
+          "Basic Admin Dashboard",
+          "Booking History",
+          "3 Staff Members"
+        ]
+      },
+      {
+        name: "Full",
+        price: 15000,
+        deploymentDays: 10,
+        features: [
+          "Everything in MVP, plus:",
+          "Unlimited Staff & Locations",
+          "Mobile App (iOS + Android)",
+          "Customer Loyalty Program",
+          "Automated Reminders (SMS/WhatsApp)",
+          "Multi-service Package Deals",
+          "Advanced Analytics (peak times, revenue)",
+          "Customer Reviews & Ratings",
+          "Waitlist Management",
+          "Integration with Google Calendar",
+          "Point-of-Sale (POS) for walk-ins"
+        ]
+      }
+    ],
+    techStack: ["React", "React Native", "Node.js", "PostgreSQL", "Stripe", "Twilio", "Google Calendar API"],
+    whatsIncluded: [
+      "Complete booking system source code",
+      "Customer-facing booking interface",
+      "Admin dashboard for staff management",
+      "Mobile apps (Full version)",
+      "Payment integration setup",
+      "3 months of support",
+      "Multi-business white-label ready"
+    ],
+    idealFor: [
+      "Car detailing & auto services",
+      "AC repair & home services",
+      "Salons & spas",
+      "Medical/dental clinics",
+      "Fitness trainers & gyms",
+      "Any appointment-based business"
+    ],
+    faq: [
+      {
+        question: "Can I use this for multiple locations?",
+        answer: "MVP supports 1 location. Full version supports unlimited locations with separate calendars."
+      },
+      {
+        question: "Does it integrate with my existing website?",
+        answer: "Yes, the booking widget can be embedded on any website via simple code snippet."
+      },
+      {
+        question: "Can customers reschedule appointments?",
+        answer: "Yes, customers can reschedule or cancel through the booking portal (with admin-defined rules)."
+      },
+      {
+        question: "What about no-shows?",
+        answer: "Full version includes deposit collection and automated reminder systems to reduce no-shows."
+      }
+    ]
+  }
+];
+
+export const getProductById = (id: string): Product | undefined => {
+  return products.find(p => p.id === id);
+};
+
+export const getProductsByCategory = (category: string): Product[] => {
+  return products.filter(p => p.category === category);
+};

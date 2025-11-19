@@ -18,6 +18,11 @@ import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
 import SEO, { seoConfig } from "@/components/SEO";
 import StructuredData from "@/components/StructuredData";
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Link } from "wouter";
+import { Package, Zap, ArrowRight } from "lucide-react";
 
 export default function Home() {
   return (
@@ -45,6 +50,49 @@ export default function Home() {
             <ProjectCalculator />
           </div>
         </section>
+        
+        <section className="py-20 px-6">
+          <div className="max-w-6xl mx-auto">
+            <Card className="p-12 glass text-center bg-gradient-to-br from-primary/5 to-background">
+              <Badge className="mb-4" variant="outline">
+                <Package className="w-3 h-3 mr-1" />
+                New: Ready-Made Products
+              </Badge>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                Don't Have 2-4 Weeks?
+                <br />
+                <span className="text-primary">Launch in Days with Ready-Made Solutions</span>
+              </h2>
+              <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
+                Production-ready software products available now. Complete source code, white-label ready. 
+                Choose from Taxi Apps, Crypto Exchanges, KYC Modules, Property Management Systems, and more.
+              </p>
+              
+              <div className="flex flex-wrap gap-4 justify-center mb-8">
+                <div className="flex items-center gap-2 text-sm">
+                  <Zap className="w-4 h-4 text-primary" />
+                  <span>Deploy in 2-30 days</span>
+                </div>
+                <div className="flex items-center gap-2 text-sm">
+                  <Package className="w-4 h-4 text-primary" />
+                  <span>Full source code included</span>
+                </div>
+                <div className="flex items-center gap-2 text-sm">
+                  <ArrowRight className="w-4 h-4 text-primary" />
+                  <span>White-label ready</span>
+                </div>
+              </div>
+
+              <Link href="/ready-made-products">
+                <Button size="lg" className="text-lg px-8">
+                  Browse Ready-Made Products
+                  <ArrowRight className="w-5 h-5 ml-2" />
+                </Button>
+              </Link>
+            </Card>
+          </div>
+        </section>
+        
         <Testimonials />
         <FAQ />
         <ContactForm />
