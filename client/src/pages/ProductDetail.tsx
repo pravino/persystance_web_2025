@@ -148,8 +148,42 @@ export default function ProductDetail() {
                       ${tier.price.toLocaleString()}
                     </div>
                     <div className="text-sm text-muted-foreground">
-                      Deploy in {tier.deploymentDays} days
+                      Includes deployment + {tier.serviceIncludes.customizationHours}hr customization
                     </div>
+                    <div className="text-xs text-muted-foreground mt-1">
+                      Deploy in {tier.deploymentDays} days • {tier.serviceIncludes.supportDays} days support
+                    </div>
+                  </div>
+
+                  {/* Service Includes */}
+                  <div className="mb-6 p-4 bg-muted/50 rounded-lg">
+                    <h4 className="font-semibold text-sm mb-3">Service Includes:</h4>
+                    <ul className="space-y-2 text-sm">
+                      <li className="flex items-center gap-2">
+                        <CheckCircle2 className="w-4 h-4 text-primary" />
+                        {tier.serviceIncludes.deploymentHours}h professional deployment
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <CheckCircle2 className="w-4 h-4 text-primary" />
+                        {tier.serviceIncludes.customizationHours}h customization (branding, config)
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <CheckCircle2 className="w-4 h-4 text-primary" />
+                        {tier.serviceIncludes.supportDays}-day support period
+                      </li>
+                      {tier.serviceIncludes.documentation && (
+                        <li className="flex items-center gap-2">
+                          <CheckCircle2 className="w-4 h-4 text-primary" />
+                          Complete documentation
+                        </li>
+                      )}
+                      {tier.serviceIncludes.training && (
+                        <li className="flex items-center gap-2">
+                          <CheckCircle2 className="w-4 h-4 text-primary" />
+                          {tier.serviceIncludes.trainingHours}h training session
+                        </li>
+                      )}
+                    </ul>
                   </div>
 
                   <ul className="space-y-3 mb-6">
@@ -242,6 +276,100 @@ export default function ProductDetail() {
               </Card>
             </TabsContent>
           </Tabs>
+
+          {/* Available Add-Ons */}
+          <div className="mb-12">
+            <h2 className="text-3xl font-bold mb-6">Optional Add-Ons</h2>
+            
+            {/* Deployment Tiers */}
+            <div className="mb-8">
+              <h3 className="text-2xl font-semibold mb-4">Professional Deployment Services</h3>
+              <div className="grid md:grid-cols-3 gap-6">
+                {product.deploymentTiers.map((tier) => (
+                  <Card key={tier.name} className="p-6">
+                    <h4 className="font-bold mb-2">{tier.name}</h4>
+                    <div className="text-2xl font-bold text-primary mb-2">
+                      ${tier.price.toLocaleString()}
+                    </div>
+                    <p className="text-sm text-muted-foreground mb-4">{tier.description}</p>
+                    <ul className="space-y-2">
+                      {tier.features.map((feature, idx) => (
+                        <li key={idx} className="flex items-start gap-2 text-sm">
+                          <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                          <span>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </Card>
+                ))}
+              </div>
+            </div>
+
+            {/* Support Contracts */}
+            <div>
+              <h3 className="text-2xl font-semibold mb-4">Ongoing Support Contracts</h3>
+              <div className="grid md:grid-cols-3 gap-6">
+                {product.supportContracts.map((contract) => (
+                  <Card key={contract.name} className="p-6">
+                    <h4 className="font-bold mb-2">{contract.name}</h4>
+                    <div className="text-2xl font-bold text-primary mb-2">
+                      ${contract.pricePerMonth}/mo
+                    </div>
+                    <p className="text-sm text-muted-foreground mb-4">{contract.description}</p>
+                    <ul className="space-y-2">
+                      {contract.features.map((feature, idx) => (
+                        <li key={idx} className="flex items-start gap-2 text-sm">
+                          <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                          <span>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Customization Policy */}
+          <Card className="p-8 mb-12">
+            <h2 className="text-2xl font-bold mb-6">Customization Policy</h2>
+            <div className="grid md:grid-cols-2 gap-8">
+              <div>
+                <h3 className="font-bold text-lg mb-4 flex items-center gap-2">
+                  <CheckCircle2 className="w-5 h-5 text-green-500" />
+                  Included Customization
+                </h3>
+                <ul className="space-y-2">
+                  {product.scopeProtection.includedCustomization.map((item, idx) => (
+                    <li key={idx} className="flex items-start gap-2 text-sm">
+                      <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <h3 className="font-bold text-lg mb-4 flex items-center gap-2">
+                  <span className="w-5 h-5 rounded-full bg-red-500/10 flex items-center justify-center text-red-500 text-xs">✕</span>
+                  Not Included (Extra Charges)
+                </h3>
+                <ul className="space-y-2 mb-6">
+                  {product.scopeProtection.notIncluded.map((item, idx) => (
+                    <li key={idx} className="flex items-start gap-2 text-sm text-muted-foreground">
+                      <span className="w-4 h-4 flex items-center justify-center text-red-500 text-xs flex-shrink-0 mt-0.5">✕</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div className="p-4 bg-muted/50 rounded-lg">
+                  <div className="font-semibold text-sm mb-1">Additional Work Rates:</div>
+                  <div className="text-sm text-muted-foreground">
+                    ${product.scopeProtection.hourlyRate}/hour or ${product.scopeProtection.dailyRate}/day
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Card>
 
           {/* CTA Section */}
           <Card className="p-8 glass text-center">

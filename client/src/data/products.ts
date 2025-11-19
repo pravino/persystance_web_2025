@@ -1,10 +1,41 @@
 import { Car, Shield, Bitcoin, TrendingUp, Building2, Calendar } from "lucide-react";
 
+export interface ServiceIncludes {
+  deploymentHours: number;
+  customizationHours: number;
+  supportDays: number;
+  documentation: boolean;
+  training: boolean;
+  trainingHours?: number;
+}
+
 export interface ProductTier {
   name: "MVP" | "Full";
   price: number;
   features: string[];
   deploymentDays: number;
+  serviceIncludes: ServiceIncludes;
+}
+
+export interface DeploymentTier {
+  name: string;
+  price: number;
+  description: string;
+  features: string[];
+}
+
+export interface SupportContract {
+  name: string;
+  pricePerMonth: number;
+  description: string;
+  features: string[];
+}
+
+export interface ScopeProtection {
+  includedCustomization: string[];
+  notIncluded: string[];
+  hourlyRate: number;
+  dailyRate: number;
 }
 
 export interface Product {
@@ -19,7 +50,112 @@ export interface Product {
   whatsIncluded: string[];
   idealFor: string[];
   faq: Array<{ question: string; answer: string }>;
+  deploymentTiers: DeploymentTier[];
+  supportContracts: SupportContract[];
+  scopeProtection: ScopeProtection;
 }
+
+// Standard add-on services (same for all products)
+const standardDeploymentTiers: DeploymentTier[] = [
+  {
+    name: "Basic Deploy",
+    price: 500,
+    description: "Single VPS deployment with Docker",
+    features: [
+      "Single server setup (DigitalOcean/Linode)",
+      "Docker containerization",
+      "Basic SSL certificate",
+      "Environment configuration",
+      "Database initialization"
+    ]
+  },
+  {
+    name: "Production Deploy",
+    price: 1500,
+    description: "Cloud deployment with auto-scaling",
+    features: [
+      "AWS/GCP deployment",
+      "Auto-scaling configuration",
+      "Load balancer setup",
+      "CDN integration",
+      "Monitoring & alerts",
+      "Backup automation"
+    ]
+  },
+  {
+    name: "Enterprise Deploy",
+    price: 3000,
+    description: "Multi-region with advanced infrastructure",
+    features: [
+      "Multi-region deployment",
+      "High-availability setup",
+      "Advanced monitoring (Datadog/New Relic)",
+      "Security hardening",
+      "Performance optimization",
+      "Disaster recovery plan"
+    ]
+  }
+];
+
+const standardSupportContracts: SupportContract[] = [
+  {
+    name: "Maintenance",
+    pricePerMonth: 300,
+    description: "Bug fixes and minor updates",
+    features: [
+      "Email support (72-hour response)",
+      "Bug fixes for reported issues",
+      "Minor security patches",
+      "Monthly check-in calls"
+    ]
+  },
+  {
+    name: "Managed",
+    pricePerMonth: 800,
+    description: "4-hour SLA with feature requests",
+    features: [
+      "Email & chat support (4-hour SLA)",
+      "Priority bug fixes",
+      "Security updates",
+      "Small feature requests (up to 5 hours/month)",
+      "Weekly status reports"
+    ]
+  },
+  {
+    name: "Dedicated",
+    pricePerMonth: 2000,
+    description: "Phone support and priority development",
+    features: [
+      "Phone, email & chat support (2-hour SLA)",
+      "Dedicated account manager",
+      "Priority development queue",
+      "Feature development (up to 15 hours/month)",
+      "24/7 emergency support",
+      "Monthly strategy calls"
+    ]
+  }
+];
+
+const standardScopeProtection: ScopeProtection = {
+  includedCustomization: [
+    "Logo replacement and branding",
+    "Color scheme customization (up to 5 colors)",
+    "App/platform name changes",
+    "Basic configuration (currencies, languages, timezone)",
+    "Minor UI tweaks within allocated hours"
+  ],
+  notIncluded: [
+    "New features or modules",
+    "Third-party API integrations beyond specification",
+    "Database schema modifications",
+    "Custom workflow development",
+    "Performance optimization beyond standard setup",
+    "Ongoing hosting/infrastructure management",
+    "Content creation or data entry"
+  ],
+  hourlyRate: 150,
+  dailyRate: 1200
+};
 
 export const products: Product[] = [
   {
@@ -43,7 +179,14 @@ export const products: Product[] = [
           "Ride Request & Acceptance Flow",
           "Trip History & Receipts",
           "5-star Rating System"
-        ]
+        ],
+        serviceIncludes: {
+          deploymentHours: 8,
+          customizationHours: 10,
+          supportDays: 30,
+          documentation: true,
+          training: false
+        }
       },
       {
         name: "Full",
@@ -60,9 +203,20 @@ export const products: Product[] = [
           "SMS Notifications (Twilio)",
           "Ride Scheduling (book in advance)",
           "Customer Support Chat"
-        ]
+        ],
+        serviceIncludes: {
+          deploymentHours: 16,
+          customizationHours: 30,
+          supportDays: 90,
+          documentation: true,
+          training: true,
+          trainingHours: 2
+        }
       }
     ],
+    deploymentTiers: standardDeploymentTiers,
+    supportContracts: standardSupportContracts,
+    scopeProtection: standardScopeProtection,
     techStack: ["React Native", "Node.js", "PostgreSQL", "Google Maps API", "Stripe", "Firebase", "Socket.io"],
     whatsIncluded: [
       "Complete source code with documentation",
@@ -85,15 +239,15 @@ export const products: Product[] = [
       },
       {
         question: "Do I need my own servers?",
-        answer: "We recommend cloud hosting (AWS/Google Cloud). We'll help with initial deployment setup."
+        answer: "We recommend cloud hosting (AWS/Google Cloud). Our deployment service includes complete infrastructure setup and configuration."
       },
       {
-        question: "Is the code mine after purchase?",
-        answer: "Yes, you get complete source code ownership with no recurring license fees."
+        question: "Do I own the source code after deployment?",
+        answer: "Yes, you get complete source code ownership with no recurring license fees. It's yours to modify and use as needed."
       },
       {
         question: "Can I add more features later?",
-        answer: "Absolutely. We offer custom development services at $100/hour for additional features."
+        answer: "Absolutely. We offer additional customization and development services at $150/hour (or $1,200/day) for work beyond the included hours."
       }
     ]
   },
@@ -117,7 +271,14 @@ export const products: Product[] = [
           "REST API Integration",
           "Email Notifications",
           "Support for 3 Document Types (Passport, ID, Driver's License)"
-        ]
+        ],
+        serviceIncludes: {
+          deploymentHours: 6,
+          customizationHours: 10,
+          supportDays: 30,
+          documentation: true,
+          training: false
+        }
       },
       {
         name: "Full",
@@ -133,9 +294,20 @@ export const products: Product[] = [
           "Webhook Integration",
           "Admin Review Interface",
           "Onfido/Jumio Integration (optional)"
-        ]
+        ],
+        serviceIncludes: {
+          deploymentHours: 12,
+          customizationHours: 30,
+          supportDays: 90,
+          documentation: true,
+          training: true,
+          trainingHours: 2
+        }
       }
     ],
+    deploymentTiers: standardDeploymentTiers,
+    supportContracts: standardSupportContracts,
+    scopeProtection: standardScopeProtection,
     techStack: ["React", "Node.js", "PostgreSQL", "AWS S3", "Face Recognition API", "AML Database APIs"],
     whatsIncluded: [
       "Complete verification module with API",
@@ -190,7 +362,14 @@ export const products: Product[] = [
           "Admin Panel (user management, transactions)",
           "2FA Authentication",
           "Basic Trading Fees Configuration"
-        ]
+        ],
+        serviceIncludes: {
+          deploymentHours: 24,
+          customizationHours: 10,
+          supportDays: 30,
+          documentation: true,
+          training: false
+        }
       },
       {
         name: "Full",
@@ -209,9 +388,20 @@ export const products: Product[] = [
           "Advanced Analytics & Reporting",
           "Cold Storage Integration (Hardware Wallets)",
           "AML Transaction Monitoring"
-        ]
+        ],
+        serviceIncludes: {
+          deploymentHours: 48,
+          customizationHours: 30,
+          supportDays: 90,
+          documentation: true,
+          training: true,
+          trainingHours: 2
+        }
       }
     ],
+    deploymentTiers: standardDeploymentTiers,
+    supportContracts: standardSupportContracts,
+    scopeProtection: standardScopeProtection,
     techStack: ["React", "Node.js", "PostgreSQL", "Redis", "WebSocket", "Blockchain APIs", "TradingView Charts"],
     whatsIncluded: [
       "Complete exchange platform source code",
@@ -269,7 +459,14 @@ export const products: Product[] = [
           "Document Upload (invoices, certificates)",
           "Admin Dashboard",
           "Email Notifications"
-        ]
+        ],
+        serviceIncludes: {
+          deploymentHours: 20,
+          customizationHours: 10,
+          supportDays: 30,
+          documentation: true,
+          training: false
+        }
       },
       {
         name: "Full",
@@ -287,9 +484,20 @@ export const products: Product[] = [
           "Automated Settlement System",
           "Analytics & Market Reports",
           "Mobile Apps for Traders"
-        ]
+        ],
+        serviceIncludes: {
+          deploymentHours: 40,
+          customizationHours: 30,
+          supportDays: 90,
+          documentation: true,
+          training: true,
+          trainingHours: 2
+        }
       }
     ],
+    deploymentTiers: standardDeploymentTiers,
+    supportContracts: standardSupportContracts,
+    scopeProtection: standardScopeProtection,
     techStack: ["React", "Node.js", "PostgreSQL", "Redis", "Stripe", "Document Storage (S3)", "Maps API"],
     whatsIncluded: [
       "Complete trading platform source code",
@@ -344,7 +552,14 @@ export const products: Product[] = [
           "Document Storage",
           "Email Notifications",
           "Admin Dashboard"
-        ]
+        ],
+        serviceIncludes: {
+          deploymentHours: 12,
+          customizationHours: 10,
+          supportDays: 30,
+          documentation: true,
+          training: false
+        }
       },
       {
         name: "Full",
@@ -362,9 +577,20 @@ export const products: Product[] = [
           "Mobile Apps for All User Types",
           "WhatsApp/SMS Notifications",
           "Integration with Property Marketplaces"
-        ]
+        ],
+        serviceIncludes: {
+          deploymentHours: 24,
+          customizationHours: 30,
+          supportDays: 90,
+          documentation: true,
+          training: true,
+          trainingHours: 2
+        }
       }
     ],
+    deploymentTiers: standardDeploymentTiers,
+    supportContracts: standardSupportContracts,
+    scopeProtection: standardScopeProtection,
     techStack: ["React", "React Native", "Node.js", "PostgreSQL", "Stripe", "AWS S3", "Maps API", "PDF Generation"],
     whatsIncluded: [
       "Complete multi-portal system",
@@ -419,7 +645,14 @@ export const products: Product[] = [
           "Basic Admin Dashboard",
           "Booking History",
           "3 Staff Members"
-        ]
+        ],
+        serviceIncludes: {
+          deploymentHours: 8,
+          customizationHours: 10,
+          supportDays: 30,
+          documentation: true,
+          training: false
+        }
       },
       {
         name: "Full",
@@ -437,9 +670,20 @@ export const products: Product[] = [
           "Waitlist Management",
           "Integration with Google Calendar",
           "Point-of-Sale (POS) for walk-ins"
-        ]
+        ],
+        serviceIncludes: {
+          deploymentHours: 16,
+          customizationHours: 30,
+          supportDays: 90,
+          documentation: true,
+          training: true,
+          trainingHours: 2
+        }
       }
     ],
+    deploymentTiers: standardDeploymentTiers,
+    supportContracts: standardSupportContracts,
+    scopeProtection: standardScopeProtection,
     techStack: ["React", "React Native", "Node.js", "PostgreSQL", "Stripe", "Twilio", "Google Calendar API"],
     whatsIncluded: [
       "Complete booking system source code",

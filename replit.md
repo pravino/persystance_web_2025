@@ -130,6 +130,76 @@ New `/ready-made-products` route with 6 ready-made solutions:
 - Recurring revenue through support/updates
 - Portfolio expansion into vertical-specific markets
 
+### **Business Model: Option B - Deployment Service (Not Software Sales)**
+
+**Model Type**: Pre-Built Foundation + Professional Deployment Service
+
+Ready-made products are sold as a **deployment service**, not standalone software purchases. This means:
+
+**What Clients Get:**
+1. ✅ Battle-tested codebase (the pre-built product)
+2. ✅ Professional deployment to their infrastructure
+3. ✅ Customization (branding, configuration, minor tweaks)
+4. ✅ Source code ownership
+5. ✅ Knowledge transfer and documentation
+
+**Service Inclusions by Tier:**
+
+**MVP Edition** ($5k-$25k):
+- Deployment: 6-24 hours professional setup
+- Customization: 10 hours (branding, colors, basic config)
+- Support: 30 days email support
+- Documentation: Complete technical docs
+- Training: None (self-serve)
+
+**Full Edition** ($12k-$60k):
+- Deployment: 12-48 hours professional setup
+- Customization: 30 hours (white-label + advanced config)
+- Support: 90 days priority support
+- Documentation: Complete technical docs
+- Training: 2-hour training session
+
+**Optional Add-Ons:**
+
+**Deployment Tiers:**
+- Basic Deploy ($500): Single VPS, Docker, basic SSL
+- Production Deploy ($1,500): AWS/GCP, auto-scaling, CDN, monitoring
+- Enterprise Deploy ($3,000): Multi-region, high-availability, advanced monitoring
+
+**Support Contracts (Monthly):**
+- Maintenance ($300/mo): Email support (72h SLA), bug fixes, security patches
+- Managed ($800/mo): Chat support (4h SLA), feature requests (5h/month)
+- Dedicated ($2,000/mo): Phone support (2h SLA), priority development (15h/month), 24/7 emergency
+
+**Scope Protection Policy:**
+
+**Included Customization:**
+- Logo replacement and branding
+- Color scheme (up to 5 colors)
+- App/platform name changes
+- Basic config (currencies, languages, timezone)
+- Minor UI tweaks within allocated hours
+
+**NOT Included (Extra Charges):**
+- New features or modules
+- Third-party API integrations beyond spec
+- Database schema modifications
+- Custom workflow development
+- Performance optimization beyond standard
+- Ongoing hosting/infrastructure management
+- Content creation or data entry
+
+**Extra Work Rates:**
+- Hourly: $150/hour
+- Daily: $1,200/day
+
+**Why Option B (Service) vs Option A (Product Sales):**
+- Higher perceived value (doing work vs handing over files)
+- Justifies 2-30 day timeline
+- Opens recurring revenue (support contracts)
+- Protects from "buy once, resell forever" abuse
+- Positions as premium agency, not code vendor
+
 ## Recent Changes (November 18, 2025)
 
 ### Firebase Integration & Web3 Clarification (Latest)
