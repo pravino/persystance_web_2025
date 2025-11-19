@@ -56,6 +56,8 @@ export default function ProductInterestForm({ product, onClose }: ProductInteres
       }
     };
     
+    console.log("Submitting to HubSpot:", hubspotData);
+    
     try {
       const response = await fetch(
         `https://api.hsforms.com/submissions/v3/integration/submit/${hubspotPortalId}/${hubspotFormId}`,
@@ -68,6 +70,10 @@ export default function ProductInterestForm({ product, onClose }: ProductInteres
         }
       );
 
+      console.log("HubSpot response status:", response.status);
+      const responseData = await response.json();
+      console.log("HubSpot response data:", responseData);
+
       if (response.ok) {
         analytics.trackProductInterest(product.name, formData.tier, price);
         setSubmitted(true);
@@ -76,7 +82,7 @@ export default function ProductInterestForm({ product, onClose }: ProductInteres
           onClose();
         }, 3000);
       } else {
-        console.error("Failed to submit to HubSpot");
+        console.error("Failed to submit to HubSpot", responseData);
         alert("There was an error submitting your interest. Please try WhatsApp instead.");
       }
     } catch (error) {
