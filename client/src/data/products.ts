@@ -29,6 +29,24 @@ export interface SupportContract {
   pricePerMonth: number;
   description: string;
   features: string[];
+  bugTicketLimit?: number;
+  featureHoursLimit?: number;
+  deploymentsPerMonth?: number;
+  overageRates?: {
+    perTicket?: number;
+    perHour?: number;
+  };
+  rolloverPolicy?: string;
+  phoneSupportHours?: string;
+  emergencySupport?: string;
+}
+
+export interface SupportScopeDefinitions {
+  bugDefinition: string;
+  featureDefinition: string;
+  emergencyDefinition: string;
+  phoneSupportHours: string;
+  afterHoursEmergencyFee: number;
 }
 
 export interface RateTiers {
@@ -60,6 +78,15 @@ export interface Product {
   supportContracts: SupportContract[];
   scopeProtection: ScopeProtection;
 }
+
+// Support scope definitions (prevents client abuse)
+export const supportScopeDefinitions: SupportScopeDefinitions = {
+  bugDefinition: "Bug = breakage of existing functionality. Does NOT include: new features, UI changes, API changes, or behavioral modifications.",
+  featureDefinition: "Feature = anything new OR change in existing behavior. Includes: UI changes, API changes, new modules, workflow modifications.",
+  emergencyDefinition: "Emergency = app down, payments down, or security breach ONLY. Non-emergencies follow normal SLA.",
+  phoneSupportHours: "9AM - 9PM (client timezone)",
+  afterHoursEmergencyFee: 250
+};
 
 // Standard add-on services (same for all products)
 const standardDeploymentTiers: DeploymentTier[] = [
@@ -110,35 +137,59 @@ const standardSupportContracts: SupportContract[] = [
     description: "Bug fixes and minor updates",
     features: [
       "Email support (72-hour response)",
-      "Bug fixes for reported issues",
+      "Up to 10 bug tickets/month",
       "Minor security patches",
-      "Monthly check-in calls"
-    ]
+      "1 deployment/month included",
+      "Monthly check-in call"
+    ],
+    bugTicketLimit: 10,
+    deploymentsPerMonth: 1,
+    overageRates: {
+      perTicket: 25,
+      perHour: 50
+    },
+    rolloverPolicy: "Hours do not roll over to next month"
   },
   {
     name: "Managed",
     pricePerMonth: 800,
-    description: "4-hour SLA with feature requests",
+    description: "4-hour SLA with feature development",
     features: [
       "Email & chat support (4-hour SLA)",
       "Priority bug fixes",
       "Security updates",
-      "Small feature requests (up to 5 hours/month)",
+      "Feature development: up to 5 hours/month",
+      "2 deployments/month included",
       "Weekly status reports"
-    ]
+    ],
+    featureHoursLimit: 5,
+    deploymentsPerMonth: 2,
+    overageRates: {
+      perHour: 60
+    },
+    rolloverPolicy: "Hours do not roll over to next month"
   },
   {
     name: "Dedicated",
     pricePerMonth: 2000,
-    description: "Phone support and priority development",
+    description: "Full-service with priority development",
     features: [
       "Phone, email & chat support (2-hour SLA)",
       "Dedicated account manager",
+      "Feature development: up to 15 hours/month (no rollover)",
       "Priority development queue",
-      "Feature development (up to 15 hours/month)",
-      "24/7 emergency support",
-      "Monthly strategy calls"
-    ]
+      "24/7 emergency support (outages/security only)",
+      "Monthly strategy call",
+      "Max 10 tickets/month"
+    ],
+    bugTicketLimit: 10,
+    featureHoursLimit: 15,
+    overageRates: {
+      perHour: 80
+    },
+    rolloverPolicy: "Hours do not roll over. Unused time expires monthly.",
+    phoneSupportHours: "9AM - 9PM (client timezone)",
+    emergencySupport: "Restricted to app outages, payment failures, or security breaches. Non-emergencies follow 2-hour SLA. After-hours emergency: $250/incident."
   }
 ];
 
