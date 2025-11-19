@@ -361,10 +361,27 @@ export default function ProductDetail() {
                     </li>
                   ))}
                 </ul>
-                <div className="p-4 bg-muted/50 rounded-lg">
-                  <div className="font-semibold text-sm mb-1">Additional Work Rates:</div>
-                  <div className="text-sm text-muted-foreground">
-                    ${product.scopeProtection.hourlyRate}/hour or ${product.scopeProtection.dailyRate}/day
+                <div className="p-4 bg-muted/50 rounded-lg space-y-3">
+                  <div className="font-semibold text-sm mb-2">Additional Work Rates:</div>
+                  <div className="space-y-2 text-sm">
+                    <div className="flex justify-between items-center">
+                      <span className="text-muted-foreground">Basic (UI, branding, config):</span>
+                      <span className="font-semibold">${product.scopeProtection.rateTiers.basic}/hour</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-muted-foreground">Standard (backend, integrations):</span>
+                      <span className="font-semibold">${product.scopeProtection.rateTiers.standard}/hour</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-muted-foreground">Specialized (DevOps, security):</span>
+                      <span className="font-semibold">${product.scopeProtection.rateTiers.specialized}/hour</span>
+                    </div>
+                    <div className="pt-2 border-t border-border">
+                      <div className="flex justify-between items-center">
+                        <span className="text-muted-foreground">Daily rate (8 hours):</span>
+                        <span className="font-semibold">${product.scopeProtection.dailyRate}/day</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

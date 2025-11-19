@@ -189,9 +189,21 @@ Ready-made products are sold as a **deployment service**, not standalone softwar
 - Ongoing hosting/infrastructure management
 - Content creation or data entry
 
-**Extra Work Rates:**
-- Hourly: $150/hour
-- Daily: $1,200/day
+**Extra Work Rates (Tiered by Complexity):**
+- **Basic Work** ($50/hour): UI adjustments, branding changes, color schemes, basic configuration
+- **Standard Work** ($65/hour): Backend features, API integrations, custom workflows, database queries
+- **Specialized Work** ($100/hour): DevOps optimization, deployment architecture, blockchain integration, high-security modules
+- **Daily Rate**: $500 (approximately 8 hours at average $65/hour rate)
+
+**Competitive Positioning (Global Tier-2 Markets):**
+These rates align with UAE, Singapore, and Middle East developer markets ($40-$150/hour range), positioning us as a premium solution provider while remaining competitive. We target global Tier-2 markets, NOT Sri Lankan pricing.
+
+**Rate Justification:**
+- We deliver faster than freelancers
+- We're selling production-ready, battle-tested code
+- We're doing enterprise-level deployment work
+- We offer turnkey solutions with professional service
+- Our buyers are international clients, not local markets
 
 **Why Option B (Service) vs Option A (Product Sales):**
 - Higher perceived value (doing work vs handing over files)

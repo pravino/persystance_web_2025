@@ -450,7 +450,7 @@ export default function ProjectCalculator() {
     doc.setFont('helvetica', 'normal');
     
     const terms = [
-      { title: "Revisions", text: "2 rounds included per feature. Additional revisions: $150/hour" },
+      { title: "Revisions", text: "2 rounds included per feature. Additional work: $50-$100/hour based on complexity" },
       { title: "Support", text: "30 days bug-fix warranty (no new features). Response time: 48 hours" },
       { title: "Hosting", text: "Deployment included. Hosting costs (server, domain, SSL) paid by client" },
       { title: "Baseline Scope", text: "Dashboard = 5 screens, CRUD = 1 entity (10 fields), Database = 5 tables" },
@@ -914,7 +914,7 @@ export default function ProjectCalculator() {
                 <div className="space-y-3 text-sm text-muted-foreground">
                   <div className="flex items-start gap-2">
                     <div className="w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0 mt-1.5" />
-                    <span><strong>Revisions:</strong> 2 rounds of revisions included per feature. Additional revisions: $150/hour</span>
+                    <span><strong>Revisions:</strong> 2 rounds of revisions included per feature. Additional work: $50-$100/hour based on complexity</span>
                   </div>
                   <div className="flex items-start gap-2">
                     <div className="w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0 mt-1.5" />
