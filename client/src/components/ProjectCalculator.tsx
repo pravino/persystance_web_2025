@@ -74,15 +74,15 @@ const availableFeatures = [
   { id: "reports", name: "PDF Report Generation", cost: 1000, complexity: 1, scope: "Simple PDF with tables & text (up to 3 report types)", minTier: "standard" },
   { id: "realtime", name: "Real-time Features", cost: 2000, complexity: 2, scope: "Basic WebSocket updates for 1 feature (e.g., live notifications)", minTier: "standard" },
   { id: "social_login", name: "Social Media Login", cost: 1200, complexity: 1, scope: "OAuth integration for Google, Facebook (2 providers max)", minTier: "standard" },
-  { id: "location", name: "Location Intelligence Pack", cost: 1600, complexity: 1.5, scope: "Embedded map (Google/Mapbox) with 10 markers, address autocomplete, geocoding, distance matrix (100 daily requests). Client provides API key & billing", minTier: "standard" },
-  { id: "firebase", name: "Firebase Integration", cost: 2000, complexity: 2, scope: "Firebase Auth (email + 2 social providers), Firestore database (basic CRUD for 3 collections), Storage (file upload/download). Client provides Firebase project", minTier: "standard" },
-  { id: "kyc", name: "KYC/AML Compliance", cost: 3500, complexity: 3, scope: "Identity verification via 1 provider (Onfido/Jumio) - document + sanctions check. Client provides vendor API keys", minTier: "full" },
-  { id: "stripe_commerce", name: "Stripe Commerce Suite", cost: 3800, complexity: 3, scope: "Subscriptions (5 plans), shopping cart (50 SKUs), customer portal, webhooks. Client provides Stripe API keys", minTier: "full" },
-  { id: "sso", name: "Enterprise SSO", cost: 2000, complexity: 3, scope: "SAML/OAuth SSO via 1 provider (Okta/Auth0). Client provides vendor account", minTier: "enterprise" },
+  { id: "location", name: "Location Intelligence Pack", cost: 1600, complexity: 1.5, scope: "Embedded map (Google/Mapbox) with 10 markers, address autocomplete, geocoding, distance matrix (100 daily requests). Requires your Google/Mapbox API key & billing account", minTier: "standard" },
+  { id: "firebase", name: "Firebase Integration", cost: 2000, complexity: 2, scope: "Firebase Auth (email + 2 social providers), Firestore database (basic CRUD for 3 collections), Storage (file upload/download). Requires your Firebase project", minTier: "standard" },
+  { id: "kyc", name: "KYC/AML Compliance", cost: 3500, complexity: 3, scope: "Identity verification via 1 provider (Onfido/Jumio) - document + sanctions check. Requires vendor API keys from your account", minTier: "full" },
+  { id: "stripe_commerce", name: "Stripe Commerce Suite", cost: 3800, complexity: 3, scope: "Subscriptions (5 plans), shopping cart (50 SKUs), customer portal, webhooks. Requires your Stripe API keys", minTier: "full" },
+  { id: "sso", name: "Enterprise SSO", cost: 2000, complexity: 3, scope: "SAML/OAuth SSO via 1 provider (Okta/Auth0). Requires your vendor account", minTier: "enterprise" },
   { id: "web3_basic", name: "Web3 Basic (Infrastructure)", cost: 3000, complexity: 3, scope: "Wallet integration (MetaMask/WalletConnect) for 1 EVM chain, deploy YOUR existing contract to testnet. Does not include writing contracts", minTier: "enterprise" },
-  { id: "token_dev", name: "Token Development", cost: 2500, complexity: 3, scope: "Create NEW ERC-20 OR ERC-721 token from audited template, deploy to testnet. We write the token code. Client handles legal compliance & mainnet fees", minTier: "enterprise" },
-  { id: "smart_contracts", name: "Smart Contract Expansion", cost: 1800, complexity: 3, scope: "Design & code up to 3 NEW custom contracts with your business logic + unit tests. Excludes security audits (recommend 3rd-party)", minTier: "enterprise" },
-  { id: "fireblocks", name: "Fireblocks Integration", cost: 4500, complexity: 3.5, scope: "Integrate with client Fireblocks tenant, configure 1 vault + policy engine, transaction signing/transfer flow for 1 asset. Client provides Fireblocks license + API credentials", minTier: "enterprise" }
+  { id: "token_dev", name: "Token Development", cost: 2500, complexity: 3, scope: "Create NEW ERC-20 OR ERC-721 token from audited template, deploy to testnet. We write the token code. Legal compliance & mainnet deployment fees are your responsibility", minTier: "enterprise" },
+  { id: "smart_contracts", name: "Smart Contract Expansion", cost: 1800, complexity: 3, scope: "Design & code up to 3 NEW custom contracts with your business logic + unit tests. Security audits available through 3rd-party providers", minTier: "enterprise" },
+  { id: "fireblocks", name: "Fireblocks Integration", cost: 4500, complexity: 3.5, scope: "Integrate with your Fireblocks tenant, configure 1 vault + policy engine, transaction signing/transfer flow for 1 asset. Requires your Fireblocks enterprise license & API credentials", minTier: "enterprise" }
 ];
 
 export default function ProjectCalculator() {
@@ -452,11 +452,11 @@ export default function ProjectCalculator() {
     const terms = [
       { title: "Revisions", text: "2 rounds included per feature. Additional work: $50-$100/hour based on complexity" },
       { title: "Support", text: "30 days bug-fix warranty (no new features). Response time: 48 hours" },
-      { title: "Hosting", text: "Deployment included. Hosting costs (server, domain, SSL) paid by client" },
+      { title: "Hosting", text: "Deployment included. Hosting costs (server, domain, SSL) are your responsibility" },
       { title: "Baseline Scope", text: "Dashboard = 5 screens, CRUD = 1 entity (10 fields), Database = 5 tables" },
-      { title: "Prerequisites", text: "Client provides API keys (Stripe, Google Maps, Firebase, KYC, SSO vendors)" },
-      { title: "Blockchain/Web3", text: "Client funds gas fees, handles legal compliance, 3rd-party security audits" },
-      { title: "Fireblocks", text: "Requires enterprise Fireblocks license (client-provided)" },
+      { title: "Prerequisites", text: "You'll provide API keys for 3rd-party services (Stripe, Google Maps, Firebase, KYC, SSO vendors)" },
+      { title: "Blockchain/Web3", text: "Gas fees, mainnet deployment costs, legal compliance for tokens, and 3rd-party security audits are your responsibility" },
+      { title: "Fireblocks", text: "Requires your enterprise Fireblocks license" },
       { title: "Timeline", text: "Scales with complexity. Complex features (KYC, Web3, Fireblocks) extend delivery" }
     ];
     
@@ -922,7 +922,7 @@ export default function ProjectCalculator() {
                   </div>
                   <div className="flex items-start gap-2">
                     <div className="w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0 mt-1.5" />
-                    <span><strong>Hosting:</strong> Deployment included. Hosting costs (server, domain, SSL) paid by client</span>
+                    <span><strong>Hosting:</strong> Deployment included. Hosting costs (server, domain, SSL) are your responsibility</span>
                   </div>
                   <div className="flex items-start gap-2">
                     <div className="w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0 mt-1.5" />
@@ -930,11 +930,11 @@ export default function ProjectCalculator() {
                   </div>
                   <div className="flex items-start gap-2">
                     <div className="w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0 mt-1.5" />
-                    <span><strong>Prerequisites:</strong> Client provides API keys for 3rd-party services (Stripe, Google Maps billing, KYC providers, SSO vendors, etc.)</span>
+                    <span><strong>Prerequisites:</strong> You'll provide API keys for 3rd-party services (Stripe, Google Maps, Firebase, KYC providers, SSO vendors, etc.)</span>
                   </div>
                   <div className="flex items-start gap-2">
                     <div className="w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0 mt-1.5" />
-                    <span><strong>Blockchain/Web3:</strong> Client handles gas fees, mainnet deployment costs, legal compliance for tokens, and 3rd-party security audits. Fireblocks requires enterprise license</span>
+                    <span><strong>Blockchain/Web3:</strong> Gas fees, mainnet deployment costs, legal compliance for tokens, and 3rd-party security audits are your responsibility. Fireblocks requires your enterprise license</span>
                   </div>
                   <div className="flex items-start gap-2">
                     <div className="w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0 mt-1.5" />

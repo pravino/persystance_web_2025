@@ -79,11 +79,11 @@ export interface Product {
   scopeProtection: ScopeProtection;
 }
 
-// Support scope definitions (prevents client abuse)
+// Support scope definitions
 export const supportScopeDefinitions: SupportScopeDefinitions = {
-  bugDefinition: "Bug = breakage of existing functionality. Does NOT include: new features, UI changes, API changes, or behavioral modifications.",
-  featureDefinition: "Feature = anything new OR change in existing behavior. Includes: UI changes, API changes, new modules, workflow modifications.",
-  emergencyDefinition: "Emergency = app down, payments down, or security breach ONLY. Non-emergencies follow normal SLA.",
+  bugDefinition: "Bugs are defined as breakage of existing functionality as originally delivered. This excludes new features, UI changes, API modifications, or behavioral changes.",
+  featureDefinition: "Features include any new functionality or changes to existing behavior, such as UI modifications, API changes, new modules, or workflow adjustments.",
+  emergencyDefinition: "Emergency support covers critical issues: application downtime, payment system failures, or security breaches. Standard SLA applies to all other requests.",
   phoneSupportHours: "9AM - 9PM (client timezone)",
   afterHoursEmergencyFee: 250
 };

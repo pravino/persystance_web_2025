@@ -382,8 +382,8 @@ export default function ProductDetail() {
               </div>
               <div>
                 <h3 className="font-bold text-lg mb-4 flex items-center gap-2">
-                  <span className="w-5 h-5 rounded-full bg-red-500/10 flex items-center justify-center text-red-500 text-xs">✕</span>
-                  Not Included (Extra Charges)
+                  <span className="w-5 h-5 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-500 text-xs">+</span>
+                  Available as Add-Ons
                 </h3>
                 <ul className="space-y-2 mb-6">
                   {product.scopeProtection.notIncluded.map((item, idx) => (
