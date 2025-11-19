@@ -16,7 +16,7 @@ The frontend is built with React 18+, TypeScript, and Vite. It utilizes Wouter f
 
 ### Backend
 
-The backend uses Express.js with TypeScript on Node.js, following a RESTful API pattern. Data storage is abstracted via `MemStorage` (in-memory), with PostgreSQL session storage planned via `connect-pg-simple`. Firebase integration is available for backend-as-a-service needs.
+The backend uses Express.js with TypeScript on Node.js for development server only. The production site is 100% static with no backend dependencies. Lead capture from the Express Interest form submits directly to HubSpot Forms API (Portal ID: 244409941) from the browser, requiring no server-side processing.
 
 ### Database
 
@@ -28,7 +28,7 @@ Typography uses the Inter font family for text and Space Grotesk for accents. Th
 
 ### Architecture & Routing
 
-The application maintains a 100% static site architecture with no direct backend dependencies for core content. Key routes include:
+The application maintains a 100% static site architecture with no backend dependencies. All functionality runs client-side, including lead capture via HubSpot Forms API. Key routes include:
 - `/` - Homepage with calculator and services overview
 - `/nexus-trading` - Live trading demo
 - `/ready-made-products` - Product catalog showcasing 6 production-ready platforms (labeled as "Production-Ready Platforms")

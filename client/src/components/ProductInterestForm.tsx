@@ -36,27 +36,39 @@ export default function ProductInterestForm({ product, onClose }: ProductInteres
     const selectedTier = product.tiers.find(t => t.name === formData.tier);
     const price = selectedTier?.price || 0;
     
+    const hubspotPortalId = "244409941";
+    const hubspotFormId = "623fefde-c514-4c69-a7e8-efe8958ed2e0";
+    
+    const fullMessage = `Product: ${product.name} | Tier: ${formData.tier} Edition ($${price.toLocaleString()})${formData.message ? ` | Message: ${formData.message}` : ''}`;
+    
+    const hubspotData = {
+      fields: [
+        { name: "firstname", value: formData.name.split(' ')[0] },
+        { name: "lastname", value: formData.name.split(' ').slice(1).join(' ') || formData.name.split(' ')[0] },
+        { name: "email", value: formData.email },
+        { name: "phone", value: formData.phone },
+        { name: "company", value: formData.company },
+        { name: "message", value: fullMessage }
+      ],
+      context: {
+        pageUri: window.location.href,
+        pageName: document.title
+      }
+    };
+    
     try {
-      const response = await fetch("/api/product-interest", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          company: formData.company,
-          productName: product.name,
-          tier: formData.tier,
-          price: price,
-          message: formData.message,
-        }),
-      });
+      const response = await fetch(
+        `https://api.hsforms.com/submissions/v3/integration/submit/${hubspotPortalId}/${hubspotFormId}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(hubspotData),
+        }
+      );
 
-      const data = await response.json();
-
-      if (data.success) {
+      if (response.ok) {
         analytics.trackProductInterest(product.name, formData.tier, price);
         setSubmitted(true);
         
@@ -64,7 +76,7 @@ export default function ProductInterestForm({ product, onClose }: ProductInteres
           onClose();
         }, 3000);
       } else {
-        console.error("Failed to submit lead:", data.error);
+        console.error("Failed to submit to HubSpot");
         alert("There was an error submitting your interest. Please try WhatsApp instead.");
       }
     } catch (error) {
