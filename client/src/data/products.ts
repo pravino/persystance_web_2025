@@ -257,7 +257,7 @@ export const products: Product[] = [
       },
       {
         question: "Can I add more features later?",
-        answer: "Absolutely. We offer additional customization and development services at $150/hour (or $1,200/day) for work beyond the included hours."
+        answer: "Absolutely. We offer additional customization and development services at $50-$100/hour based on complexity (most work is $50-$65/hour). Daily rate: $500."
       }
     ]
   },
