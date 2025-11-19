@@ -64,7 +64,7 @@ export default function Navigation() {
           <div className="hidden md:flex items-center gap-6">
             <Link href="/ready-made-products">
               <button className="text-sm font-medium hover:text-primary transition-colors">
-                Ready-Made Products
+                Production-Ready Platforms
               </button>
             </Link>
 
@@ -195,7 +195,7 @@ export default function Navigation() {
                     onClick={() => setMobileMenuOpen(false)}
                     className="block text-left py-2 hover:text-primary transition-colors cursor-pointer font-medium"
                   >
-                    Ready-Made Products
+                    Production-Ready Platforms
                   </div>
                 </Link>
               </div>

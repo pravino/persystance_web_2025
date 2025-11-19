@@ -86,7 +86,7 @@ export default function Home() {
 
               <Link href="/ready-made-products">
                 <Button size="lg" className="text-lg px-8">
-                  View Deployment Services
+                  View Production-Ready Platforms
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Button>
               </Link>
