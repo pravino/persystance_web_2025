@@ -31,10 +31,16 @@ export interface SupportContract {
   features: string[];
 }
 
+export interface RateTiers {
+  basic: number;        // UI, branding, colors, basic config
+  standard: number;     // Backend features, integrations, workflows
+  specialized: number;  // DevOps, blockchain, security, performance
+}
+
 export interface ScopeProtection {
   includedCustomization: string[];
   notIncluded: string[];
-  hourlyRate: number;
+  rateTiers: RateTiers;
   dailyRate: number;
 }
 
@@ -153,8 +159,12 @@ const standardScopeProtection: ScopeProtection = {
     "Ongoing hosting/infrastructure management",
     "Content creation or data entry"
   ],
-  hourlyRate: 150,
-  dailyRate: 1200
+  rateTiers: {
+    basic: 50,        // UI work, branding, colors, basic config
+    standard: 65,     // Backend features, integrations, custom workflows
+    specialized: 100  // DevOps, deployment optimization, blockchain, high-security
+  },
+  dailyRate: 500  // Roughly 8 hours at $65/hr average rate
 };
 
 export const products: Product[] = [
