@@ -30,30 +30,47 @@ export default function ProductInterestForm({ product, onClose }: ProductInteres
   });
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     const selectedTier = product.tiers.find(t => t.name === formData.tier);
     const price = selectedTier?.price || 0;
     
-    // Track interest submission with GA4 events
-    analytics.trackProductInterest(product.name, formData.tier, price);
-    
-    // In production, this would send to your backend/CRM
-    console.log("Product Interest:", {
-      product: product.name,
-      ...formData
-    });
-    
-    setSubmitted(true);
-    
-    // Auto-close after 3 seconds (with cleanup)
-    const timer = setTimeout(() => {
-      onClose();
-    }, 3000);
-    
-    // Cleanup timeout if component unmounts
-    return () => clearTimeout(timer);
+    try {
+      const response = await fetch("/api/product-interest", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          company: formData.company,
+          productName: product.name,
+          tier: formData.tier,
+          price: price,
+          message: formData.message,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        analytics.trackProductInterest(product.name, formData.tier, price);
+        setSubmitted(true);
+        
+        setTimeout(() => {
+          onClose();
+        }, 3000);
+      } else {
+        console.error("Failed to submit lead:", data.error);
+        alert("There was an error submitting your interest. Please try WhatsApp instead.");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("There was an error submitting your interest. Please try WhatsApp instead.");
+    }
   };
 
   return (
