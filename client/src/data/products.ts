@@ -158,7 +158,7 @@ const standardSupportContracts: SupportContract[] = [
       "Email & chat support (4-hour SLA)",
       "Priority bug fixes",
       "Security updates",
-      "Feature development: up to 5 hours/month",
+      "Feature development: up to 5 hours/month (no rollover)",
       "2 deployments/month included",
       "Weekly status reports"
     ],

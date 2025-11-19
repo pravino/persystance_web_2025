@@ -1,6 +1,6 @@
 import { useRoute } from "wouter";
 import { useState, useEffect } from "react";
-import { getProductById } from "@/data/products";
+import { getProductById, supportScopeDefinitions } from "@/data/products";
 import SEO from "@/components/SEO";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
@@ -316,7 +316,7 @@ export default function ProductDetail() {
                       ${contract.pricePerMonth}/mo
                     </div>
                     <p className="text-sm text-muted-foreground mb-4">{contract.description}</p>
-                    <ul className="space-y-2">
+                    <ul className="space-y-2 mb-4">
                       {contract.features.map((feature, idx) => (
                         <li key={idx} className="flex items-start gap-2 text-sm">
                           <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
@@ -324,6 +324,38 @@ export default function ProductDetail() {
                         </li>
                       ))}
                     </ul>
+                    
+                    {/* Overage Rates & Limits */}
+                    {(contract.overageRates || contract.rolloverPolicy || contract.phoneSupportHours || contract.emergencySupport) && (
+                      <div className="pt-4 border-t border-border space-y-2 text-xs text-muted-foreground">
+                        {contract.overageRates && (
+                          <div>
+                            <span className="font-semibold text-foreground">Overage: </span>
+                            {contract.overageRates.perTicket && `$${contract.overageRates.perTicket}/ticket`}
+                            {contract.overageRates.perTicket && contract.overageRates.perHour && ', '}
+                            {contract.overageRates.perHour && `$${contract.overageRates.perHour}/hour`}
+                          </div>
+                        )}
+                        {contract.rolloverPolicy && (
+                          <div>
+                            <span className="font-semibold text-foreground">Rollover: </span>
+                            {contract.rolloverPolicy}
+                          </div>
+                        )}
+                        {contract.phoneSupportHours && (
+                          <div>
+                            <span className="font-semibold text-foreground">Phone Hours: </span>
+                            {contract.phoneSupportHours}
+                          </div>
+                        )}
+                        {contract.emergencySupport && (
+                          <div>
+                            <span className="font-semibold text-foreground">Emergency: </span>
+                            {contract.emergencySupport}
+                          </div>
+                        )}
+                      </div>
+                    )}
                   </Card>
                 ))}
               </div>
@@ -382,6 +414,43 @@ export default function ProductDetail() {
                         <span className="font-semibold">${product.scopeProtection.dailyRate}/day</span>
                       </div>
                     </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Card>
+
+          {/* Support Terms & Definitions */}
+          <Card className="p-8 mb-12 bg-blue-500/5 border-blue-500/20">
+            <h2 className="text-2xl font-bold mb-6 text-blue-700 dark:text-blue-400">Support Terms & Definitions (Prevents Abuse)</h2>
+            <div className="grid md:grid-cols-2 gap-6 text-sm">
+              <div>
+                <h3 className="font-bold mb-3 text-foreground">What Counts as a Bug vs Feature?</h3>
+                <div className="space-y-3">
+                  <div>
+                    <span className="font-semibold text-green-600 dark:text-green-400">Bug:</span>
+                    <p className="text-muted-foreground">{supportScopeDefinitions.bugDefinition}</p>
+                  </div>
+                  <div>
+                    <span className="font-semibold text-blue-600 dark:text-blue-400">Feature:</span>
+                    <p className="text-muted-foreground">{supportScopeDefinitions.featureDefinition}</p>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <h3 className="font-bold mb-3 text-foreground">Emergency Support Rules</h3>
+                <div className="space-y-3">
+                  <div>
+                    <span className="font-semibold text-red-600 dark:text-red-400">Emergency Definition:</span>
+                    <p className="text-muted-foreground">{supportScopeDefinitions.emergencyDefinition}</p>
+                  </div>
+                  <div className="p-3 bg-amber-500/10 border border-amber-500/20 rounded-lg">
+                    <p className="text-sm">
+                      <span className="font-semibold">Phone Support:</span> {supportScopeDefinitions.phoneSupportHours} only
+                    </p>
+                    <p className="text-sm mt-1">
+                      <span className="font-semibold">After-Hours Emergency Fee:</span> ${supportScopeDefinitions.afterHoursEmergencyFee}/incident (charged for non-emergency calls or calls outside business hours)
+                    </p>
                   </div>
                 </div>
               </div>
