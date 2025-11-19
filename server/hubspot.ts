@@ -56,17 +56,17 @@ export async function createContactInHubSpot(lead: ProductLead) {
   try {
     const client = await getUncachableHubSpotClient();
     
+    const messageSummary = `Product: ${lead.productName} | Tier: ${lead.tier} Edition ($${lead.price.toLocaleString()})${lead.message ? ` | Message: ${lead.message}` : ''}`;
+    
     const contactProperties = {
       email: lead.email,
       firstname: lead.name.split(' ')[0],
       lastname: lead.name.split(' ').slice(1).join(' ') || lead.name.split(' ')[0],
       phone: lead.phone,
       company: lead.company || '',
-      product_interest: lead.productName,
-      tier_selected: lead.tier,
-      estimated_value: lead.price.toString(),
       hs_lead_status: 'NEW',
-      notes: lead.message || `Expressed interest in ${lead.productName} (${lead.tier} Edition - $${lead.price.toLocaleString()})`
+      lifecyclestage: 'lead',
+      message: messageSummary
     };
 
     const response = await client.crm.contacts.basicApi.create({
@@ -97,12 +97,11 @@ export async function createContactInHubSpot(lead: ProductLead) {
 
         if (searchResponse.results.length > 0) {
           const contactId = searchResponse.results[0].id;
+          const updateMessage = `Updated: ${lead.productName} | ${lead.tier} Edition ($${lead.price.toLocaleString()})${lead.message ? ` | ${lead.message}` : ''}`;
           await client.crm.contacts.basicApi.update(contactId, {
             properties: {
-              product_interest: lead.productName,
-              tier_selected: lead.tier,
-              estimated_value: lead.price.toString(),
-              notes: lead.message || `Updated interest: ${lead.productName} (${lead.tier} Edition - $${lead.price.toLocaleString()})`
+              message: updateMessage,
+              hs_lead_status: 'NEW'
             }
           });
           console.log('Updated existing contact:', contactId);
