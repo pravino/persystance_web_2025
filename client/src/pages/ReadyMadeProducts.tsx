@@ -5,18 +5,20 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Package, Zap, Code2, Rocket } from "lucide-react";
 import { products } from "@/data/products";
 import SEO from "@/components/SEO";
+import Navigation from "@/components/Navigation";
+import Footer from "@/components/Footer";
 
 export default function ReadyMadeProducts() {
   return (
-    <>
+    <div className="min-h-screen">
       <SEO 
         title="Production-Ready Platforms - Deploy in Days"
         description="Production-ready platforms with professional deployment: Taxi Apps, Crypto Exchanges, KYC Modules, Property Management, Appointment Systems. Launch in days, not months."
         canonicalUrl="https://www.persystance.com/ready-made-products"
         keywords="production-ready platforms, white-label apps, turnkey solutions, taxi app, crypto exchange, KYC module, property management system, appointment booking, professional deployment"
       />
-      
-      <div className="min-h-screen py-20">
+      <Navigation />
+      <main className="py-20">
         <div className="container px-4 mx-auto">
           {/* Hero Section */}
           <div className="text-center mb-16 max-w-4xl mx-auto">
@@ -135,7 +137,8 @@ export default function ReadyMadeProducts() {
             </div>
           </Card>
         </div>
-      </div>
-    </>
+      </main>
+      <Footer />
+    </div>
   );
 }
