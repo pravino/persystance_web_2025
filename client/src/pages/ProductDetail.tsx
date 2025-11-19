@@ -422,7 +422,7 @@ export default function ProductDetail() {
 
           {/* Support Terms & Definitions */}
           <Card className="p-8 mb-12 bg-blue-500/5 border-blue-500/20">
-            <h2 className="text-2xl font-bold mb-6 text-blue-700 dark:text-blue-400">Support Terms & Definitions (Prevents Abuse)</h2>
+            <h2 className="text-2xl font-bold mb-6 text-blue-700 dark:text-blue-400">Support Contract Terms</h2>
             <div className="grid md:grid-cols-2 gap-6 text-sm">
               <div>
                 <h3 className="font-bold mb-3 text-foreground">What Counts as a Bug vs Feature?</h3>
