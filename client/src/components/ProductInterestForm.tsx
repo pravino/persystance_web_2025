@@ -47,7 +47,7 @@ export default function ProductInterestForm({ product, onClose }: ProductInteres
         { name: "lastname", value: formData.name.split(' ').slice(1).join(' ') || formData.name.split(' ')[0] },
         { name: "email", value: formData.email },
         { name: "phone", value: formData.phone },
-        { name: "company", value: formData.company },
+        { name: "0-2/name", value: formData.company },
         { name: "message", value: fullMessage }
       ],
       context: {
